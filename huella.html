@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Huella de Carbono Personal | Bioterritorio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .calculator-container {
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+            overflow: hidden;
+            border: 5px solid #ffc107;
+        }
+
+        .calculator-header {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: #1a237e;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .calculator-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            font-weight: 900;
+        }
+
+        .calculator-header p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .calculator-body {
+            padding: 2.5rem;
+            background: #ffffff;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            color: #1a237e;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 4px solid #ffc107;
+            padding-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: #1a237e;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1.3rem;
+            border: 3px solid #ffc107;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            color: #1a237e;
+            font-weight: 600;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ff9800;
+            box-shadow: 0 0 0 5px rgba(255, 193, 7, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .unit {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1a237e;
+            font-size: 1rem;
+            font-weight: 700;
+            background: #fff8e1;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: #1a237e;
+            padding: 1.8rem 4rem;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            width: 100%;
+            margin: 3rem 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.5);
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(255, 193, 7, 0.7);
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+        }
+
+        .results {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: #ffffff;
+            padding: 3rem;
+            margin: 2.5rem 0;
+            border-radius: 25px;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.6s ease;
+            border: 5px solid #ffc107;
+            box-shadow: 0 20px 50px rgba(26, 35, 126, 0.4);
+        }
+
+        .main-result {
+            font-size: 6rem;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.6);
+            color: #ffc107;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .result-unit {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .result-description {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-item {
+            background: rgba(255, 193, 7, 0.25);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 3px solid #ffc107;
+            transition: all 0.4s ease;
+        }
+
+        .comparison-item:hover {
+            background: rgba(255, 193, 7, 0.4);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .comparison-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .evaluation {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 2.5rem;
+            border-left: 8px solid #ffc107;
+        }
+
+        .evaluation h3 {
+            color: #1a237e;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            font-size: 1.5rem;
+        }
+
+        .eval-score {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .eval-recommendation {
+            font-size: 1.2rem;
+            color: #ff9800;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .eval-context {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .breakdown {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            border-left: 8px solid #ffc107;
+        }
+
+        .breakdown h3 {
+            color: #1a237e;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            font-size: 1.5rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 2px solid #e0e0e0;
+            color: #1a237e;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: 900;
+            color: #1a237e;
+            background: rgba(255, 193, 7, 0.4);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .action-btn {
+            padding: 1.5rem;
+            border: none;
+            border-radius: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: #1a237e;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: #ffc107;
+            border: 4px solid #ffc107;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.5);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 768px) {
+            .calculator-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .main-result {
+                font-size: 4rem;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator-header">
+            <h1>🌍 Mi Huella de Carbono</h1>
+            <p>Descubre tu impacto personal en el planeta</p>
+        </div>
+
+        <div class="calculator-body">
+            <form id="carbon-form">
+                <!-- Hogar -->
+                <div class="form-section">
+                    <h2 class="section-title">🏠 Mi Hogar</h2>
+                    
+                    <div class="form-group">
+                        <label for="electricity-bill">💡 Factura mensual de electricidad:</label>
+                        <div class="input-container">
+                            <input type="number" id="electricity-bill" placeholder="150000" min="0" required>
+                            <span class="unit">COP</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="household-size">👨‍👩‍👧‍👦 ¿Cuántas personas viven en tu casa?</label>
+                        <select id="household-size" required>
+                            <option value="">Selecciona...</option>
+                            <option value="1">Solo yo</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                            <option value="6">6 o más personas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Transporte -->
+                <div class="form-section">
+                    <h2 class="section-title">🚗 Mi Transporte</h2>
+                    
+                    <div class="form-group">
+                        <label for="vehicle">🚙 ¿Qué vehículo usas principalmente?</label>
+                        <select id="vehicle" required>
+                            <option value="">Selecciona...</option>
+                            <option value="none">No tengo vehículo</option>
+                            <option value="bike">Bicicleta/Camino</option>
+                            <option value="motorcycle">Motocicleta</option>
+                            <option value="small-car">Carro pequeño</option>
+                            <option value="large-car">Carro grande/SUV</option>
+                            <option value="public">Solo transporte público</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="km-week">📏 ¿Cuántos kilómetros manejas por semana?</label>
+                        <div class="input-container">
+                            <input type="number" id="km-week" placeholder="200" min="0">
+                            <span class="unit">km</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="flights">✈️ ¿Cuántos vuelos tomas al año?</label>
+                        <select id="flights">
+                            <option value="0">Ninguno</option>
+                            <option value="1">1 vuelo</option>
+                            <option value="2">2 vuelos</option>
+                            <option value="4">3-4 vuelos</option>
+                            <option value="8">5-8 vuelos</option>
+                            <option value="12">Más de 8 vuelos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Alimentación -->
+                <div class="form-section">
+                    <h2 class="section-title">🍽️ Mi Alimentación</h2>
+                    
+                    <div class="form-group">
+                        <label for="diet">🥩 ¿Cómo describes tu dieta?</label>
+                        <select id="diet" required>
+                            <option value="">Selecciona...</option>
+                            <option value="vegan">Vegana (sin productos animales)</option>
+                            <option value="vegetarian">Vegetariana (sin carne)</option>
+                            <option value="low-meat">Poca carne (1-2 veces/semana)</option>
+                            <option value="moderate-meat">Carne regular (3-5 veces/semana)</option>
+                            <option value="high-meat">Mucha carne (todos los días)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Consumo -->
+                <div class="form-section">
+                    <h2 class="section-title">🛒 Mi Consumo</h2>
+                    
+                    <div class="form-group">
+                        <label for="shopping">🛍️ ¿Con qué frecuencia compras ropa nueva, electrónicos, etc.?</label>
+                        <select id="shopping" required>
+                            <option value="">Selecciona...</option>
+                            <option value="minimal">Muy poco (solo lo necesario)</option>
+                            <option value="occasional">Ocasional (algunas veces al año)</option>
+                            <option value="regular">Regular (cada mes)</option>
+                            <option value="frequent">Frecuente (varias veces al mes)</option>
+                        </select>
+                        <small style="color: #666; font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+                            🛒 <strong>¿Qué incluir?</strong> Ropa, zapatos, electrónicos, muebles, decoración. No incluyas comida o productos de aseo básicos.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recycling">♻️ ¿Reciclas y cuidas el medio ambiente?</label>
+                        <select id="recycling">
+                            <option value="excellent">Sí, reciclo todo y soy muy consciente</option>
+                            <option value="good">Sí, reciclo la mayoría de cosas</option>
+                            <option value="moderate">A veces reciclo</option>
+                            <option value="poor">Rara vez reciclo</option>
+                            <option value="none">No reciclo</option>
+                        </select>
+                        <small style="color: #666; font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+                            ♻️ <strong>¿Qué evaluar?</strong> Separas plástico, papel, vidrio? ¿Reduces el desperdicio de comida? ¿Reutilizas cosas? ¿Evitas productos desechables?
+                        </small>
+                    </div>
+                </div>
+
+                <button type="submit" class="calculate-btn">
+                    🌱 Calcular Mi Huella Personal
+                </button>
+            </form>
+
+            <div id="results" class="results">
+                <div class="main-result" id="total-emissions">0</div>
+                <div class="result-unit">toneladas CO₂ al año</div>
+                <div class="result-description">Tu huella de carbono personal</div>
+
+                <div class="comparison-grid" id="comparisons">
+                    <!-- Las comparaciones se generarán aquí -->
+                </div>
+
+                <div class="evaluation" id="evaluation">
+                    <!-- La evaluación se generará aquí -->
+                </div>
+
+                <div class="breakdown" id="breakdown">
+                    <!-- El desglose se generará aquí -->
+                </div>
+
+                <div class="action-buttons">
+                    <a href="mailto:info@bioterritorio.org?subject=Consultoría%20Personal%20Huella%20de%20Carbono" class="action-btn primary-btn">
+                        📧 Asesoría Personal
+                    </a>
+                    <a href="https://wa.me/573175183243?text=Hola,%20calculé%20mi%20huella%20de%20carbono%20personal%20y%20quiero%20reducirla" class="action-btn secondary-btn">
+                        💬 WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('carbon-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculatePersonalCarbon();
+        });
+
+        function calculatePersonalCarbon() {
+            // Obtener valores del formulario
+            const electricityBill = parseFloat(document.getElementById('electricity-bill').value) || 0;
+            const householdSize = parseInt(document.getElementById('household-size').value) || 1;
+            const vehicle = document.getElementById('vehicle').value;
+            const kmWeek = parseFloat(document.getElementById('km-week').value) || 0;
+            const flights = parseInt(document.getElementById('flights').value) || 0;
+            const diet = document.getElementById('diet').value;
+            const shopping = document.getElementById('shopping').value;
+            const recycling = document.getElementById('recycling').value;
+
+            // CÁLCULOS DE HUELLA DE CARBONO PERSONAL
+
+            // 1. ENERGÍA DEL HOGAR (dividida por personas)
+            // Factura eléctrica: ~$600 COP/kWh, factor emisión: 0.164 kg CO₂/kWh
+            const electricityEmissions = ((electricityBill * 12) / 600) * 0.164 / 1000 / householdSize;
+
+            // 2. TRANSPORTE
+            let transportEmissions = 0;
+            
+            // Emisiones por tipo de vehículo (kg CO₂/km)
+            const vehicleFactors = {
+                'none': 0,
+                'bike': 0,
+                'motorcycle': 0.06,
+                'small-car': 0.12,
+                'large-car': 0.20,
+                'public': 0.04
+            };
+            
+            const vehicleFactor = vehicleFactors[vehicle] || 0;
+            transportEmissions = (kmWeek * 52 * vehicleFactor) / 1000; // Convertir a toneladas
+
+            // 3. VUELOS
+            // Factor promedio: 0.5 tCO₂ por vuelo nacional, 2.0 tCO₂ por vuelo internacional
+            const flightEmissions = flights * 0.8; // Promedio vuelos nacionales/internacionales
+
+            // 4. ALIMENTACIÓN (tCO₂/año)
+            const dietFactors = {
+                'vegan': 1.5,
+                'vegetarian': 1.8,
+                'low-meat': 2.5,
+                'moderate-meat': 3.2,
+                'high-meat': 4.5
+            };
+            const dietEmissions = dietFactors[diet] || 3.2;
+
+            // 5. CONSUMO (tCO₂/año)
+            const shoppingFactors = {
+                'minimal': 0.5,
+                'occasional': 1.0,
+                'regular': 2.0,
+                'frequent': 3.5
+            };
+            const shoppingEmissions = shoppingFactors[shopping] || 2.0;
+
+            // 6. GESTIÓN DE RESIDUOS (tCO₂/año)
+            const recyclingFactors = {
+                'excellent': 0.2,
+                'good': 0.4,
+                'moderate': 0.7,
+                'poor': 1.0,
+                'none': 1.3
+            };
+            const wasteEmissions = recyclingFactors[recycling] || 0.7;
+
+            // TOTAL DE EMISIONES
+            let totalEmissions = electricityEmissions + transportEmissions + flightEmissions + 
+                               dietEmissions + shoppingEmissions + wasteEmissions;
+
+            // Mínimo base para una persona en Colombia
+            totalEmissions = Math.max(totalEmissions, 2.0);
+
+            // Redondear a 1 decimal
+            totalEmissions = Math.round(totalEmissions * 10) / 10;
+
+            // Mostrar resultados
+            displayPersonalResults(totalEmissions, {
+                electricity: electricityEmissions,
+                transport: transportEmissions,
+                flights: flightEmissions,
+                diet: dietEmissions,
+                shopping: shoppingEmissions,
+                waste: wasteEmissions
+            });
+        }
+
+        function displayPersonalResults(total, breakdown) {
+            document.getElementById('total-emissions').textContent = total.toFixed(1);
+
+            // COMPARACIONES IMPACTANTES
+            const comparisons = [
+                {
+                    icon: '🌳',
+                    text: `Necesitas plantar ${Math.round(total * 16)} árboles para compensar tu huella`
+                },
+                {
+                    icon: '🚗',
+                    text: `Como manejar ${Math.round(total * 4300)} km en carro`
+                },
+                {
+                    icon: '🥩',
+                    text: `Equivale a comer ${Math.round(total * 85)} hamburguesas`
+                },
+                {
+                    icon: '💡',
+                    text: `${Math.round(total * 6100)} horas de bombillo LED encendido`
+                }
+            ];
+
+            const comparisonsHtml = comparisons.map(comp => 
+                `<div class="comparison-item">
+                    <div class="comparison-icon">${comp.icon}</div>
+                    <div class="comparison-text">${comp.text}</div>
+                </div>`
+            ).join('');
+
+            document.getElementById('comparisons').innerHTML = comparisonsHtml;
+
+            // EVALUACIÓN PERSONALIZADA
+            let evalIcon, evalText, recommendation, scoreColor;
+            
+            if (total <= 3) {
+                evalIcon = "🌟";
+                evalText = "¡EXCELENTE! Tu huella es muy baja";
+                recommendation = "Eres un ejemplo a seguir. Sigue así y ayuda a otros a reducir su huella.";
+                scoreColor = "#4caf50";
+            } else if (total <= 5) {
+                evalIcon = "👍";
+                evalText = "¡BIEN! Estás por debajo del promedio";
+                recommendation = "Considera reducir vuelos y optimizar tu transporte.";
+                scoreColor = "#8bc34a";
+            } else if (total <= 8) {
+                evalIcon = "⚠️";
+                evalText = "PROMEDIO - Hay espacio para mejorar";
+                recommendation = "Enfócate en cambiar tu dieta y reducir el consumo.";
+                scoreColor = "#ff9800";
+            } else if (total <= 12) {
+                evalIcon = "🔸";
+                evalText = "ALTA - Es momento de actuar";
+                recommendation = "Necesitas cambios importantes en transporte y alimentación.";
+                scoreColor = "#f44336";
+            } else {
+                evalIcon = "🚨";
+                evalText = "MUY ALTA - Acción urgente";
+                recommendation = "Requieres cambios drásticos en todos tus hábitos.";
+                scoreColor = "#d32f2f";
+            }
+
+            const evaluationHtml = `
+                <h3>📊 Tu Evaluación Ambiental</h3>
+                <div class="eval-score" style="color: ${scoreColor};">
+                    ${evalIcon} ${evalText}
+                </div>
+                <div class="eval-recommendation">
+                    💡 ${recommendation}
+                </div>
+                <div class="eval-context">
+                    🇨🇴 Promedio colombiano: 3.8 tCO₂/año | Meta mundial: 2.3 tCO₂/año
+                </div>
+            `;
+
+            document.getElementById('evaluation').innerHTML = evaluationHtml;
+
+            // DESGLOSE DETALLADO
+            const breakdownHtml = `
+                <h3>📊 ¿De dónde vienen tus emisiones?</h3>
+                <div class="breakdown-item">
+                    <span>⚡ Electricidad</span>
+                    <span>${breakdown.electricity.toFixed(1)} tCO₂</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>🔥 Gas doméstico</span>
+                    <span>${breakdown.gas.toFixed(1)} tCO₂</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>🚗 Transporte terrestre</span>
+                    <span>${breakdown.transport.toFixed(1)} tCO₂</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>✈️ Vuelos</span>
+                    <span>${breakdown.flights.toFixed(1)} tCO₂</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>🍽️ Alimentación</span>
+                    <span>${breakdown.diet.toFixed(1)} tCO₂</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>🛒 Consumo</span>
+                    <span>${breakdown.shopping.toFixed(1)} tCO₂</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>🗑️ Residuos</span>
+                    <span>${breakdown.waste.toFixed(1)} tCO₂</span>
+                </div>
+                <div class="breakdown-item">
+                    <span><strong>🌍 TU HUELLA TOTAL</strong></span>
+                    <span><strong>${total.toFixed(1)} tCO₂/año</strong></span>
+                </div>
+            `;
+
+            document.getElementById('breakdown').innerHTML = breakdownHtml;
+
+            // Mostrar resultados con animación
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Validación en tiempo real
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value < 0) this.value = 0;
+            });
+        });
+    </script>
+</body>
+</html>
