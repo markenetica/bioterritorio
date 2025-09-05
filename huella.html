@@ -1041,14 +1041,6 @@
                 </div>
             `).join('');
 
-            // BOTONES DE CONTACTO
-            const emailSubject = `Asesoría Personal - Reducir Huella de Carbono`;
-            const emailBody = `Hola, calculé mi huella de carbono (${total.toFixed(1)} tCO₂/año) y quiero asesoría personalizada para reducirla efectivamente.`;
-            const whatsappMessage = `Hola Bioterritorio, mi huella de carbono es ${total.toFixed(1)} tCO₂/año y quiero un plan personalizado para reducirla`;
-
-            document.getElementById('email-btn').href = `mailto:info@bioterritorio.org?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-            document.getElementById('whatsapp-btn').href = `https://wa.me/573175183243?text=${encodeURIComponent(whatsappMessage)}`;
-
             // MOSTRAR RESULTADOS
             document.getElementById('results').style.display = 'block';
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
