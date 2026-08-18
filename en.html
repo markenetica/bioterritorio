@@ -5,16 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- SEO Meta Tags -->
 <title>Bioterritorio | Environmental Consulting and Sustainability in Colombia</title>
-<meta name="description" content="Bioterritorio: Led by Natalia Montoya Vanegas, expert with +14 years in environmental management, ESG sustainability, prior consultation, mining due diligence, land management and sustainable territorial development in Colombia.">
+<meta name="description" content="Bioterritorio: Led by Natalia Montoya Vanegas, an expert with over 14 years in environmental management, ESG sustainability, prior consultation, mining due diligence, land management and sustainable territorial development in Colombia.">
 <meta name="keywords" content="environmental consulting, sustainability, ESG, environmental management Colombia, prior consultation, sustainable development, mining due diligence, land management, mining title analysis, Medellín, Natalia Montoya Vanegas">
 <meta name="author" content="Bioterritorio - Natalia Montoya Vanegas">
 <meta name="robots" content="index, follow">
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://bioterritorio.org/">
+<meta property="og:url" content="https://bioterritorio.org/en.html">
 <meta property="og:title" content="Bioterritorio | Environmental Consulting and Sustainability">
-<meta property="og:description" content="We transform territories through personalized consulting in sustainability and environmental management.">
+<meta property="og:description" content="We transform territories through personalized sustainability and environmental management consulting.">
 <meta property="og:image" content="https://bioterritorio.org/images/icononly.png">
+<link rel="alternate" hreflang="es" href="https://bioterritorio.org/">
+<link rel="alternate" hreflang="en" href="https://bioterritorio.org/en.html">
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="icononly_transparent_nobuffer.png">
 <!-- Google Fonts -->
@@ -23,31 +25,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-/* Paleta de Naranja Completa */
---primary: #FF8B4A;
---primary-dark: #D2691E;
---primary-darker: #B8541B;
---primary-light: #FF7043;
---primary-lighter: #FFB380;
---primary-lightest: #FFE5D9;
---orange-warm: #FF6B35;
+/* Paleta Audaz — Naranja quemado + tinta profunda */
+--primary: #FF6A2B;
+--primary-dark: #C2410C;
+--primary-darker: #7C2D12;
+--primary-light: #FF8A50;
+--primary-lighter: #FFB27A;
+--primary-lightest: #FFE3CC;
+--orange-warm: #FF4718;
 --orange-soft: #FFA066;
---orange-pastel: #FFF3E0;
+--orange-pastel: #FFF1E6;
+/* Tinta profunda para bloques de contraste */
+--ink: #927C63;
+--ink-soft: #7A6753;
+--ink-line: rgba(255,255,255,0.12);
 /* Grises y neutros */
 --gray-light: #f8f9fa;
 --gray-medium: #e9ecef;
 --gray: #6c757d;
 --gray-dark: #495057;
---text-dark: #1a1a1a;
---text-light: #666;
+--text-dark: #927C63;
+--text-light: #5A544C;
 --bg-light: #fffbf8;
 --white: #ffffff;
-/* Sombras */
---shadow-sm: 0 2px 4px rgba(255,139,74,0.1);
---shadow-md: 0 4px 15px rgba(255,139,74,0.15);
---shadow-lg: 0 10px 30px rgba(255,139,74,0.2);
---shadow-xl: 0 20px 40px rgba(255,139,74,0.25);
---shadow-orange: 0 8px 25px rgba(255,139,74,0.4);
+/* Sombras — más definidas, menos difusas */
+--shadow-sm: 0 2px 6px rgba(22,19,15,0.08);
+--shadow-md: 0 6px 20px rgba(22,19,15,0.12);
+--shadow-lg: 0 16px 40px rgba(22,19,15,0.18);
+--shadow-xl: 0 26px 55px rgba(22,19,15,0.24);
+--shadow-orange: 0 12px 30px rgba(255,71,24,0.45);
 }
 * {
 margin: 0;
@@ -63,8 +69,31 @@ background: var(--white);
 }
 h1, h2, h3, h4, h5, h6 {
 font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+font-weight: 800;
+line-height: 1.1;
+letter-spacing: -0.02em;
+}
+.eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 0.6rem;
+font-family: 'Poppins', sans-serif;
 font-weight: 700;
-line-height: 1.2;
+font-size: 0.85rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--primary-dark);
+margin-bottom: 1rem;
+}
+.eyebrow::before {
+content: '';
+width: 28px;
+height: 3px;
+background: var(--orange-warm);
+border-radius: 2px;
+}
+.eyebrow.on-dark {
+color: var(--primary-lighter);
 }
 /* Scrollbar personalizada */
 ::-webkit-scrollbar {
@@ -81,14 +110,93 @@ border-radius: 5px;
 background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
 }
 /* Header & Navigation Mejorado */
-header {
-background: rgba(255, 255, 255, 0.95);
-backdrop-filter: blur(15px);
-box-shadow: var(--shadow-sm);
+.site-topbar {
 position: fixed;
 width: 100%;
 top: 0;
 z-index: 1000;
+}
+.news-ticker {
+display: flex;
+align-items: center;
+background: var(--ink);
+color: var(--white);
+height: 36px;
+overflow: hidden;
+}
+.news-ticker-label {
+flex-shrink: 0;
+background: var(--orange-warm);
+color: var(--white);
+font-weight: 700;
+font-size: 0.78rem;
+letter-spacing: 0.03em;
+padding: 0 1rem;
+height: 100%;
+display: flex;
+align-items: center;
+white-space: nowrap;
+z-index: 1;
+}
+.news-ticker-viewport {
+flex: 1;
+overflow: hidden;
+height: 100%;
+position: relative;
+}
+.news-ticker-track {
+display: flex;
+align-items: center;
+height: 100%;
+white-space: nowrap;
+width: max-content;
+animation: tickerScroll 60s linear infinite;
+}
+.news-ticker-track:hover {
+animation-play-state: paused;
+}
+.news-ticker-item {
+padding: 0 2.5rem 0 1.2rem;
+font-size: 0.8rem;
+color: rgba(255,255,255,0.85);
+position: relative;
+}
+.news-ticker-item::after {
+content: '•';
+position: absolute;
+right: 1rem;
+color: var(--orange-soft);
+}
+a.news-ticker-item {
+text-decoration: none;
+cursor: pointer;
+transition: color 0.2s ease;
+}
+a.news-ticker-item:hover {
+color: var(--white);
+}
+.news-ticker-source {
+color: var(--orange-soft);
+font-weight: 600;
+margin-right: 0.4rem;
+}
+@keyframes tickerScroll {
+0% { transform: translateX(0); }
+100% { transform: translateX(-50%); }
+}
+@media (max-width: 768px) {
+.news-ticker-label {
+font-size: 0.7rem;
+padding: 0 0.7rem;
+}
+.news-ticker-item {
+font-size: 0.75rem;
+}
+}
+header {
+background: rgba(255, 255, 255, 0.95);
+backdrop-filter: blur(15px);
+box-shadow: var(--shadow-sm);
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 header.scrolled {
@@ -145,6 +253,21 @@ font-size: 0.95rem;
 color: var(--primary);
 transform: translateY(-1px);
 }
+.nav-links a.cta-button,
+.nav-links a.cta-button:hover {
+color: var(--white);
+}
+.lang-switch {
+border: 2px solid var(--ink);
+border-radius: 30px;
+padding: 0.35rem 0.9rem !important;
+font-weight: 700 !important;
+font-size: 0.8rem !important;
+}
+.lang-switch:hover {
+background: var(--ink);
+color: var(--white) !important;
+}
 .nav-links a::after {
 content: '';
 position: absolute;
@@ -160,161 +283,205 @@ transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 width: 100%;
 }
 .cta-button {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
+background: var(--orange-warm);
 color: var(--white);
-padding: 0.8rem 2rem;
-border-radius: 30px;
+padding: 1rem 2.2rem;
+border-radius: 10px;
 text-decoration: none;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-font-weight: 600;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+font-weight: 700;
+font-size: 0.95rem;
+letter-spacing: 0.01em;
 display: inline-block;
-border: none;
+border: 2px solid var(--orange-warm);
 cursor: pointer;
-box-shadow: var(--shadow-md);
+box-shadow: var(--shadow-orange);
 position: relative;
-overflow: hidden;
-}
-.cta-button::before {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-transition: left 0.5s ease;
-}
-.cta-button:hover::before {
-left: 100%;
 }
 .cta-button:hover {
-transform: translateY(-3px);
-box-shadow: var(--shadow-orange);
-background: linear-gradient(135deg, var(--orange-warm) 0%, var(--primary-dark) 100%);
+transform: translate(-2px, -4px);
+box-shadow: 6px 10px 0 rgba(146,124,99,0.9);
+background: var(--ink);
+border-color: var(--ink);
 }
 .cta-button.secondary {
 background: transparent;
-border: 2px solid var(--primary);
-color: var(--primary);
+border: 2px solid var(--ink);
+color: var(--ink);
 box-shadow: none;
 }
 .cta-button.secondary:hover {
-background: var(--primary);
+background: var(--ink);
 color: var(--white);
-box-shadow: var(--shadow-orange);
+border-color: var(--ink);
+box-shadow: 6px 10px 0 rgba(255,106,43,0.5);
 }
-/* Hero Section Mejorado */
+/* Hero Section — Audaz, con video de fondo */
 .hero {
-margin-top: 75px;
-min-height: calc(100vh - 75px);
-background: linear-gradient(135deg, rgba(255,139,74,0.03) 0%, rgba(255,107,53,0.05) 50%, var(--orange-pastel) 100%);
+margin-top: var(--topbar-height, 111px);
+min-height: calc(100vh - var(--topbar-height, 111px));
+background: var(--ink);
 display: flex;
 align-items: center;
 position: relative;
 overflow: hidden;
 }
-.hero::before {
-content: '';
+.hero-video {
 position: absolute;
-top: -50%;
-right: -20%;
-width: 60%;
-height: 120%;
-background: radial-gradient(ellipse, var(--primary-lightest) 0%, transparent 70%);
-opacity: 0.6;
-animation: float 25s ease-in-out infinite;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: 0;
 }
-.hero::after {
-content: '';
+.hero-overlay {
 position: absolute;
-bottom: -30%;
-left: -20%;
-width: 40%;
-height: 80%;
-background: radial-gradient(circle, var(--orange-pastel) 0%, transparent 60%);
-opacity: 0.4;
-animation: float 20s ease-in-out infinite reverse;
+inset: 0;
+z-index: 1;
+background:
+linear-gradient(100deg, rgba(22,19,15,0.93) 20%, rgba(22,19,15,0.75) 65%, rgba(22,19,15,0.55) 100%),
+linear-gradient(0deg, rgba(22,19,15,0.55) 0%, transparent 45%);
 }
 .hero-content {
 max-width: 1400px;
 margin: 0 auto;
-padding: 0 5%;
-display: grid;
-grid-template-columns: 1.5fr 1fr;
-gap: 4rem;
-align-items: center;
+padding: 6rem 5%;
 position: relative;
-z-index: 1;
+z-index: 2;
+}
+.hero-text {
+max-width: 680px;
 }
 .hero-text h1 {
-font-size: clamp(2.5rem, 5vw, 4rem);
-color: var(--text-dark);
+font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+color: var(--white);
 margin-bottom: 1.5rem;
 animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-text h1 span {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 50%, var(--primary-dark) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-animation: gradientShift 3s ease-in-out infinite;
-}
-@keyframes gradientShift {
-0%, 100% { filter: hue-rotate(0deg); }
-50% { filter: hue-rotate(10deg); }
+color: var(--orange-soft);
 }
 .hero-text p {
 font-size: 1.25rem;
-color: var(--text-light);
+color: rgba(255,255,255,0.72);
 margin-bottom: 2.5rem;
 animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
 line-height: 1.8;
+max-width: 620px;
 }
 .hero-buttons {
 display: flex;
 gap: 1.5rem;
 animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
 flex-wrap: wrap;
+margin-bottom: 3.5rem;
 }
-.hero-visual {
-position: relative;
-animation: floatAnimation 8s ease-in-out infinite;
+.hero .cta-button.secondary {
+border-color: rgba(255,255,255,0.4);
+color: var(--white);
 }
-.tree-human {
-width: 450px;
-height: 450px;
-background: linear-gradient(135deg, var(--white) 0%, var(--orange-pastel) 100%);
-border-radius: 50%;
-position: relative;
+.hero .cta-button.secondary:hover {
+background: var(--white);
+color: var(--ink);
+border-color: var(--white);
+box-shadow: 6px 10px 0 rgba(255,106,43,0.5);
+}
+.hero-stats {
 display: flex;
-align-items: center;
+gap: 3rem;
+flex-wrap: wrap;
+animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.55s backwards;
+border-top: 1px solid var(--ink-line);
+padding-top: 2rem;
+}
+.hero-stat strong {
+display: block;
+font-family: 'Poppins', sans-serif;
+font-size: 2.2rem;
+font-weight: 800;
+color: var(--white);
+line-height: 1;
+}
+.hero-stat span {
+display: block;
+margin-top: 0.5rem;
+font-size: 0.85rem;
+color: rgba(255,255,255,0.55);
+letter-spacing: 0.03em;
+}
+/* Tabs de navegación de contenido */
+.tabs-nav {
+display: flex;
+flex-wrap: wrap;
 justify-content: center;
-box-shadow: var(--shadow-xl);
-border: 4px solid var(--primary);
-padding: 40px;
-overflow: hidden;
+gap: 1rem;
+max-width: 1400px;
+margin: 0 auto;
+padding: 3rem 5% 0;
 }
-.tree-human::before {
-content: '';
-position: absolute;
-top: -50%;
-left: -50%;
-width: 200%;
-height: 200%;
-background: radial-gradient(circle, transparent 30%, var(--primary-lightest) 70%);
-opacity: 0.4;
-animation: rotate 20s linear infinite;
+.tab-btn {
+padding: 0.85rem 1.6rem;
+border: 2px solid var(--ink);
+border-radius: 8px;
+background: var(--white);
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: 0.95rem;
+color: var(--text-dark);
+cursor: pointer;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.tree-human img {
-width: 120%;
-height: 120%;
-object-fit: contain;
-position: relative;
-z-index: 1;
-transition: transform 0.5s ease;
+.tab-btn:hover {
+background: var(--orange-pastel);
+transform: translateY(-2px);
 }
-.tree-human:hover img {
-transform: scale(1.05);
+.tab-btn.active {
+background: var(--orange-warm);
+border-color: var(--orange-warm);
+color: var(--white);
+}
+.tab-btn-main {
+padding: 1rem 1.8rem;
+border: 2px solid var(--ink);
+border-radius: 30px;
+background: var(--white);
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: 1rem;
+color: var(--text-dark);
+cursor: pointer;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tab-btn-main:hover {
+background: var(--orange-pastel);
+transform: translateY(-2px);
+}
+.tab-btn-main.active {
+background: var(--ink);
+border-color: var(--ink);
+color: var(--white);
+}
+.tabs-subnav {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 0.7rem;
+max-width: 1400px;
+margin: 1.5rem auto 0;
+padding: 0 5%;
+min-height: 20px;
+}
+.sub-tab-btn {
+font-size: 0.85rem;
+padding: 0.6rem 1.3rem;
+animation: fadeIn 0.3s ease;
+}
+.tab-panel {
+display: none;
+}
+.tab-panel.active {
+display: block;
+animation: fadeIn 0.4s ease;
 }
 /* Value Proposition Mejorado */
 .value-prop {
@@ -323,103 +490,48 @@ max-width: 1400px;
 margin: 0 auto;
 position: relative;
 }
-.value-prop::before {
-content: '';
-position: absolute;
-top: -100px;
-left: -100px;
-width: 200px;
-height: 200px;
-background: radial-gradient(circle, var(--primary-lightest) 0%, transparent 70%);
-opacity: 0.5;
-animation: float 12s ease-in-out infinite;
-}
-.value-prop::after {
-content: '';
-position: absolute;
-bottom: -100px;
-right: -100px;
-width: 250px;
-height: 250px;
-background: radial-gradient(circle, var(--orange-pastel) 0%, transparent 70%);
-opacity: 0.3;
-animation: float 15s ease-in-out infinite reverse;
-}
 .value-cards {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-gap: 2.5rem;
-margin-top: 4rem;
+gap: 2rem;
+margin-top: 3rem;
 }
 .value-card {
 background: var(--white);
 padding: 3rem 2.5rem;
-border-radius: 25px;
-box-shadow: var(--shadow-md);
-text-align: center;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+border-radius: 4px;
+text-align: left;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 position: relative;
-overflow: hidden;
-border: 1px solid var(--gray-light);
-}
-.value-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 5px;
-background: linear-gradient(90deg, var(--primary) 0%, var(--orange-warm) 50%, var(--primary-dark) 100%);
-transform: scaleX(0);
-transform-origin: left;
-transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+border: 2px solid var(--ink);
+border-left: 6px solid var(--orange-warm);
 }
 .value-card:hover {
-transform: translateY(-15px) scale(1.02);
-box-shadow: var(--shadow-xl);
-border-color: transparent;
-}
-.value-card:hover::before {
-transform: scaleX(1);
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
 }
 .value-card-icon {
-width: 80px;
-height: 80px;
-margin: 0 auto 1.5rem;
+width: 56px;
+height: 56px;
+margin-bottom: 1.5rem;
 position: relative;
 display: flex;
 align-items: center;
 justify-content: center;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .value-card-icon svg {
 width: 100%;
 height: 100%;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.value-card:hover .value-card-icon {
-transform: scale(1.2);
-filter: drop-shadow(0 8px 16px rgba(255, 139, 74, 0.4));
-}
-.value-card:hover .value-card-icon svg {
-transform: rotateY(360deg);
 }
 .value-card h3 {
 color: var(--text-dark);
 margin-bottom: 1rem;
-font-size: 1.6rem;
-transition: color 0.3s ease;
-}
-.value-card:hover h3 {
-color: var(--primary);
+font-size: 1.5rem;
 }
 .value-card p {
 color: var(--text-light);
 line-height: 1.8;
-transition: color 0.3s ease;
-}
-.value-card:hover p {
-color: var(--text-dark);
 }
 /* Services Section Mejorado */
 .services {
@@ -431,23 +543,19 @@ position: relative;
 max-width: 1400px;
 margin: 0 auto;
 }
+.section-head {
+text-align: center;
+margin-bottom: 1rem;
+}
+.section-head .eyebrow {
+justify-content: center;
+}
 .section-title {
 text-align: center;
-font-size: clamp(2rem, 4vw, 3rem);
+font-size: clamp(2.2rem, 4vw, 3.2rem);
 color: var(--text-dark);
 margin-bottom: 1rem;
 position: relative;
-}
-.section-title::after {
-content: '';
-position: absolute;
-bottom: -10px;
-left: 50%;
-transform: translateX(-50%);
-width: 60px;
-height: 4px;
-background: linear-gradient(90deg, var(--primary) 0%, var(--orange-warm) 100%);
-border-radius: 2px;
 }
 .section-subtitle {
 text-align: center;
@@ -465,57 +573,25 @@ gap: 2.5rem;
 }
 .service-card {
 background: var(--white);
-border-radius: 25px;
+border-radius: 4px;
 overflow: hidden;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-cursor: pointer;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 box-shadow: var(--shadow-md);
 position: relative;
-border: 2px solid transparent;
+border: 2px solid var(--ink);
 }
 .service-card:hover {
-transform: translateY(-8px) rotateX(5deg);
-box-shadow: var(--shadow-xl);
-border-color: var(--primary-lighter);
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
 }
 .service-header {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
+background: var(--ink);
 color: var(--white);
 padding: 2.5rem;
+padding-right: 4rem;
 position: relative;
-overflow: hidden;
-}
-.service-header::after {
-content: '';
-position: absolute;
-top: -50%;
-right: -50%;
-width: 200%;
-height: 200%;
-background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-animation: pulse 4s ease-in-out infinite;
-}
-/* Gradientes únicos para cada servicio */
-.service-card:nth-child(2) .service-header {
-background: linear-gradient(135deg, var(--orange-warm) 0%, var(--primary-dark) 100%);
-}
-.service-card:nth-child(3) .service-header {
-background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-darker) 100%);
-}
-.service-card:nth-child(4) .service-header {
-background: linear-gradient(135deg, var(--primary-dark) 0%, var(--orange-warm) 100%);
-}
-.service-card:nth-child(5) .service-header {
-background: linear-gradient(135deg, var(--orange-soft) 0%, var(--primary) 100%);
-}
-.service-card:nth-child(6) .service-header {
-background: linear-gradient(135deg, var(--primary-darker) 0%, var(--orange-warm) 100%);
-}
-.service-card:nth-child(7) .service-header {
-background: linear-gradient(135deg, var(--primary) 0%, var(--primary-darker) 100%);
-}
-.service-card:nth-child(8) .service-header {
-background: linear-gradient(135deg, var(--orange-warm) 0%, var(--primary-light) 100%);
+border-bottom: 4px solid var(--orange-warm);
+cursor: pointer;
 }
 .service-header h3 {
 font-size: 1.5rem;
@@ -529,8 +605,26 @@ opacity: 0.95;
 position: relative;
 z-index: 1;
 }
+.service-header::after {
+content: '▾';
+position: absolute;
+top: 50%;
+right: 1.8rem;
+transform: translateY(-50%);
+font-size: 1.4rem;
+color: var(--orange-soft);
+transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.service-card.expanded .service-header::after {
+transform: translateY(-50%) rotate(180deg);
+}
 .service-body {
+display: none;
 padding: 2.5rem;
+}
+.service-card.expanded .service-body {
+display: block;
+animation: fadeIn 0.3s ease;
 }
 .service-body ul {
 list-style: none;
@@ -563,6 +657,136 @@ transition: all 0.3s ease;
 transform: scale(1.3);
 color: var(--orange-warm);
 }
+/* Territory / En el campo */
+.territory {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.territory-banner {
+position: relative;
+border-radius: 4px;
+overflow: hidden;
+border: 2px solid var(--ink);
+min-height: 380px;
+display: flex;
+align-items: flex-end;
+margin-bottom: 2.5rem;
+}
+.territory-banner img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.territory-banner::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(0deg, rgba(22,19,15,0.88) 0%, rgba(22,19,15,0.35) 55%, rgba(22,19,15,0.15) 100%);
+}
+.territory-banner-content {
+position: relative;
+z-index: 1;
+padding: 3rem;
+}
+.territory-quote {
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: clamp(1.4rem, 2.6vw, 2rem);
+line-height: 1.35;
+color: var(--white);
+max-width: 780px;
+}
+.territory-gallery {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-auto-flow: dense;
+gap: 2rem;
+}
+.territory-card {
+border: 2px solid var(--ink);
+border-radius: 4px;
+overflow: hidden;
+background: var(--white);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+display: flex;
+flex-direction: column;
+}
+.territory-card.wide {
+grid-column: span 2;
+}
+.territory-card:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.territory-card img {
+width: 100%;
+height: 240px;
+object-fit: cover;
+display: block;
+flex: 1;
+}
+.territory-card-caption {
+padding: 1.2rem 1.5rem;
+font-weight: 600;
+font-size: 0.95rem;
+color: var(--text-dark);
+border-top: 4px solid var(--orange-warm);
+}
+/* Industry presence strip */
+.presence-strip {
+max-width: 1400px;
+margin: 3rem auto 0;
+padding-top: 3rem;
+border-top: 1px solid var(--gray-medium);
+}
+.presence-strip-label {
+font-weight: 700;
+font-size: 0.85rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--text-light);
+margin-bottom: 1.5rem;
+}
+.presence-cards {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+}
+.presence-card {
+position: relative;
+border: 2px solid var(--ink);
+border-radius: 4px;
+overflow: hidden;
+min-height: 220px;
+}
+.presence-card img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.presence-card::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(0deg, rgba(22,19,15,0.85) 0%, transparent 60%);
+}
+.presence-card-caption {
+position: relative;
+z-index: 1;
+margin-top: auto;
+padding: 1.2rem 1.5rem;
+color: var(--white);
+font-weight: 600;
+font-size: 0.9rem;
+display: flex;
+align-items: flex-end;
+height: 100%;
+}
 /* About Section Mejorado */
 .about {
 padding: 6rem 5%;
@@ -584,14 +808,14 @@ animation: fadeIn 1s ease;
 .about-image img {
 width: 100%;
 max-width: 350px;
-border-radius: 25px;
-box-shadow: var(--shadow-xl);
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: 3px solid var(--primary-lighter);
+border-radius: 4px;
+box-shadow: 12px 14px 0 var(--primary-lightest);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 3px solid var(--ink);
 }
 .about-image:hover img {
-transform: scale(1.05) rotate(2deg);
-box-shadow: 0 20px 40px rgba(255,139,74,0.3);
+transform: translate(-4px, -6px);
+box-shadow: 16px 18px 0 var(--primary-lightest);
 }
 .about-text h2 {
 font-size: clamp(2rem, 4vw, 3rem);
@@ -599,13 +823,10 @@ color: var(--text-dark);
 margin-bottom: 1rem;
 }
 .about-text .subtitle {
-font-size: 1.4rem;
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
+font-size: 1.3rem;
+color: var(--orange-warm);
 margin-bottom: 2rem;
-font-weight: 600;
+font-weight: 700;
 }
 .about-text p {
 color: var(--text-light);
@@ -620,21 +841,19 @@ gap: 1rem;
 margin-top: 2.5rem;
 }
 .credential {
-background: linear-gradient(135deg, var(--orange-pastel) 0%, var(--white) 100%);
+background: var(--white);
 padding: 0.7rem 1.2rem;
-border-radius: 25px;
+border-radius: 4px;
 font-size: 0.85rem;
-color: var(--gray-dark);
-border: 2px solid var(--primary-lighter);
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-font-weight: 500;
+color: var(--text-dark);
+border: 2px solid var(--ink);
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+font-weight: 600;
 }
 .credential:hover {
-transform: translateY(-3px) scale(1.05);
-box-shadow: var(--shadow-md);
-border-color: var(--primary);
-background: linear-gradient(135deg, var(--primary-lightest) 0%, var(--white) 100%);
-color: var(--primary-dark);
+transform: translate(-2px, -3px);
+box-shadow: 4px 5px 0 var(--orange-warm);
+background: var(--orange-pastel);
 }
 /* Experts Section Mejorada */
 .experts {
@@ -654,38 +873,20 @@ margin-top: 3rem;
 }
 .expert-card {
 background: var(--white);
-border-radius: 25px;
+border-radius: 4px;
 padding: 2.5rem;
-box-shadow: var(--shadow-md);
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: 2px solid var(--gray-light);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 2px solid var(--ink);
 position: relative;
-overflow: hidden;
-}
-.expert-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 4px;
-background: linear-gradient(90deg, var(--primary) 0%, var(--orange-warm) 100%);
-transform: scaleX(0);
-transform-origin: left;
-transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .expert-card:hover {
-transform: translateY(-10px);
-box-shadow: var(--shadow-xl);
-border-color: var(--primary-lighter);
-}
-.expert-card:hover::before {
-transform: scaleX(1);
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
 }
 .expert-icon {
-width: 60px;
-height: 60px;
-background: linear-gradient(135deg, var(--primary-lightest) 0%, var(--primary-lighter) 100%);
+width: 56px;
+height: 56px;
+background: var(--ink);
 border-radius: 50%;
 display: flex;
 align-items: center;
@@ -695,9 +896,8 @@ font-size: 1.5rem;
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .expert-card:hover .expert-icon {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
-color: var(--white);
-transform: scale(1.1) rotate(10deg);
+background: var(--orange-warm);
+transform: scale(1.08);
 }
 .expert-card h4 {
 color: var(--text-dark);
@@ -719,27 +919,99 @@ margin-top: 1rem;
 .expertise-tag {
 background: var(--gray-light);
 padding: 0.3rem 0.8rem;
-border-radius: 15px;
-font-size: 0.85rem;
+border-radius: 4px;
+font-size: 0.8rem;
+font-weight: 600;
 color: var(--gray-dark);
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .expert-card:hover .expertise-tag {
-background: var(--primary-lightest);
+background: var(--orange-pastel);
 color: var(--primary-dark);
-transform: translateY(-2px);
 }
 .experts-cta {
 text-align: center;
 margin-top: 3rem;
+}
+/* Allies Section */
+.allies {
+padding: 6rem 5%;
+background: var(--bg-light);
+}
+.allies-container {
+max-width: 1400px;
+margin: 0 auto;
+}
+.allies-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+margin-top: 3rem;
+}
+.ally-card {
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 4px;
+padding: 2.5rem;
+text-align: center;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.ally-card:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.ally-logo {
+height: 90px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 1.5rem;
+}
+.ally-logo img {
+max-height: 90px;
+max-width: 180px;
+object-fit: contain;
+}
+.ally-logo-text {
+font-family: 'Poppins', sans-serif;
+font-weight: 800;
+font-size: 1.4rem;
+color: var(--ink);
+border: 2px dashed var(--primary-lighter);
+border-radius: 4px;
+width: 100%;
+padding: 0 1rem;
+}
+.ally-card h4 {
+color: var(--text-dark);
+margin-bottom: 0.8rem;
+font-size: 1.3rem;
+}
+.ally-card p {
+color: var(--text-light);
+line-height: 1.7;
+font-size: 0.95rem;
+margin-bottom: 1rem;
+}
+.ally-link {
+color: var(--orange-warm);
+font-weight: 700;
+text-decoration: none;
+font-size: 0.9rem;
+margin-top: auto;
+}
+.ally-link:hover {
+text-decoration: underline;
 }
 /* Cases Section Mejorada - Similar a Experts */
 .cases {
 padding: 6rem 5%;
 max-width: 1400px;
 margin: 0 auto;
-background: linear-gradient(135deg, var(--orange-pastel) 0%, var(--white) 50%, var(--bg-light) 100%);
-border-radius: 25px;
+background: var(--bg-light);
 position: relative;
 }
 .cases-cta {
@@ -754,38 +1026,23 @@ margin-top: 3rem;
 }
 .case-card {
 background: var(--white);
-border-radius: 25px;
-box-shadow: var(--shadow-md);
+border-radius: 4px;
 padding: 3rem;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: 2px solid var(--gray-light);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 2px solid var(--ink);
 position: relative;
-overflow: hidden;
-}
-.case-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(135deg, var(--primary-lightest) 0%, transparent 50%);
-opacity: 0;
-transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .case-card:hover {
-transform: translateY(-10px) scale(1.02);
-box-shadow: var(--shadow-xl);
-border-color: var(--primary-lighter);
-}
-.case-card:hover::before {
-opacity: 0.1;
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
 }
 .case-card h4 {
-color: var(--primary);
+color: var(--orange-warm);
 margin-bottom: 0.5rem;
-font-size: 1.2rem;
-font-weight: 600;
+font-size: 1.1rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.04em;
 }
 .case-card .client {
 font-weight: 700;
@@ -802,24 +1059,525 @@ margin-bottom: 0.8rem;
 color: var(--text-dark);
 font-weight: 600;
 }
+/* Gallery Section */
+.gallery {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1.5rem;
+}
+.gallery-item {
+position: relative;
+border: 2px solid var(--ink);
+border-radius: 4px;
+overflow: hidden;
+cursor: pointer;
+aspect-ratio: 1;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-item:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+transition: transform 0.4s ease;
+}
+.gallery-item:hover img {
+transform: scale(1.08);
+}
+.gallery-item::after {
+content: '⤢';
+position: absolute;
+top: 0.6rem;
+right: 0.6rem;
+width: 32px;
+height: 32px;
+background: rgba(22,19,15,0.55);
+color: var(--white);
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1rem;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.gallery-item:hover::after {
+opacity: 1;
+}
+/* Info Icon + Bubble */
+.info-icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 30px;
+height: 30px;
+margin-left: 0.5rem;
+border: none;
+border-radius: 50%;
+background: rgba(255,255,255,0.25);
+color: var(--white);
+font-size: 1.2rem;
+font-weight: 700;
+line-height: 1;
+cursor: pointer;
+vertical-align: middle;
+transition: all 0.2s ease;
+}
+.info-icon:hover {
+background: var(--orange-warm);
+transform: scale(1.1);
+}
+.info-bubble {
+display: none;
+position: fixed;
+z-index: 2500;
+max-width: 320px;
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 8px;
+padding: 1.3rem 1.6rem;
+box-shadow: 8px 10px 0 var(--ink);
+}
+.info-bubble.show {
+display: block;
+animation: fadeIn 0.2s ease;
+}
+.info-bubble p {
+font-size: 0.9rem;
+line-height: 1.65;
+color: var(--text-dark);
+padding-right: 1rem;
+}
+.info-bubble-close {
+position: absolute;
+top: 0.4rem;
+right: 0.6rem;
+background: none;
+border: none;
+font-size: 1.4rem;
+line-height: 1;
+color: var(--text-light);
+cursor: pointer;
+}
+.info-bubble-close:hover {
+color: var(--orange-warm);
+}
+.info-bubble-arrow {
+position: absolute;
+top: -9px;
+left: 24px;
+width: 16px;
+height: 16px;
+background: var(--white);
+border-left: 2px solid var(--ink);
+border-top: 2px solid var(--ink);
+transform: rotate(45deg);
+}
+/* Lightbox */
+.lightbox {
+display: none;
+position: fixed;
+inset: 0;
+z-index: 3000;
+background: rgba(22,19,15,0.95);
+align-items: center;
+justify-content: center;
+}
+.lightbox.active {
+display: flex;
+}
+.lightbox-content {
+position: relative;
+max-width: 90vw;
+max-height: 85vh;
+}
+.lightbox-content img {
+max-width: 90vw;
+max-height: 85vh;
+display: block;
+border: 2px solid var(--white);
+}
+.lightbox-caption {
+color: var(--white);
+text-align: center;
+margin-top: 1rem;
+font-weight: 600;
+font-size: 0.95rem;
+}
+.lightbox-close {
+position: absolute;
+top: -3rem;
+right: 0;
+color: var(--white);
+font-size: 2.2rem;
+cursor: pointer;
+line-height: 1;
+}
+.lightbox-nav {
+position: fixed;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(255,255,255,0.1);
+color: var(--white);
+border: none;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+font-size: 1.5rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background 0.2s ease;
+}
+.lightbox-nav:hover {
+background: var(--orange-warm);
+}
+.lightbox-prev { left: 2rem; }
+.lightbox-next { right: 2rem; }
+/* Minicursos Section */
+.minicursos {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.minicursos-cta {
+text-align: center;
+margin: 0 auto 3rem;
+}
+.minicursos-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2rem;
+}
+.minicurso-card {
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 4px;
+overflow: hidden;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.minicurso-card:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.minicurso-thumb {
+background: var(--ink);
+height: 140px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2.5rem;
+position: relative;
+border-bottom: 4px solid var(--orange-warm);
+}
+.minicurso-badge {
+position: absolute;
+bottom: 0.8rem;
+right: 0.8rem;
+background: var(--orange-warm);
+color: var(--white);
+font-size: 0.7rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+padding: 0.35rem 0.7rem;
+border-radius: 4px;
+}
+.minicurso-card h4 {
+color: var(--text-dark);
+font-size: 1.15rem;
+margin: 1.5rem 1.5rem 0.6rem;
+}
+.minicurso-card p {
+color: var(--text-light);
+font-size: 0.92rem;
+line-height: 1.6;
+margin: 0 1.5rem 1.5rem;
+}
+/* Instagram Section */
+.instagram-section {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.instagram-embed-slot {
+max-width: 560px;
+margin: 0 auto;
+text-align: center;
+padding: 4rem 2rem;
+border: 2px dashed var(--primary-lighter);
+border-radius: 4px;
+background: var(--orange-pastel);
+}
+.instagram-embed-icon {
+font-size: 3rem;
+display: block;
+margin-bottom: 1rem;
+}
+.instagram-embed-slot p {
+color: var(--text-light);
+margin-bottom: 1.5rem;
+font-size: 1.05rem;
+}
+/* Dictionary Section */
+.dictionary {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.dictionary-controls {
+max-width: 700px;
+margin: 0 auto 3rem;
+}
+.dict-search {
+width: 100%;
+padding: 1rem 1.3rem;
+border: 2px solid var(--ink);
+border-radius: 8px;
+font-size: 1rem;
+font-family: inherit;
+background: var(--white);
+margin-bottom: 1.5rem;
+}
+.dict-search:focus {
+outline: none;
+border-color: var(--orange-warm);
+box-shadow: 0 0 0 3px rgba(255,71,24,0.12);
+}
+.dict-filters {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 0.7rem;
+}
+.dict-filter {
+padding: 0.5rem 1.1rem;
+border: 2px solid var(--ink);
+border-radius: 30px;
+background: var(--white);
+font-weight: 600;
+font-size: 0.85rem;
+color: var(--text-dark);
+cursor: pointer;
+transition: all 0.2s ease;
+}
+.dict-filter:hover {
+background: var(--orange-pastel);
+}
+.dict-filter.active {
+background: var(--ink);
+border-color: var(--ink);
+color: var(--white);
+}
+.dictionary-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 1.5rem;
+}
+.dict-card {
+background: var(--white);
+border: 2px solid var(--gray-medium);
+border-left: 5px solid var(--orange-warm);
+border-radius: 4px;
+padding: 1.2rem 1.7rem;
+cursor: pointer;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dict-card:hover {
+border-color: var(--orange-lighter, var(--gray-medium));
+box-shadow: var(--shadow-sm);
+}
+.dict-card-cat {
+display: inline-block;
+font-size: 0.7rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+color: var(--orange-warm);
+margin-bottom: 0.5rem;
+}
+.dict-card h4 {
+color: var(--text-dark);
+font-size: 1.1rem;
+margin: 0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 0.5rem;
+}
+.dict-card-toggle {
+color: var(--orange-warm);
+font-size: 1.1rem;
+transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+flex-shrink: 0;
+}
+.dict-card.expanded .dict-card-toggle {
+transform: rotate(180deg);
+}
+.dict-card-def {
+display: none;
+}
+.dict-card.expanded .dict-card-def {
+display: block;
+animation: fadeIn 0.3s ease;
+}
+.dict-card p {
+color: var(--text-light);
+font-size: 0.92rem;
+line-height: 1.6;
+margin-top: 0.8rem;
+}
+.dict-empty {
+text-align: center;
+color: var(--text-light);
+padding: 3rem 0;
+}
+/* Permit Matcher Section */
+.permit-matcher {
+padding: 6rem 5%;
+max-width: 900px;
+margin: 0 auto;
+}
+.permit-form-wrapper label {
+display: block;
+font-weight: 600;
+color: var(--text-dark);
+margin-bottom: 0.6rem;
+}
+.permit-form-wrapper textarea {
+width: 100%;
+padding: 1.2rem;
+border: 2px solid var(--gray-medium);
+border-radius: 12px;
+font-family: inherit;
+font-size: 1rem;
+resize: vertical;
+background: var(--gray-light);
+transition: all 0.25s ease;
+}
+.permit-form-wrapper textarea:focus {
+outline: none;
+border-color: var(--orange-warm);
+background: var(--white);
+box-shadow: 0 0 0 3px rgba(255,71,24,0.1);
+}
+.permit-result {
+display: none;
+margin-top: 3rem;
+padding: 2.5rem;
+background: var(--orange-pastel);
+border: 2px solid var(--primary-lighter);
+border-radius: 12px;
+}
+.permit-result.show {
+display: block;
+animation: fadeInUp 0.5s ease;
+}
+.permit-result h3 {
+color: var(--orange-warm);
+font-size: 1.5rem;
+margin-bottom: 1rem;
+}
+#permitAuthority {
+color: var(--text-dark);
+line-height: 1.7;
+margin-bottom: 1.5rem;
+}
+.permit-risks {
+background: var(--white);
+border-radius: 8px;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+}
+.permit-risks h4 {
+color: var(--text-dark);
+margin-bottom: 0.8rem;
+font-size: 1rem;
+}
+.permit-risks ul {
+padding-left: 1.3rem;
+}
+.permit-risks li {
+color: var(--text-light);
+line-height: 1.7;
+margin-bottom: 0.5rem;
+}
+.permit-disclaimer {
+font-size: 0.85rem;
+color: var(--text-light);
+font-style: italic;
+margin-bottom: 1.5rem;
+line-height: 1.6;
+}
+/* Repository Section */
+.repository {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.repo-group {
+margin-bottom: 3rem;
+}
+.repo-group-title {
+font-size: 1.3rem;
+color: var(--text-dark);
+margin-bottom: 1.5rem;
+padding-bottom: 0.8rem;
+border-bottom: 2px solid var(--gray-medium);
+}
+.repo-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 1.5rem;
+}
+.repo-card {
+display: block;
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 4px;
+padding: 1.5rem;
+text-decoration: none;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.repo-card:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.repo-card h4 {
+color: var(--orange-warm);
+font-size: 1.05rem;
+margin-bottom: 0.5rem;
+}
+.repo-card p {
+color: var(--text-light);
+font-size: 0.9rem;
+line-height: 1.6;
+}
+.repo-disclaimer {
+font-size: 0.85rem;
+color: var(--text-light);
+font-style: italic;
+text-align: center;
+margin-top: 1rem;
+}
 /* Contact Section Mejorado */
 .contact {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 50%, var(--primary-dark) 100%);
+background: var(--orange-warm);
 color: var(--white);
 padding: 6rem 5%;
 text-align: center;
 position: relative;
 overflow: hidden;
-}
-.contact::before {
-content: '';
-position: absolute;
-top: -50%;
-left: -50%;
-width: 200%;
-height: 200%;
-background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-animation: rotate 25s linear infinite;
 }
 .contact-content {
 max-width: 900px;
@@ -848,38 +1606,39 @@ display: flex;
 align-items: center;
 gap: 0.8rem;
 font-size: 1.1rem;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+font-weight: 600;
 padding: 1rem 1.5rem;
-border-radius: 15px;
-background: rgba(255,255,255,0.1);
-backdrop-filter: blur(10px);
+border-radius: 4px;
+border: 2px solid rgba(255,255,255,0.4);
+color: inherit;
+text-decoration: none;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.contact-item:hover {
-transform: translateY(-5px);
-background: rgba(255,255,255,0.2);
+a.contact-item:hover {
+background: rgba(255,255,255,0.15);
+border-color: var(--white);
 }
 .contact-item span:first-child {
 font-size: 1.5rem;
 }
 .schedule-button {
-background: var(--white);
-color: var(--primary);
+background: var(--ink);
+color: var(--white);
+border-color: var(--ink);
 padding: 1.2rem 3rem;
-font-size: 1.2rem;
+font-size: 1.1rem;
 margin-top: 2rem;
 display: inline-block;
-box-shadow: var(--shadow-lg);
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .schedule-button:hover {
-background: var(--bg-light);
-color: var(--primary-dark);
-transform: translateY(-5px);
-box-shadow: var(--shadow-xl);
+background: var(--white);
+color: var(--ink);
+border-color: var(--white);
+box-shadow: 6px 8px 0 rgba(146,124,99,0.5);
 }
 /* Footer Mejorado */
 footer {
-background: linear-gradient(135deg, var(--text-dark) 0%, #2c2c2c 100%);
+background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
 color: var(--white);
 padding: 4rem 5%;
 text-align: center;
@@ -902,6 +1661,21 @@ footer p {
 opacity: 0.8;
 line-height: 1.8;
 margin-bottom: 0.5rem;
+}
+.footer-social {
+display: inline-block;
+margin-top: 1rem;
+color: var(--white);
+text-decoration: none;
+font-weight: 600;
+border: 2px solid rgba(255,255,255,0.3);
+border-radius: 4px;
+padding: 0.6rem 1.4rem;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.footer-social:hover {
+background: var(--orange-warm);
+border-color: var(--orange-warm);
 }
 /* WhatsApp Float Button Mejorado */
 .whatsapp-float {
@@ -974,7 +1748,7 @@ animation: fadeIn 0.3s ease;
 background-color: var(--white);
 margin: 2% auto;
 padding: 0;
-border-radius: 25px;
+border-radius: 8px;
 width: 90%;
 max-width: 950px;
 max-height: 90vh;
@@ -983,12 +1757,13 @@ box-shadow: var(--shadow-xl);
 animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal-header {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
+background: var(--ink);
 color: var(--white);
 padding: 3rem;
-border-radius: 25px 25px 0 0;
+border-radius: 8px 8px 0 0;
 position: relative;
 text-align: center;
+border-bottom: 4px solid var(--orange-warm);
 }
 .modal-header h2 {
 font-size: 2rem;
@@ -1026,8 +1801,8 @@ padding: 3rem;
 .carbon-calculator-section {
 margin-top: 4rem;
 padding: 3rem 0;
-background: linear-gradient(135deg, var(--orange-pastel) 0%, var(--white) 50%, var(--bg-light) 100%);
-border-radius: 25px;
+background: var(--ink);
+border-radius: 4px;
 position: relative;
 overflow: hidden;
 opacity: 0;
@@ -1046,50 +1821,35 @@ padding: 0 2rem;
 }
 .carbon-title {
 font-size: 2rem;
-color: var(--text-dark);
+color: var(--white);
 margin-bottom: 0.8rem;
-font-weight: 700;
+font-weight: 800;
 }
 .carbon-subtitle {
 font-size: 1.1rem;
-color: var(--text-light);
+color: rgba(255,255,255,0.65);
 margin-bottom: 2rem;
 }
 .carbon-button-enhanced {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
+background: var(--orange-warm);
 color: white;
 padding: 0;
-border-radius: 60px;
+border-radius: 8px;
 text-decoration: none;
 display: inline-flex;
 align-items: center;
 gap: 1rem;
 cursor: pointer;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: none;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 2px solid var(--orange-warm);
 font-size: 1rem;
-box-shadow: var(--shadow-lg);
 overflow: visible;
 position: relative;
 z-index: 1;
 }
-.carbon-button-enhanced::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
-transform: translateX(-100%);
-transition: transform 0.6s ease;
-}
-.carbon-button-enhanced:hover::before {
-transform: translateX(100%);
-}
 .carbon-button-enhanced:hover {
-transform: translateY(-5px);
-box-shadow: var(--shadow-orange);
+transform: translate(-3px, -5px);
+box-shadow: 6px 8px 0 rgba(255,255,255,0.25);
 }
 .button-icon {
 background: rgba(255,255,255,0.2);
@@ -1239,18 +1999,12 @@ to { transform: rotate(360deg); }
 }
 /* Responsive Mejorado */
 @media (max-width: 1024px) {
-.hero-content {
-grid-template-columns: 1fr;
-gap: 3rem;
+.hero-text {
 text-align: center;
-}
-.hero-visual {
-order: -1;
 margin: 0 auto;
 }
-.tree-human {
-width: 280px;
-height: 280px;
+.hero-stats {
+justify-content: center;
 }
 .about-content {
 grid-template-columns: 1fr;
@@ -1262,6 +2016,12 @@ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 .experts-grid,
 .cases-slider {
 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.territory-gallery {
+grid-template-columns: repeat(2, 1fr);
+}
+.gallery-grid {
+grid-template-columns: repeat(3, 1fr);
 }
 }
 @media (max-width: 768px) {
@@ -1285,7 +2045,7 @@ display: flex;
 display: block;
 }
 .hero {
-margin-top: 70px;
+margin-top: var(--topbar-height, 106px);
 min-height: auto;
 padding: 4rem 0;
 }
@@ -1304,9 +2064,29 @@ text-align: center;
 .services-grid,
 .value-cards,
 .cases-slider,
-.experts-grid {
+.experts-grid,
+.territory-gallery {
 grid-template-columns: 1fr;
 }
+.territory-card.wide {
+grid-column: span 1;
+}
+.territory-banner {
+min-height: 280px;
+}
+.presence-cards {
+grid-template-columns: 1fr;
+}
+.gallery-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+.lightbox-nav {
+width: 40px;
+height: 40px;
+font-size: 1.2rem;
+}
+.lightbox-prev { left: 0.5rem; }
+.lightbox-next { right: 0.5rem; }
 .contact-info {
 flex-direction: column;
 gap: 1.5rem;
@@ -1333,6 +2113,16 @@ display: none;
 </style>
 </head>
 <body>
+<div class="site-topbar" id="siteTopbar">
+<!-- Franja de Noticias Ambientales -->
+<div class="news-ticker" id="newsTicker">
+<span class="news-ticker-label">🌍 Environmental News</span>
+<div class="news-ticker-viewport">
+<div class="news-ticker-track" id="newsTickerTrack">
+<span class="news-ticker-item">Loading environmental news…</span>
+</div>
+</div>
+</div>
 <!-- Header -->
 <header id="header">
 <nav>
@@ -1345,32 +2135,249 @@ Bioterritorio
 <li><a href="#servicios">Services</a></li>
 <li><a href="#nosotros">About Us</a></li>
 <li><a href="#expertos">Experts</a></li>
+<li><a href="#aliados">Partners</a></li>
 <li><a href="#clientes">Clients</a></li>
+<li><a href="#galeria">Gallery</a></li>
+<li><a href="index.html" class="lang-switch">ES</a></li>
 <li><a href="#contacto" class="cta-button">Contact Us</a></li>
 </ul>
 <button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
 </nav>
 </header>
+</div>
 <!-- Hero Section -->
 <section class="hero" id="inicio">
+<video class="hero-video" autoplay muted loop playsinline>
+<source src="bosque-seco-tropical.mp4" type="video/mp4">
+</video>
+<div class="hero-overlay"></div>
 <div class="hero-content">
 <div class="hero-text">
-<h1>Lead the sustainable future with <span>competitive advantage</span></h1>
-<p>ESG strategies (environmental, social and governance) that transform your environmental impact into opportunities for growth and business leadership</p>
+<span class="eyebrow on-dark">Environmental &amp; ESG Consulting · Colombia</span>
+<h1>Environmental risk, turned into <span>competitive advantage</span></h1>
+<p>We advise mining, energy and infrastructure companies to operate within the law, earn their social license, and lead on sustainability without slowing down growth.</p>
 <div class="hero-buttons">
-<a href="#servicios" class="cta-button">Discover our services</a>
-<a href="https://cal.com/natalia-natalia-montoya-montoya-zccc2b/30min" target="_blank" class="cta-button secondary">Schedule a consultation</a>
+<a href="#servicios" class="cta-button">Explore our services</a>
+<a href="https://cal.com/natalia-natalia-montoya-montoya-zccc2b/30min" target="_blank" class="cta-button secondary">Book a consultation</a>
 </div>
-</div>
-<div class="hero-visual">
-<div class="tree-human">
-<img src="fulllogo_transparent.png" alt="Bioterritorio">
+<div class="hero-stats">
+<div class="hero-stat"><strong>+14</strong><span>Years of experience</span></div>
+<div class="hero-stat"><strong>6</strong><span>Allied experts</span></div>
+<div class="hero-stat"><strong>3</strong><span>Sectors: mining, energy, infrastructure</span></div>
 </div>
 </div>
 </div>
 </section>
-<!-- Value Proposition -->
+<!-- Permit Matcher Section (siempre visible, junto al Inicio) -->
+<section class="permit-matcher">
+<div class="section-head">
+<span class="eyebrow">Quick assessment</span>
+<h2 class="section-title">Do I need an environmental permit or license?</h2>
+<p class="section-subtitle">Briefly describe your project and get an initial orientation on licenses, permits and key risks</p>
+</div>
+<div class="permit-form-wrapper">
+<label for="permitInput">Describe your project (sector, activity, approximate location)</label>
+<textarea id="permitInput" rows="4" placeholder="E.g.: We are building a small hydroelectric plant on a river in Antioquia, Colombia..."></textarea>
+<button class="cta-button" onclick="analyzeProject()" style="margin-top: 1.5rem;">Analyze my project</button>
+<div id="permitResult" class="permit-result">
+<h3 id="permitTitle"></h3>
+<p id="permitAuthority"></p>
+<div class="permit-risks">
+<h4>⚠️ Two key risks to consider</h4>
+<ul id="permitRisksList"></ul>
+</div>
+<p class="permit-disclaimer">This is an automated general orientation and does not replace formal legal-environmental advice. Projects outside Colombia may be governed by international standards (IFC, Equator Principles) in addition to local regulations.</p>
+<a href="#contacto" class="cta-button">Book a free consultation</a>
+</div>
+</div>
+</section>
+<!-- Tabs de navegación -->
+<div class="tabs-nav" id="tabsNav">
+<button class="tab-btn-main" data-group="servicios" onclick="switchGroup('servicios')">Services</button>
+<button class="tab-btn-main" data-group="nosotros" onclick="switchGroup('nosotros')">About Us</button>
+<button class="tab-btn-main" data-group="red" onclick="switchGroup('red')">Partners &amp; Clients</button>
+<button class="tab-btn-main" data-group="recursos" onclick="switchGroup('recursos')">Resources</button>
+<button class="tab-btn-main" data-group="comunidad" onclick="switchGroup('comunidad')">Community</button>
+</div>
+<div class="tabs-subnav" id="subTabsNav"></div>
+<!-- Services Section -->
+<div class="tab-panel" data-tab="servicios">
+<section class="services" id="servicios">
+<div class="services-container">
+<div class="section-head">
+<span class="eyebrow">Services</span>
+<h2 class="section-title">Eight fronts, one single strategy</h2>
+<p class="section-subtitle">Comprehensive services for sustainable, responsible and legally secure territorial development</p>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>🌍 Environmental Impact Assessment &amp; Management <button class="info-icon" onclick="showInfoBubble(event, 0)" aria-label="More information">ⓘ</button></h3>
+<p>Comprehensive analysis for sustainable projects</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Environmental Impact Assessments (EIA)</li>
+<li>Environmental Management Plans (EMP)</li>
+<li>ISO 14001 Environmental Audits</li>
+<li>Environmental monitoring and follow-up</li>
+<li>Permit management before ANLA, CAR</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>🤝 Social &amp; Community Management <button class="info-icon" onclick="showInfoBubble(event, 1)" aria-label="More information">ⓘ</button></h3>
+<p>Building bridges of trust</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Strategic community engagement</li>
+<li>Prior consultation and citizen participation</li>
+<li>Sustainable local development</li>
+<li>Conflict mediation and resolution</li>
+<li>Local capacity building</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>💼 Corporate ESG Sustainability <button class="info-icon" onclick="showInfoBubble(event, 2)" aria-label="More information">ⓘ</button></h3>
+<p>Responsible business strategies</p>
+</div>
+<div class="service-body">
+<ul>
+<li>ESG sustainability strategies</li>
+<li>GRI, SASB, CSRD reporting</li>
+<li>Materiality analysis</li>
+<li>TCFD climate risk management</li>
+<li>Circular economy and carbon neutrality</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>⚖️ Environmental Law &amp; Sustainability <button class="info-icon" onclick="showInfoBubble(event, 3)" aria-label="More information">ⓘ</button></h3>
+<p>Comprehensive legal and strategic management</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Environmental risk mitigation strategies</li>
+<li>Processing of environmental licenses and permits</li>
+<li>Representation in sanctioning proceedings</li>
+<li>Environmental pre-feasibility studies</li>
+<li>Outsourced environmental management department</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>⛏️ Mining Law &amp; Due Diligence <button class="info-icon" onclick="showInfoBubble(event, 4)" aria-label="More information">ⓘ</button></h3>
+<p>Comprehensive advisory and risk analysis</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Due Diligence for mining projects</li>
+<li>Technical and legal analysis of mining titles</li>
+<li>Mining title administration</li>
+<li>Defense against mining development risks</li>
+<li>Representation before the Mining Authority</li>
+<li>Mining-environmental permit management</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>📚 Training &amp; Education <button class="info-icon" onclick="showInfoBubble(event, 5)" aria-label="More information">ⓘ</button></h3>
+<p>Knowledge transfer</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Environmental regulations and risks</li>
+<li>Corporate ESG programs</li>
+<li>Climate change and adaptation</li>
+<li>ISO internal auditor training</li>
+<li>Professional certifications</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>🚨 Risk Management <button class="info-icon" onclick="showInfoBubble(event, 6)" aria-label="More information">ⓘ</button></h3>
+<p>Business preparedness and resilience</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Disaster risk management plans</li>
+<li>Climate vulnerability analysis</li>
+<li>Emergency and contingency plans</li>
+<li>Business continuity</li>
+<li>Climate change adaptation</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>🏘️ Land &amp; Territorial Management <button class="info-icon" onclick="showInfoBubble(event, 7)" aria-label="More information">ⓘ</button></h3>
+<p>Comprehensive land solutions</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Title studies for acquisitions</li>
+<li>Easement agreements</li>
+<li>Lease negotiation</li>
+<li>Land acquisition for projects</li>
+<li>Appraisals and land analysis</li>
+<li>Social management with landowners</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- About Section -->
+<div class="tab-panel" data-tab="nosotros">
+<section class="about" id="nosotros">
+<div class="about-content">
+<div class="about-image">
+<img src="Natalia_Montoya_Ambiental.jpg" alt="Natalia Montoya Vanegas">
+</div>
+<div class="about-text">
+<span class="eyebrow">About Us</span>
+<h2>Leadership with Experience</h2>
+<p class="subtitle">Natalia Montoya Vanegas - General Director</p>
+<p>Biologist, Specialist in Environmental Law and Master's in Integrated Watershed Management, with over 14 years of experience leading environmental impact, community management, sustainability and ESG projects.</p>
+<p>Experienced in IFC standards, water resource management, climate change, GRI and SASB reporting, ISO 14001:2015 lead auditor, environmental due diligence and socio-environmental project management for the infrastructure, mining and energy sectors across Latin America.</p>
+<div class="credentials">
+<span class="credential">MSc. Watershed Management - CATIE</span>
+<span class="credential">Sp. Environmental Law - U. Rosario</span>
+<span class="credential">Lead Auditor ISO 14001</span>
+<span class="credential">IHA Certification</span>
+<span class="credential">CSRD & ESG</span>
+</div>
+</div>
+</div>
+<div class="presence-strip">
+<p class="presence-strip-label">Industry presence</p>
+<div class="presence-cards">
+<div class="presence-card">
+<img src="evento-hydro-2025.jpg" alt="Bioterritorio at BIG Small Hydro 2025, Medellín">
+<div class="presence-card-caption">BIG Small Hydro 2025 · Medellín — Academic event for the hydro-energy sector</div>
+</div>
+<div class="presence-card">
+<img src="congreso-mineria.jpg" alt="Bioterritorio at the National Mining Congress">
+<div class="presence-card-caption">National Mining Congress — Meeting with Colombia's mining sector</div>
+</div>
+</div>
+</div>
+</section>
 <section class="value-prop">
+<div class="section-head">
+<span class="eyebrow">Why Bioterritorio</span>
+<h2 class="section-title">We don't just do paperwork compliance</h2>
+<p class="section-subtitle">We turn environmental obligations into a strategy that reduces risk and opens up market opportunities</p>
+</div>
 <div class="value-cards">
 <div class="value-card">
 <div class="value-card-icon">
@@ -1390,8 +2397,8 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 fill="url(#iconGradient1)" opacity="0.6"/>
 </svg>
 </div>
-<h3>Customized Solutions</h3>
-<p>We don't believe in one-size-fits-all formulas. Each territory is unique and requires personalized strategies that integrate local needs with global standards.</p>
+<h3>Tailored Solutions</h3>
+<p>We don't believe in generic formulas. Every territory is unique and requires personalized strategies that integrate local needs with global standards.</p>
 </div>
 <div class="value-card">
 <div class="value-card-icon">
@@ -1412,7 +2419,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </svg>
 </div>
 <h3>Participatory Approach</h3>
-<p>We integrate technical knowledge with local wisdom to create sustainable solutions that endure over time and generate shared value.</p>
+<p>We integrate technical knowledge with local wisdom to create sustainable solutions that last over time and generate shared value.</p>
 </div>
 <div class="value-card">
 <div class="value-card-icon">
@@ -1432,179 +2439,86 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </svg>
 </div>
 <h3>Measurable Impact</h3>
-<p>We develop clear indicators and robust monitoring systems to guarantee tangible results and continuous improvement in every project.</p>
+<p>We develop clear indicators and robust monitoring systems to guarantee tangible results and continuous improvement on every project.</p>
 </div>
 </div>
 </section>
-<!-- Services Section -->
-<section class="services" id="servicios">
-<div class="services-container">
-<h2 class="section-title">Our Solutions</h2>
-<p class="section-subtitle">Comprehensive services for sustainable, responsible and legally secure territorial development</p>
-<div class="services-grid">
-<div class="service-card">
-<div class="service-header">
-<h3>🌍 Environmental Impact Assessment and Management</h3>
-<p>Comprehensive analysis for sustainable projects</p>
 </div>
-<div class="service-body">
-<ul>
-<li>Environmental Impact Assessments (EIA)</li>
-<li>Environmental Management Plans (EMP)</li>
-<li>Environmental Audits ISO 14001</li>
-<li>Environmental monitoring and tracking</li>
-<li>Permit management with ANLA, CAR</li>
-</ul>
+<!-- Territory Section -->
+<div class="tab-panel" data-tab="territorio">
+<section class="territory">
+<div class="section-head">
+<span class="eyebrow">In the field</span>
+<h2 class="section-title">The work starts on the ground</h2>
+<p class="section-subtitle">Every strategy is born from walking the territory alongside our team of associated consultants</p>
+</div>
+<div class="territory-banner">
+<img src="colinas-territorio.jpg" alt="Hills and forest landscape in a project area">
+<div class="territory-banner-content">
+<p class="territory-quote">"The balance between development and conservation is built by walking the territory, community by community, hillside by hillside."</p>
 </div>
 </div>
-<div class="service-card">
-<div class="service-header">
-<h3>🤝 Social and Community Management</h3>
-<p>Building bridges of trust</p>
+<div class="territory-gallery">
+<div class="territory-card wide">
+<img src="monitoreo-campo-selva.jpg" alt="Consultants performing environmental monitoring in the forest">
+<div class="territory-card-caption">Environmental monitoring and verification in the field</div>
 </div>
-<div class="service-body">
-<ul>
-<li>Strategic community engagement</li>
-<li>Prior consultation and citizen participation</li>
-<li>Sustainable local development</li>
-<li>Conflict mediation and resolution</li>
-<li>Building local capacities</li>
-</ul>
+<div class="territory-card">
+<img src="campo-valle-bioterritorio.jpg" alt="Bioterritorio consultant on a field visit">
+<div class="territory-card-caption">Technical field visits</div>
 </div>
+<div class="territory-card">
+<img src="cartografia-social-comunidad.jpg" alt="Social mapping with community leaders">
+<div class="territory-card-caption">Social mapping with communities</div>
 </div>
-<div class="service-card">
-<div class="service-header">
-<h3>💼 Corporate ESG Sustainability</h3>
-<p>Responsible business strategies</p>
+<div class="territory-card">
+<img src="reunion-comunitaria.jpg" alt="Community gathering in a rural area">
+<div class="territory-card-caption">Community meetings in rural areas</div>
 </div>
-<div class="service-body">
-<ul>
-<li>ESG sustainability strategies</li>
-<li>GRI, SASB, CSRD reports</li>
-<li>Materiality analysis</li>
-<li>Climate risk management TCFD</li>
-<li>Circular economy and carbon neutrality</li>
-</ul>
+<div class="territory-card">
+<img src="tunel-mina.jpg" alt="Technical support inside a mine">
+<div class="territory-card-caption">Technical support in mining operations</div>
 </div>
+<div class="territory-card">
+<img src="bodega-mineral.jpg" alt="Mineral storage at a mining facility">
+<div class="territory-card-caption">Due diligence at mining facilities</div>
 </div>
-<div class="service-card">
-<div class="service-header">
-<h3>⚖️ Environmental Law and Sustainability</h3>
-<p>Comprehensive legal and strategic management</p>
+<div class="territory-card wide">
+<img src="restauracion-ladera.jpg" alt="Hillside undergoing ecological restoration">
+<div class="territory-card-caption">Restoration and revegetation processes</div>
 </div>
-<div class="service-body">
-<ul>
-<li>Environmental risk mitigation strategies</li>
-<li>Environmental license and permit procedures</li>
-<li>Representation in penalty proceedings</li>
-<li>Environmental feasibility studies</li>
-<li>External environmental management department</li>
-</ul>
+<div class="territory-card">
+<img src="pueblo-territorio.jpg" alt="Town within the intervention territory">
+<div class="territory-card-caption">Presence in the territories we work in</div>
 </div>
-</div>
-<div class="service-card">
-<div class="service-header">
-<h3>⛏️ Mining Law and Due Diligence</h3>
-<p>Comprehensive advisory and risk analysis</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Due Diligence for mining projects</li>
-<li>Technical and legal analysis of mining titles</li>
-<li>Mining title administration</li>
-<li>Defense in mining development risks</li>
-<li>Representation before Mining Authority</li>
-<li>Mining and environmental permit management</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header">
-<h3>📚 Training and Education</h3>
-<p>Knowledge transfer</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Environmental regulations and risks</li>
-<li>Corporate ESG programs</li>
-<li>Climate change and adaptation</li>
-<li>Training internal ISO auditors</li>
-<li>Professional certifications</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header">
-<h3>🚨 Risk Management</h3>
-<p>Business preparation and resilience</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Disaster risk management plans</li>
-<li>Climate vulnerability analysis</li>
-<li>Emergency and contingency plans</li>
-<li>Business continuity</li>
-<li>Climate change adaptation</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header">
-<h3>🏘️ Land and Territorial Management</h3>
-<p>Comprehensive land solutions</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Title study for acquisitions</li>
-<li>Easement agreements</li>
-<li>Lease negotiations</li>
-<li>Land acquisition for projects</li>
-<li>Appraisals and land analysis</li>
-<li>Social management with landowners</li>
-</ul>
-</div>
-</div>
+<div class="territory-card">
+<img src="atardecer-cordillera.jpg" alt="Colombian mountain range at sunset">
+<div class="territory-card-caption">Intervention areas in the Colombian mountain range</div>
 </div>
 </div>
 </section>
-<!-- About Section -->
-<section class="about" id="nosotros">
-<div class="about-content">
-<div class="about-image">
-<img src="Natalia_Montoya_Ambiental.jpg" alt="Natalia Montoya Vanegas">
 </div>
-<div class="about-text">
-<h2>Leadership with Experience</h2>
-<p class="subtitle">Natalia Montoya Vanegas - General Director</p>
-<p>Biologist, Specialist in Environmental Law and Master's in Integrated Watershed Management, with more than 14 years of experience leading projects in environmental impact, community management, sustainability and ESG.</p>
-<p>With experience in IFC standards, water resources management, climate change, GRI and SASB reporting, ISO 14001:2015 lead auditor, environmental due diligence and management of socio-environmental projects for the infrastructure, mining and energy sectors in Latin America.</p>
-<div class="credentials">
-<span class="credential">MSc. Watershed Management - CATIE</span>
-<span class="credential">Spec. Environmental Law - U. Rosario</span>
-<span class="credential">Lead Auditor ISO 14001</span>
-<span class="credential">IHA Certification</span>
-<span class="credential">CSRD & ESG</span>
-</div>
-</div>
-</div>
-</section>
 <!-- Experts Section -->
+<div class="tab-panel" data-tab="expertos">
 <section class="experts" id="expertos">
 <div class="experts-container">
+<div class="section-head">
+<span class="eyebrow">Team</span>
 <h2 class="section-title">Allied Experts</h2>
-<p class="section-subtitle">We have a multidisciplinary team of 6 specialists in different areas of sustainability and environmental management</p>
+<p class="section-subtitle">We have a multidisciplinary team of 6 professionals specialized in different areas of sustainability and environmental management</p>
+</div>
 <div class="experts-cta">
 <button onclick="toggleExperts()" class="cta-button" id="expertsButton">
-Get to know our allied experts
+Meet our allied experts
 </button>
 </div>
 <div class="experts-grid" id="expertsGrid" style="display: none; margin-top: 3rem;">
 <div class="expert-card">
-<div class="expert-icon">�</div>
+<div class="expert-icon">👥</div>
 <h4>Sociologist</h4>
-<p>Expert in Social Management. More than 10 years of experience leading multidisciplinary teams. Specialized in ESG/ASG criteria, social management and social impact measurement.</p>
+<p>Expert in Social Management. Over 10 years of experience leading multidisciplinary teams. Specialized in ESG criteria, social management and social impact measurement.</p>
 <div class="expertise-tags">
-<span class="expertise-tag">ESG/ASG</span>
+<span class="expertise-tag">ESG</span>
 <span class="expertise-tag">Social Management</span>
 <span class="expertise-tag">Social Impact</span>
 </div>
@@ -1612,7 +2526,7 @@ Get to know our allied experts
 <div class="expert-card">
 <div class="expert-icon">⛏️</div>
 <h4>Geological Engineer - MBA</h4>
-<p>Specialist with more than 15 years of experience in the mining industry. Expert in comprehensive evaluation of mining projects and environmental impact studies.</p>
+<p>Specialist with over 15 years of experience in the mining industry. Expert in comprehensive mining project evaluation and environmental impact studies.</p>
 <div class="expertise-tags">
 <span class="expertise-tag">Mining</span>
 <span class="expertise-tag">Environmental Licenses</span>
@@ -1622,7 +2536,7 @@ Get to know our allied experts
 <div class="expert-card">
 <div class="expert-icon">✓</div>
 <h4>HSEQ Auditor - CSR</h4>
-<p>Certified Internal Auditor in Integrated HSEQ Management Systems with focus on Corporate Social Responsibility.</p>
+<p>Certified Internal Auditor in Integrated HSEQ Management Systems with a focus on Corporate Social Responsibility.</p>
 <div class="expertise-tags">
 <span class="expertise-tag">ISO 9001/14001/45001</span>
 <span class="expertise-tag">HSEQ</span>
@@ -1632,7 +2546,7 @@ Get to know our allied experts
 <div class="expert-card">
 <div class="expert-icon">🚨</div>
 <h4>Environmental Engineer</h4>
-<p>Specialist in Disaster Risk Management. Experience in environmental management plans and community planning formulation.</p>
+<p>Specialist in Disaster Risk Management. Experience in environmental management plans and community plan development.</p>
 <div class="expertise-tags">
 <span class="expertise-tag">Risk Management</span>
 <span class="expertise-tag">EMP</span>
@@ -1642,7 +2556,7 @@ Get to know our allied experts
 <div class="expert-card">
 <div class="expert-icon">🗺️</div>
 <h4>Environmental Engineer - GIS Specialist</h4>
-<p>More than 8 years of experience in cartography and spatial analysis applied to territorial planning and environmental management.</p>
+<p>Over 8 years of experience in cartography and spatial analysis applied to territorial planning and environmental management.</p>
 <div class="expertise-tags">
 <span class="expertise-tag">GIS</span>
 <span class="expertise-tag">Cartography</span>
@@ -1652,7 +2566,7 @@ Get to know our allied experts
 <div class="expert-card">
 <div class="expert-icon">🏺</div>
 <h4>Anthropologist - Archaeologist</h4>
-<p>Specialist in Preventive Archaeology Programs. Expert in 3D photogrammetry and digital documentation of heritage.</p>
+<p>Specialist in Preventive Archaeology Programs. Expert in 3D photogrammetry and digital heritage documentation.</p>
 <div class="expertise-tags">
 <span class="expertise-tag">Preventive Archaeology</span>
 <span class="expertise-tag">GIS</span>
@@ -1662,43 +2576,87 @@ Get to know our allied experts
 </div>
 </div>
 </section>
+</div>
+<!-- Allies Section -->
+<div class="tab-panel" data-tab="aliados">
+<section class="allies" id="aliados">
+<div class="allies-container">
+<div class="section-head">
+<span class="eyebrow">Partner Companies</span>
+<h2 class="section-title">An ecosystem to strengthen every project</h2>
+<p class="section-subtitle">We work alongside specialized companies that complement our environmental and social management</p>
+</div>
+<div class="allies-grid">
+<div class="ally-card">
+<div class="ally-logo">
+<img src="aliado-vinks-logo.png" alt="Vinks logo">
+</div>
+<h4>Vinks</h4>
+<p>AI-powered data intelligence and social analytics to map your environment, understand stakeholders and measure community impact.</p>
+<a href="https://datavinks.com/" target="_blank" class="ally-link">Visit site →</a>
+</div>
+<div class="ally-card">
+<div class="ally-logo ally-logo-text">Ambiente y Desarrollo</div>
+<h4>Ambiente y Desarrollo</h4>
+<p>Strategic partner in environmental management and sustainable project development.</p>
+</div>
+<div class="ally-card">
+<div class="ally-logo ally-logo-text">APMC</div>
+<h4>APMC</h4>
+<p>Association of Professionals of the Colombian Mining Sector, a guild that drives sustainable development of the country's mining-energy sector.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
 <!-- Clients Section -->
+<div class="tab-panel" data-tab="clientes">
 <section class="cases" id="clientes">
+<div class="section-head">
+<span class="eyebrow">Results</span>
 <h2 class="section-title">Clients and Success Stories</h2>
 <p class="section-subtitle">Transforming territories, creating sustainable value</p>
+</div>
 <div class="cases-cta">
 <button onclick="toggleCases()" class="cta-button" id="casesButton">
-View our success stories
+See our success stories
 </button>
 </div>
 <div class="cases-slider" id="casesGrid" style="display: none; margin-top: 3rem;">
 <div class="case-card">
 <h4>Renewable Energy</h4>
 <p class="client">ENERGO-PRO COLOMBIA</p>
-<p><strong>Challenge:</strong> Implement international sustainability system and IHA certification</p>
-<p><strong>Solution:</strong> Comprehensive sustainability management, ESG reports and Chorreritas certification</p>
-<p><strong>Result:</strong> IHA certification obtained, 2022-2023 reports completed successfully</p>
+<p><strong>Challenge:</strong> Implement an international sustainability system and IHA certification</p>
+<p><strong>Solution:</strong> Comprehensive sustainability management, ESG reporting and Chorreritas certification</p>
+<p><strong>Result:</strong> IHA certification obtained, 2022-2023 reports successfully completed</p>
 </div>
 <div class="case-card">
 <h4>Circular Economy - Sustainable Jewelry</h4>
 <p class="client">ORO EXPRESS</p>
 <p><strong>Challenge:</strong> Responsible jewelry certifications with recycled gold</p>
-<p><strong>Solution:</strong> Circular economy and sustainability strategy for national and international certifications</p>
+<p><strong>Solution:</strong> Circular economy and sustainability strategy for national and international seals</p>
 <p><strong>Result:</strong> Sustainability model implemented, certification in progress</p>
 </div>
 <div class="case-card">
 <h4>Sustainable Mining</h4>
 <p class="client">NAVAR ASOCIADOS</p>
-<p><strong>Challenge:</strong> Environmental licensing and due diligence of mining title in complex areas</p>
-<p><strong>Solution:</strong> Community management, technical-legal analysis of titles and land management</p>
-<p><strong>Result:</strong> Project under execution with continuous socio-environmental management support</p>
+<p><strong>Challenge:</strong> Environmental licensing and mining title due diligence in complex areas</p>
+<p><strong>Solution:</strong> Community management, technical-legal title analysis and land management</p>
+<p><strong>Result:</strong> Project underway with ongoing support in socio-environmental management</p>
+</div>
+<div class="case-card">
+<h4>Construction Materials Extraction</h4>
+<p class="client">AGREGADOS DE LA SIERRA</p>
+<p><strong>Challenge:</strong> Obtain the environmental license for their aggregate mining project in Suárez, Tolima</p>
+<p><strong>Solution:</strong> Preparation of the Environmental Impact Assessment (EIA) and management before the relevant environmental authority</p>
+<p><strong>Result:</strong> EIA in progress, with technical and social support throughout the process</p>
 </div>
 </div>
 <!-- Carbon Calculator Button -->
 <div class="carbon-calculator-section">
 <div class="carbon-calculator-container">
 <h3 class="carbon-title">🌍 Commit to the Planet</h3>
-<p class="carbon-subtitle">Know your environmental impact and discover how to reduce it</p>
+<p class="carbon-subtitle">Learn your environmental impact and discover how to reduce it</p>
 <div class="carbon-button-wrapper">
 <button onclick="openModal()" class="carbon-button-enhanced">
 <span class="button-icon">🌱</span>
@@ -1712,6 +2670,7 @@ View our success stories
 </div>
 </div>
 </section>
+</div>
 <!-- Carbon Calculator Modal -->
 <div id="carbonModal" class="modal">
 <div class="modal-content">
@@ -1723,40 +2682,40 @@ View our success stories
 <div class="modal-body">
 <div style="background: var(--orange-pastel); padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; border: 2px solid var(--primary-lighter);">
 <h4 style="color: var(--primary-dark); margin-bottom: 1rem;">📊 What information will you need?</h4>
-<p style="color: #666; margin-bottom: 0.8rem;">To calculate your carbon footprint accurately, have this information ready:</p>
+<p style="color: #666; margin-bottom: 0.8rem;">To calculate your carbon footprint accurately, have on hand:</p>
 <ul style="color: #666; margin-left: 1.5rem; line-height: 1.8;">
 <li>Utility bills (electricity, gas, water)</li>
 <li>Estimated kilometers traveled monthly</li>
 <li>Frequency of domestic and international flights per year</li>
-<li>Consumption habits and type of diet</li>
+<li>Consumption habits and diet type</li>
 </ul>
-<p style="color: #666; margin-top: 1rem; font-style: italic;">💡 If you don't have exact data, use estimates based on your daily routine.</p>
+<p style="color: #666; margin-top: 1rem; font-style: italic;">💡 If you don't have exact figures, use estimates based on your daily routine.</p>
 </div>
 <form id="carbonForm">
 <div class="form-grid">
 <div>
 <label>🚗 Car transport (km/month)</label>
-<input type="number" id="transport" placeholder="Ex: 500">
+<input type="number" id="transport" placeholder="E.g.: 500">
 </div>
 <div>
 <label>🚌 Public transport (km/month)</label>
-<input type="number" id="publicTransport" placeholder="Ex: 200">
+<input type="number" id="publicTransport" placeholder="E.g.: 200">
 </div>
 <div>
 <label>💡 Electricity consumption (kWh/month)</label>
-<input type="number" id="electricity" placeholder="Ex: 300">
+<input type="number" id="electricity" placeholder="E.g.: 300">
 </div>
 <div>
 <label>🔥 Natural gas (m³/month)</label>
-<input type="number" id="gas" placeholder="Ex: 20">
+<input type="number" id="gas" placeholder="E.g.: 20">
 </div>
 <div>
 <label>🗑️ Waste generated (kg/month)</label>
-<input type="number" id="waste" placeholder="Ex: 50">
+<input type="number" id="waste" placeholder="E.g.: 50">
 </div>
 <div>
 <label>💧 Water consumption (m³/month)</label>
-<input type="number" id="water" placeholder="Ex: 15">
+<input type="number" id="water" placeholder="E.g.: 15">
 </div>
 <div>
 <label>✈️ Domestic flights/year</label>
@@ -1779,9 +2738,9 @@ View our success stories
 </select>
 </div>
 <div>
-<label>🥩 Type of diet</label>
+<label>🥩 Diet type</label>
 <select id="diet">
-<option value="3.3">Omnivorous (all)</option>
+<option value="3.3">Omnivore (everything)</option>
 <option value="2.5">Low meat</option>
 <option value="1.7">Vegetarian</option>
 <option value="1.5">Vegan</option>
@@ -1808,15 +2767,210 @@ Calculate Carbon Footprint
 <div style="margin-top: 2rem; padding: 2rem; background: var(--white); border-radius: 15px; box-shadow: var(--shadow-md);">
 <h4 style="color: var(--primary); margin-bottom: 1rem;">🌱 Comparison:</h4>
 <p style="margin: 0.8rem 0; color: var(--text-light);">• Colombian average: 1.6 tCO₂/year</p>
-<p style="margin: 0.8rem 0; color: var(--text-light);">• World average: 4.5 tCO₂/year</p>
+<p style="margin: 0.8rem 0; color: var(--text-light);">• Global average: 4.5 tCO₂/year</p>
 <p id="comparison" style="font-weight: 600; color: var(--primary);"></p>
 </div>
 <a href="#contacto" onclick="closeModal()" class="cta-button" style="margin-top: 1.5rem;">
-Learn how to reduce your footprint
+Find out how to reduce your footprint
 </a>
 </div>
 </div>
 </div>
+</div>
+<!-- Gallery Section -->
+<div class="tab-panel" data-tab="galeria">
+<section class="gallery" id="galeria">
+<div class="section-head">
+<span class="eyebrow">Gallery</span>
+<h2 class="section-title">Our team in action</h2>
+<p class="section-subtitle">Industry events, technical visits and community work alongside our associated consultants</p>
+</div>
+<div class="gallery-grid" id="galleryGrid">
+<div class="gallery-item" data-caption="Panel discussion — SDIMI & APMC, sustainable mining">
+<img src="gallery/panel-sdimi-apmc.jpg" alt="Panel discussion on sustainable mining at SDIMI and APMC">
+</div>
+<div class="gallery-item" data-caption="12th SDIMI — International Conference on Sustainable Minerals">
+<img src="gallery/selfie-sdimi.jpg" alt="Bioterritorio consultant at the 12th SDIMI">
+</div>
+<div class="gallery-item" data-caption="Networking space at a mining sector conference">
+<img src="gallery/cafe-conferencia.jpg" alt="Coffee and networking space at a conference">
+</div>
+<div class="gallery-item" data-caption="Training session and community work">
+<img src="gallery/capacitacion-comunitaria.jpg" alt="Community training session">
+</div>
+<div class="gallery-item" data-caption="Technical visit to an alluvial mining area">
+<img src="gallery/draga-rio.jpg" alt="Extraction dredge on a river during a technical visit">
+</div>
+<div class="gallery-item" data-caption="Technical visit to a mining area riverbank">
+<img src="gallery/visita-rio-mineria.jpg" alt="Consultants on a technical visit by the river">
+</div>
+<div class="gallery-item" data-caption="Precast concrete plant on an infrastructure project">
+<img src="gallery/planta-prefabricados.jpg" alt="Precast concrete plant on an infrastructure project">
+</div>
+<div class="gallery-item" data-caption="Team of associated consultants at an industry event">
+<img src="gallery/equipo-conferencia.jpg" alt="Bioterritorio's associated consultant team at a conference">
+</div>
+</div>
+</section>
+</div>
+<!-- Instagram Section -->
+<div class="tab-panel" data-tab="instagram">
+<section class="instagram-section">
+<div class="section-head">
+<span class="eyebrow">Follow Us</span>
+<h2 class="section-title">Latest on Instagram</h2>
+<p class="section-subtitle">Updated directly from @bioterritorio_org</p>
+</div>
+<!-- Reemplazar este div por el código de embed de SnapWidget cuando esté disponible -->
+<div class="instagram-embed-slot">
+<span class="instagram-embed-icon">📷</span>
+<p>Our latest Instagram posts will appear here soon.</p>
+<a href="https://www.instagram.com/bioterritorio_org/" target="_blank" class="cta-button secondary">Follow us on Instagram</a>
+</div>
+</section>
+</div>
+<!-- Zona Interactiva: Diccionario + Minicursos -->
+<div class="tab-panel" data-tab="interactiva">
+<section class="dictionary">
+<div class="section-head">
+<span class="eyebrow">Glossary</span>
+<h2 class="section-title">Interactive Dictionary</h2>
+<p class="section-subtitle">Environmental, mining, electrical and social terms explained in plain language</p>
+</div>
+<div class="dictionary-controls">
+<input type="text" id="dictSearch" class="dict-search" placeholder="Search a term... e.g.: license, discharge, easement">
+<div class="dict-filters" id="dictFilters">
+<button class="dict-filter active" data-cat="todos">All</button>
+<button class="dict-filter" data-cat="Ambiental">Environmental</button>
+<button class="dict-filter" data-cat="Minero">Mining</button>
+<button class="dict-filter" data-cat="Eléctrico">Electrical</button>
+<button class="dict-filter" data-cat="Social">Social</button>
+</div>
+</div>
+<div class="dictionary-grid" id="dictionaryGrid"></div>
+<p class="dict-empty" id="dictEmpty" style="display:none;">We couldn't find any terms matching your search.</p>
+</section>
+<section class="minicursos">
+<div class="section-head">
+<span class="eyebrow">Learn with us</span>
+<h2 class="section-title">Free Mini-Courses</h2>
+<p class="section-subtitle">Short, free videos on environmental management, ESG and sustainability, coming soon on our YouTube channel</p>
+</div>
+<div class="minicursos-cta">
+<a href="https://www.youtube.com/@bioterritorio" target="_blank" class="cta-button" id="youtubeChannelLink">▶ Subscribe to our channel</a>
+</div>
+<div class="minicursos-grid">
+<div class="minicurso-card">
+<div class="minicurso-thumb">🎥<span class="minicurso-badge">Coming Soon</span></div>
+<h4>Introduction to Environmental Licensing</h4>
+<p>What it is, when it's needed, and the most common mistakes when applying for it.</p>
+</div>
+<div class="minicurso-card">
+<div class="minicurso-thumb">🎥<span class="minicurso-badge">Coming Soon</span></div>
+<h4>ESG for SMEs: first steps</h4>
+<p>How to start an environmental, social and governance strategy without a large team.</p>
+</div>
+<div class="minicurso-card">
+<div class="minicurso-thumb">🎥<span class="minicurso-badge">Coming Soon</span></div>
+<h4>Prior Consultation: what you need to know</h4>
+<p>Keys to engaging with ethnic communities on your project.</p>
+</div>
+<div class="minicurso-card">
+<div class="minicurso-thumb">🎥<span class="minicurso-badge">Coming Soon</span></div>
+<h4>Carbon Footprint: how to measure it</h4>
+<p>A practical introduction to calculating and reducing your impact.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Repositorio de Gestión Ambiental -->
+<div class="tab-panel" data-tab="repositorio">
+<section class="repository">
+<div class="section-head">
+<span class="eyebrow">Repository</span>
+<h2 class="section-title">Environmental Management Repository</h2>
+<p class="section-subtitle">Official links to consult decrees, laws and environmental, mining and social standards in Colombia and around the world</p>
+</div>
+<div class="repo-group">
+<h3 class="repo-group-title">🇨🇴 Colombia</h3>
+<div class="repo-grid">
+<a href="https://www.anla.gov.co" target="_blank" class="repo-card">
+<h4>ANLA</h4>
+<p>National Authority of Environmental Licenses — licenses for large-scale projects.</p>
+</a>
+<a href="https://www.minambiente.gov.co" target="_blank" class="repo-card">
+<h4>Ministry of Environment</h4>
+<p>National environmental policy, regulations and sector news.</p>
+</a>
+<a href="https://www.suin-juriscol.gov.co" target="_blank" class="repo-card">
+<h4>SUIN-Juriscol</h4>
+<p>Unified Regulatory Information System: Colombian laws, decrees and case law.</p>
+</a>
+<a href="https://www.ideam.gov.co" target="_blank" class="repo-card">
+<h4>IDEAM</h4>
+<p>Institute of Hydrology, Meteorology and Environmental Studies.</p>
+</a>
+<a href="https://www.anm.gov.co" target="_blank" class="repo-card">
+<h4>ANM</h4>
+<p>National Mining Agency — mining titles and regulations.</p>
+</a>
+<a href="https://creg.gov.co" target="_blank" class="repo-card">
+<h4>CREG</h4>
+<p>Energy and Gas Regulation Commission.</p>
+</a>
+<a href="https://www.upme.gov.co" target="_blank" class="repo-card">
+<h4>UPME</h4>
+<p>Mining-Energy Planning Unit.</p>
+</a>
+<a href="https://www.corteconstitucional.gov.co" target="_blank" class="repo-card">
+<h4>Constitutional Court</h4>
+<p>Rulings and case law, including those related to Prior Consultation.</p>
+</a>
+</div>
+</div>
+<div class="repo-group">
+<h3 class="repo-group-title">🌎 International</h3>
+<div class="repo-grid">
+<a href="https://www.unep.org" target="_blank" class="repo-card">
+<h4>UNEP</h4>
+<p>United Nations Environment Programme.</p>
+</a>
+<a href="https://www.ifc.org" target="_blank" class="repo-card">
+<h4>IFC Performance Standards</h4>
+<p>Environmental and social performance standards for internationally financed projects.</p>
+</a>
+<a href="https://equator-principles.com" target="_blank" class="repo-card">
+<h4>Equator Principles</h4>
+<p>Environmental and social risk management framework for project finance.</p>
+</a>
+<a href="https://www.iucn.org" target="_blank" class="repo-card">
+<h4>IUCN</h4>
+<p>International Union for Conservation of Nature.</p>
+</a>
+<a href="https://www.worldbank.org/en/topic/environment" target="_blank" class="repo-card">
+<h4>World Bank — Environment</h4>
+<p>Environmental and Social Framework (ESF) for World Bank-financed projects.</p>
+</a>
+</div>
+</div>
+<p class="repo-disclaimer">Links to official external sources. Bioterritorio does not manage these sites; always verify current regulations directly at the source.</p>
+</section>
+</div>
+<!-- Info Bubble -->
+<div class="info-bubble" id="infoBubble">
+<span class="info-bubble-arrow"></span>
+<button class="info-bubble-close" onclick="closeInfoBubble()" aria-label="Close">&times;</button>
+<p id="infoBubbleText"></p>
+</div>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<button class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1)" aria-label="Previous">‹</button>
+<div class="lightbox-content">
+<span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+<img id="lightboxImg" src="" alt="">
+<p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+<button class="lightbox-nav lightbox-next" onclick="changeLightbox(1)" aria-label="Next">›</button>
 </div>
 <!-- Contact Section -->
 <section class="contact" id="contacto">
@@ -1832,9 +2986,13 @@ Learn how to reduce your footprint
 <span>📍</span>
 <span>Medellín, Colombia</span>
 </div>
+<a href="https://www.instagram.com/bioterritorio_org/" target="_blank" class="contact-item">
+<span>📷</span>
+<span>@bioterritorio_org</span>
+</a>
 </div>
 <a href="https://cal.com/natalia-natalia-montoya-montoya-zccc2b/30min" target="_blank" class="cta-button schedule-button">
-Request your free consultation - 30 min
+Book your free 30-min consultation
 </a>
 </div>
 </section>
@@ -1842,26 +3000,105 @@ Request your free consultation - 30 min
 <footer>
 <div class="footer-content">
 <img src="fulllogo_transparent.png" alt="Bioterritorio" class="footer-logo">
-<p>© 2024 Bioterritorio. Transforming people into guardians of territory.</p>
+<p>© 2024 Bioterritorio. Turning people into guardians of the land.</p>
 <p>Led by Natalia Montoya Vanegas - +14 years of experience in environmental consulting</p>
+<a href="https://www.instagram.com/bioterritorio_org/" target="_blank" class="footer-social">📷 @bioterritorio_org</a>
 </div>
 </footer>
 <!-- WhatsApp Float Button -->
-<a href="https://wa.me/573175183243?text=Hello%20Natalia,%20I'm%20interested%20in%20learning%20more%20about%20Bioterritorio%20services"
+<a href="https://wa.me/573175183243?text=Hi%20Natalia,%20I%27m%20interested%20in%20learning%20more%20about%20Bioterritorio%27s%20services"
 class="whatsapp-float"
 target="_blank"
 aria-label="Contact via WhatsApp">
 <span>💬</span>
 </a>
 <script>
+// Altura dinámica de la barra superior (ticker + header)
+function getTopbarHeight() {
+const topbar = document.getElementById('siteTopbar');
+return topbar ? topbar.offsetHeight : 80;
+}
+function updateTopbarHeight() {
+document.documentElement.style.setProperty('--topbar-height', getTopbarHeight() + 'px');
+}
+updateTopbarHeight();
+window.addEventListener('resize', updateTopbarHeight);
+window.addEventListener('load', updateTopbarHeight);
+// Tabs de navegación de contenido (2 niveles: grupo -> subsección)
+const tabGroups = {
+servicios: { label: 'Services', subs: [
+{ id: 'servicios', label: 'Services' },
+{ id: 'territorio', label: 'In the Field' }
+] },
+nosotros: { label: 'About Us', subs: [
+{ id: 'nosotros', label: 'About Us' },
+{ id: 'expertos', label: 'Experts' }
+] },
+red: { label: 'Partners & Clients', subs: [
+{ id: 'aliados', label: 'Partners' },
+{ id: 'clientes', label: 'Clients' }
+] },
+recursos: { label: 'Resources', subs: [
+{ id: 'interactiva', label: 'Interactive Zone' },
+{ id: 'repositorio', label: 'Regulatory Repository' }
+] },
+comunidad: { label: 'Community', subs: [
+{ id: 'galeria', label: 'Gallery' },
+{ id: 'instagram', label: 'Instagram' }
+] }
+};
+function findGroupForTab(tabId) {
+for (const groupId in tabGroups) {
+if (tabGroups[groupId].subs.some(s => s.id === tabId)) return groupId;
+}
+return null;
+}
+function renderSubNav(groupId, activeTabId) {
+const group = tabGroups[groupId];
+const subNav = document.getElementById('subTabsNav');
+subNav.innerHTML = group.subs.map(s =>
+'<button class="tab-btn sub-tab-btn' + (s.id === activeTabId ? ' active' : '') + '" data-tab="' + s.id + '" onclick="switchTab(\'' + s.id + '\')">' + s.label + '</button>'
+).join('');
+}
+function switchTab(tabId, scroll) {
+if (scroll === undefined) scroll = true;
+const groupId = findGroupForTab(tabId);
+if (!groupId) return;
+document.querySelectorAll('.tab-btn-main').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.group === groupId);
+});
+renderSubNav(groupId, tabId);
+document.querySelectorAll('.tab-panel').forEach(panel => {
+panel.classList.toggle('active', panel.dataset.tab === tabId);
+});
+if (scroll) {
+const scrollTarget = document.getElementById('tabsNav');
+const headerOffset = getTopbarHeight();
+const elementPosition = scrollTarget.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+}
+}
+function switchGroup(groupId) {
+switchTab(tabGroups[groupId].subs[0].id);
+}
 // Smooth scrolling mejorado
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 anchor.addEventListener('click', function (e) {
 e.preventDefault();
 const targetId = this.getAttribute('href');
+if (!targetId || targetId === '#') return;
+const tabId = targetId.slice(1);
+const panelExists = document.querySelector('.tab-panel[data-tab="' + tabId + '"]');
+if (panelExists) {
+switchTab(tabId);
+navLinks.classList.remove('active');
+mobileMenu.classList.remove('active');
+return;
+}
 const target = document.querySelector(targetId);
 if (target) {
-const headerOffset = 80;
+const headerOffset = getTopbarHeight();
 const elementPosition = target.getBoundingClientRect().top;
 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 window.scrollTo({
@@ -1987,9 +3224,9 @@ let comparison = "";
 if (total < 1.6) {
 comparison = "• Excellent! Your footprint is below the Colombian average 🎉";
 } else if (total < 4.5) {
-comparison = "• Your footprint is between the Colombian and world average 📊";
+comparison = "• Your footprint is between the Colombian and global averages 📊";
 } else {
-comparison = "• Your footprint is above the world average. It's time to act! 🌍";
+comparison = "• Your footprint is above the global average. Time to take action! 🌍";
 }
 document.getElementById('comparison').textContent = comparison;
 document.getElementById('result').style.display = 'block';
@@ -1997,6 +3234,44 @@ setTimeout(() => {
 document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }, 100);
 }
+// Toggle Service Accordion (cada tarjeta se despliega de forma independiente)
+function toggleService(headerEl) {
+headerEl.closest('.service-card').classList.toggle('expanded');
+}
+// Burbuja informativa de servicios
+const serviceExplanations = [
+'Before building, drilling or intervening in a territory, the law requires demonstrating what impact your project will have on the environment. A poorly done EIA delays licenses by months or years; a well-done one anticipates the authority’s objections before they arise.',
+'A project can have every permit in order and still be halted by community opposition. Building relationships with communities from the start, not only once there is already conflict, reduces blockades, strikes and legal proceedings.',
+'Investors, banks and corporate clients increasingly demand credible ESG reports, not filler. A well-structured strategy turns that demand into a real competitive advantage, not just another formality.',
+'Colombian environmental regulations change frequently, and penalties for non-compliance can mean the closure of a project. Specialized legal support prevents a regulatory gap from turning into a fine or a sanctioning process.',
+'Buying or developing a mining title without verifying its legal and technical history is one of the sector’s costliest risks. Due diligence identifies liabilities, boundary disputes or irregularities before they become your problem.',
+'Environmental management doesn’t depend only on hiring an outside consultant: internal teams that understand regulations and risks make better decisions day to day, without waiting for something to go wrong.',
+'A natural disaster, drought or flood can paralyze an operation that wasn’t prepared for it. Risk management plans turn climate uncertainty into clear response protocols.',
+'Acquiring land, negotiating an easement or conducting a poorly done title study can leave a project with a disputed property years after it started. Rigorous land management prevents that risk from the initial negotiation onward.'
+];
+function showInfoBubble(e, idx) {
+e.stopPropagation();
+const bubble = document.getElementById('infoBubble');
+document.getElementById('infoBubbleText').textContent = serviceExplanations[idx];
+const rect = e.currentTarget.getBoundingClientRect();
+const bubbleWidth = 320;
+let left = rect.left;
+if (left + bubbleWidth > window.innerWidth - 20) {
+left = window.innerWidth - bubbleWidth - 20;
+}
+bubble.style.left = Math.max(20, left) + 'px';
+bubble.style.top = (rect.bottom + 12) + 'px';
+bubble.classList.add('show');
+}
+function closeInfoBubble() {
+document.getElementById('infoBubble').classList.remove('show');
+}
+document.addEventListener('click', (e) => {
+const bubble = document.getElementById('infoBubble');
+if (bubble.classList.contains('show') && !bubble.contains(e.target) && !e.target.classList.contains('info-icon')) {
+closeInfoBubble();
+}
+});
 // Toggle Experts Function
 function toggleExperts() {
 const expertsGrid = document.getElementById('expertsGrid');
@@ -2019,7 +3294,7 @@ expertsGrid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }, 100);
 } else {
 expertsGrid.style.display = 'none';
-expertsButton.textContent = 'Get to know our allied experts';
+expertsButton.textContent = 'Meet our allied experts';
 }
 }
 // Toggle Cases Function
@@ -2044,25 +3319,204 @@ casesGrid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }, 100);
 } else {
 casesGrid.style.display = 'none';
-casesButton.textContent = 'View our success stories';
+casesButton.textContent = 'See our success stories';
 }
 }
-// Enhanced scroll animations
-let ticking = false;
-function updateScrollAnimations() {
-if (!ticking) {
-window.requestAnimationFrame(function() {
-const scrolled = window.pageYOffset;
-const hero = document.querySelector('.hero');
-if (hero && scrolled < window.innerHeight) {
-hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+// Lightbox de galería
+const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+let lightboxIndex = 0;
+function openLightbox(index) {
+lightboxIndex = index;
+updateLightbox();
+document.getElementById('lightbox').classList.add('active');
+document.body.style.overflow = 'hidden';
 }
-ticking = false;
+function updateLightbox() {
+const item = galleryItems[lightboxIndex];
+document.getElementById('lightboxImg').src = item.querySelector('img').src;
+document.getElementById('lightboxCaption').textContent = item.dataset.caption;
+}
+function changeLightbox(direction) {
+lightboxIndex = (lightboxIndex + direction + galleryItems.length) % galleryItems.length;
+updateLightbox();
+}
+function closeLightbox() {
+document.getElementById('lightbox').classList.remove('active');
+document.body.style.overflow = 'auto';
+}
+galleryItems.forEach((item, index) => {
+item.addEventListener('click', () => openLightbox(index));
 });
-ticking = true;
+document.getElementById('lightbox').addEventListener('click', (e) => {
+if (e.target.id === 'lightbox') closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+if (!document.getElementById('lightbox').classList.contains('active')) return;
+if (e.key === 'Escape') closeLightbox();
+if (e.key === 'ArrowLeft') changeLightbox(-1);
+if (e.key === 'ArrowRight') changeLightbox(1);
+});
+// Diccionario Interactivo
+const dictionaryTerms = [
+{ term: 'EIA (Environmental Impact Assessment)', cat: 'Ambiental', def: 'Technical document that identifies, evaluates and describes the environmental impacts of a project before it receives a license.' },
+{ term: 'EMP (Environmental Management Plan)', cat: 'Ambiental', def: 'Set of programs to prevent, mitigate, correct or compensate for the environmental impacts of a project.' },
+{ term: 'Environmental License', cat: 'Ambiental', def: 'Authorization granted by the environmental authority to carry out a project that could cause serious harm to natural resources.' },
+{ term: 'EAA (Environmental Assessment of Alternatives)', cat: 'Ambiental', def: 'Study that compares different project options to choose the one with the lowest environmental impact.' },
+{ term: 'ANLA', cat: 'Ambiental', def: 'National Authority of Environmental Licenses: the Colombian entity that grants environmental licenses for large-scale projects.' },
+{ term: 'CAR (Regional Autonomous Corporation)', cat: 'Ambiental', def: 'Entity that manages natural resources and grants environmental permits at a regional level in Colombia.' },
+{ term: 'Discharge Permit', cat: 'Ambiental', def: 'Authorization to discharge treated wastewater into a water body or the soil.' },
+{ term: 'Water Concession', cat: 'Ambiental', def: 'Permit that grants the right to use or draw water from a natural source.' },
+{ term: 'Forestry Use Permit', cat: 'Ambiental', def: 'Permit to cut down or remove trees in a given area, with a compensation obligation.' },
+{ term: 'Environmental Compensation', cat: 'Ambiental', def: 'Actions to offset environmental impacts that could not be avoided or mitigated.' },
+{ term: 'Risk Management Plan', cat: 'Ambiental', def: 'Document that identifies disaster risks associated with a project and its response measures.' },
+{ term: 'Carbon Footprint', cat: 'Ambiental', def: 'Measure of the greenhouse gas emissions generated directly or indirectly by a person or organization.' },
+{ term: 'Mining Title', cat: 'Minero', def: 'Document that grants the right to explore and exploit minerals in a given area.' },
+{ term: 'Mining Concession', cat: 'Minero', def: 'Contract between the State and a private party authorizing the exploration and exploitation of a mineral deposit.' },
+{ term: 'RUCOM', cat: 'Minero', def: 'Unified Registry of Mineral Traders, required to legally trade minerals in Colombia.' },
+{ term: 'PTO (Work and Operations Program)', cat: 'Minero', def: 'Technical document detailing how mining extraction will be carried out.' },
+{ term: 'Royalties', cat: 'Minero', def: 'Economic compensation paid to the State by whoever exploits a non-renewable natural resource.' },
+{ term: 'Surface Fee', cat: 'Minero', def: 'Annual payment made by the mining titleholder for each hectare of the granted area, while extraction has not yet begun.' },
+{ term: 'ANM (National Mining Agency)', cat: 'Minero', def: 'Mining authority in charge of managing the Colombian State’s mineral resources.' },
+{ term: 'Ethnic Mining Zone', cat: 'Minero', def: 'Special delimited area for indigenous or Afro-descendant communities, who have priority to request mining titles there.' },
+{ term: 'CREG', cat: 'Eléctrico', def: 'Energy and Gas Regulation Commission: the entity that regulates electricity and gas markets in Colombia.' },
+{ term: 'UPME', cat: 'Eléctrico', def: 'Mining-Energy Planning Unit: the entity that plans the development of Colombia’s energy sector.' },
+{ term: 'Electrical Easement', cat: 'Eléctrico', def: 'Right that allows installing and maintaining power lines over third-party land.' },
+{ term: 'Connection License', cat: 'Eléctrico', def: 'Authorization to connect a generation project to the national power grid.' },
+{ term: 'Easement Strip', cat: 'Eléctrico', def: 'Strip of land reserved beneath transmission lines where certain land uses are restricted.' },
+{ term: 'STN (National Transmission System)', cat: 'Eléctrico', def: 'Network of high-voltage lines that transports electric power in Colombia.' },
+{ term: 'Self-generation', cat: 'Eléctrico', def: 'Production of electric power for own consumption, with or without surplus delivered to the grid.' },
+{ term: 'Prior Consultation', cat: 'Social', def: 'Fundamental right of ethnic communities to be consulted on projects that affect their territory.' },
+{ term: 'Social License', cat: 'Social', def: 'Acceptance and legitimacy that a community informally grants to a project to operate in its territory.' },
+{ term: 'PQRS', cat: 'Social', def: 'Petitions, Complaints, Claims and Suggestions: mechanism for attending to the community during a project.' },
+{ term: 'Resettlement', cat: 'Social', def: 'Planned relocation process for people affected by a project to a new place of residence.' },
+{ term: 'Stakeholders', cat: 'Social', def: 'People or communities that affect or are affected by a project’s decisions.' },
+{ term: 'Human Rights Due Diligence', cat: 'Social', def: 'Process to identify, prevent and mitigate a project’s negative impacts on human rights.' }
+];
+let dictActiveCat = 'todos';
+function renderDictionary() {
+const query = document.getElementById('dictSearch').value.trim().toLowerCase();
+const grid = document.getElementById('dictionaryGrid');
+const empty = document.getElementById('dictEmpty');
+const filtered = dictionaryTerms.filter(t => {
+const matchesCat = dictActiveCat === 'todos' || t.cat === dictActiveCat;
+const matchesQuery = !query || t.term.toLowerCase().includes(query) || t.def.toLowerCase().includes(query);
+return matchesCat && matchesQuery;
+});
+grid.innerHTML = filtered.map(t =>
+'<div class="dict-card" onclick="this.classList.toggle(\'expanded\')">' +
+'<span class="dict-card-cat">' + t.cat + '</span>' +
+'<h4>' + t.term + '<span class="dict-card-toggle">▾</span></h4>' +
+'<div class="dict-card-def"><p>' + t.def + '</p></div>' +
+'</div>'
+).join('');
+empty.style.display = filtered.length ? 'none' : 'block';
+}
+document.getElementById('dictSearch').addEventListener('input', renderDictionary);
+document.querySelectorAll('.dict-filter').forEach(btn => {
+btn.addEventListener('click', () => {
+dictActiveCat = btn.dataset.cat;
+document.querySelectorAll('.dict-filter').forEach(b => b.classList.toggle('active', b === btn));
+renderDictionary();
+});
+});
+renderDictionary();
+// Matcher: ¿Necesito permiso o licencia ambiental?
+const permitRules = [
+{ keywords: ['mine','mining','ore deposit','borrow material','stone aggregate','quarry','gold','coal'],
+titulo: 'Yes, you very likely need an Environmental License and a Mining Title.',
+autoridad: 'In Colombia: a Mining Title before the National Mining Agency (ANM) and an Environmental License before the ANLA or the relevant Regional Autonomous Corporation (CAR), depending on the project’s scale.',
+riesgos: ['Impact on water sources and soils from the extractive activity.', 'Conflicts with local communities, or the need for Prior Consultation if there are ethnic communities in the area.'] },
+{ keywords: ['hydroelectric','dam','reservoir','hydro plant','small hydro power plant'],
+titulo: 'Yes, your project requires an Environmental License.',
+autoridad: 'In Colombia, before the ANLA (large-capacity projects) or the relevant Regional Autonomous Corporation (CAR) for small plants, in addition to a Water Concession.',
+riesgos: ['Alteration of ecological flow and impact on aquatic species.', 'Possible resettlement of population or impact on downstream properties.'] },
+{ keywords: ['transmission line','substation','power towers','electrical grid','power transmission'],
+titulo: 'It depends on the voltage: if it exceeds 57.5 kV, you do need an Environmental License.',
+autoridad: 'Environmental License before the ANLA for high-voltage lines (over 57.5 kV); for lower voltage, regional permits before the CAR.',
+riesgos: ['Need to establish electrical easements with multiple landowners.', 'Impact on birdlife and landscape in environmentally sensitive areas.'] },
+{ keywords: ['oil','hydrocarbons','natural gas','seismic exploration','oil well','pipeline'],
+titulo: 'Yes, your project requires an Environmental License.',
+autoridad: 'Before the ANLA, given the scale and sensitivity of hydrocarbon projects.',
+riesgos: ['High social sensitivity and frequent need for Prior Consultation.', 'Impact on strategic ecosystems and risk of spills or contingencies.'] },
+{ keywords: ['aqueduct','water intake','deep well','water concession','water supply'],
+titulo: 'Yes, you need a Water Concession (not always a full environmental license).',
+autoridad: 'Before the Regional Autonomous Corporation (CAR) of the area where the water source is located.',
+riesgos: ['Actual availability of the water source relative to other users already holding concessions.', 'Possible need for a discharge permit if water is returned to the source.'] },
+{ keywords: ['logging','forestry use','forest','timber','deforestation'],
+titulo: 'Yes, you need a Forestry Use Permit.',
+autoridad: 'Before the relevant Regional Autonomous Corporation (CAR).',
+riesgos: ['Loss of biodiversity and ecosystem services.', 'Administrative and criminal penalties for logging without a permit.'] },
+{ keywords: ['hazardous waste','chemical substances','industrial waste','chemical handling'],
+titulo: 'Yes, you need Hazardous Waste Generator Registration and a Management Plan.',
+autoridad: 'Before the regional environmental authority (CAR) and registration with IDEAM.',
+riesgos: ['Soil and water contamination from improper handling.', 'Significant financial penalties for regulatory non-compliance.'] },
+{ keywords: ['indigenous community','reservation','afro-descendant community','ethnic community','ancestral territory'],
+titulo: 'Yes, your project requires a Prior Consultation process.',
+autoridad: 'Coordinated by the Ministry of the Interior in Colombia, prior to any license or permit.',
+riesgos: ['Legal action against the project through injunctions if the process is not carried out.', 'Significant schedule delays if the consultation is not planned in time.'] },
+{ keywords: ['industrial plant','factory','manufacturing','industry'],
+titulo: 'Probably yes, depending on your emissions and discharges.',
+autoridad: 'Air emissions and/or discharge permit before the CAR; Environmental License if the activity is listed under Decree 1076 of 2015.',
+riesgos: ['Exceeding permitted emission or discharge limits.', 'Need for continuous environmental monitoring and periodic reporting.'] },
+{ keywords: ['construction','building','housing','urban development','civil works','condominium'],
+titulo: 'You generally do not need a national Environmental License, but you do need local permits.',
+autoridad: 'Building permit before the municipal Curaduría Urbana; possible discharge or streambed occupation permits before the CAR.',
+riesgos: ['Improper management of wastewater and construction/demolition waste.', 'Impact on water bodies if there is occupation of water buffer zones.'] }
+];
+const permitFallback = {
+titulo: 'It was not possible to determine this automatically from the information given.',
+autoridad: 'Every project is different: the type of license or permit depends on the sector, location, scale and natural resources involved. We recommend a personalized technical assessment.',
+riesgos: ['Operating without the required permits can lead to sanctions, fines or the closure of the project.', 'Environmental regulations change frequently and vary by country or region.']
+};
+function analyzeProject() {
+const text = document.getElementById('permitInput').value.trim().toLowerCase();
+if (!text) return;
+let match = permitFallback;
+for (const rule of permitRules) {
+if (rule.keywords.some(k => text.includes(k))) {
+match = rule;
+break;
 }
 }
-window.addEventListener('scroll', updateScrollAnimations);
+document.getElementById('permitTitle').textContent = match.titulo;
+document.getElementById('permitAuthority').textContent = match.autoridad;
+document.getElementById('permitRisksList').innerHTML = match.riesgos.map(r => '<li>' + r + '</li>').join('');
+const resultEl = document.getElementById('permitResult');
+resultEl.classList.add('show');
+setTimeout(() => resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+// Franja de noticias ambientales
+const newsFallback = [
+{ title: 'MinAmbiente hace llamado para evitar las llamadas quemas controladas del sector agrícola', link: 'https://www.minambiente.gov.co/minambiente-hace-llamado-para-evitar-las-llamadas-quemas-controladas-del-sector-agricola/', source: 'MinAmbiente Colombia (ES)' },
+{ title: 'Gobierno salda deuda histórica para la protección del Páramo de Santurbán', link: 'https://www.minambiente.gov.co/gobierno-salda-deuda-historica-para-la-proteccion-del-paramo-de-santurban/', source: 'MinAmbiente Colombia (ES)' },
+{ title: 'Gobierno Petro blinda la Amazonía con histórica declaratoria de Reserva de Recursos Naturales Renovables', link: 'https://www.minambiente.gov.co/gobierno-petro-blinda-la-amazonia-con-historica-declaratoria-de-reserva-de-recursos-naturales-renovables/', source: 'MinAmbiente Colombia (ES)' },
+{ title: 'Ocean heat reached a record high in July amid multiple climate extremes', link: 'https://news.un.org/en/story/2026/08/1541797', source: 'UN · Environment' },
+{ title: 'Almost no country is moving fast enough to transform its food systems', link: 'https://news.un.org/en/story/2026/08/1541788', source: 'UN · Environment' },
+{ title: 'Denying reality does not make it disappear: heatwaves, wildfires and droughts set to rise in Europe', link: 'https://news.un.org/en/story/2026/08/1541784', source: 'UN · Environment' }
+];
+function renderTicker(items) {
+const track = document.getElementById('newsTickerTrack');
+const buildSet = () => items.map(it =>
+'<a class="news-ticker-item" href="' + it.link + '" target="_blank" rel="noopener"><span class="news-ticker-source">' + it.source + '</span>' + it.title + '</a>'
+).join('');
+// Se duplica el contenido para lograr un scroll continuo sin salto
+track.innerHTML = buildSet() + buildSet();
+}
+async function loadNewsTicker() {
+try {
+const res = await fetch('/api/news');
+if (!res.ok) throw new Error('news api error');
+const data = await res.json();
+if (data.items && data.items.length) {
+renderTicker(data.items);
+return;
+}
+throw new Error('sin noticias');
+} catch (e) {
+renderTicker(newsFallback);
+}
+}
+loadNewsTicker();
 </script>
 </body>
 </html>
