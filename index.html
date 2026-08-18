@@ -1100,6 +1100,75 @@ transition: opacity 0.3s ease;
 .gallery-item:hover::after {
 opacity: 1;
 }
+/* Info Icon + Bubble */
+.info-icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 30px;
+height: 30px;
+margin-left: 0.5rem;
+border: none;
+border-radius: 50%;
+background: rgba(255,255,255,0.25);
+color: var(--white);
+font-size: 1.2rem;
+font-weight: 700;
+line-height: 1;
+cursor: pointer;
+vertical-align: middle;
+transition: all 0.2s ease;
+}
+.info-icon:hover {
+background: var(--orange-warm);
+transform: scale(1.1);
+}
+.info-bubble {
+display: none;
+position: fixed;
+z-index: 2500;
+max-width: 320px;
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 8px;
+padding: 1.3rem 1.6rem;
+box-shadow: 8px 10px 0 var(--ink);
+}
+.info-bubble.show {
+display: block;
+animation: fadeIn 0.2s ease;
+}
+.info-bubble p {
+font-size: 0.9rem;
+line-height: 1.65;
+color: var(--text-dark);
+padding-right: 1rem;
+}
+.info-bubble-close {
+position: absolute;
+top: 0.4rem;
+right: 0.6rem;
+background: none;
+border: none;
+font-size: 1.4rem;
+line-height: 1;
+color: var(--text-light);
+cursor: pointer;
+}
+.info-bubble-close:hover {
+color: var(--orange-warm);
+}
+.info-bubble-arrow {
+position: absolute;
+top: -9px;
+left: 24px;
+width: 16px;
+height: 16px;
+background: var(--white);
+border-left: 2px solid var(--ink);
+border-top: 2px solid var(--ink);
+transform: rotate(45deg);
+}
 /* Lightbox */
 .lightbox {
 display: none;
@@ -1307,7 +1376,13 @@ background: var(--white);
 border: 2px solid var(--gray-medium);
 border-left: 5px solid var(--orange-warm);
 border-radius: 4px;
-padding: 1.5rem 1.7rem;
+padding: 1.2rem 1.7rem;
+cursor: pointer;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dict-card:hover {
+border-color: var(--orange-lighter, var(--gray-medium));
+box-shadow: var(--shadow-sm);
 }
 .dict-card-cat {
 display: inline-block;
@@ -1321,12 +1396,33 @@ margin-bottom: 0.5rem;
 .dict-card h4 {
 color: var(--text-dark);
 font-size: 1.1rem;
-margin-bottom: 0.6rem;
+margin: 0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 0.5rem;
+}
+.dict-card-toggle {
+color: var(--orange-warm);
+font-size: 1.1rem;
+transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+flex-shrink: 0;
+}
+.dict-card.expanded .dict-card-toggle {
+transform: rotate(180deg);
+}
+.dict-card-def {
+display: none;
+}
+.dict-card.expanded .dict-card-def {
+display: block;
+animation: fadeIn 0.3s ease;
 }
 .dict-card p {
 color: var(--text-light);
 font-size: 0.92rem;
 line-height: 1.6;
+margin-top: 0.8rem;
 }
 .dict-empty {
 text-align: center;
@@ -2090,8 +2186,178 @@ Bioterritorio
 <button class="tab-btn-main" data-group="comunidad" onclick="switchGroup('comunidad')">Comunidad</button>
 </div>
 <div class="tabs-subnav" id="subTabsNav"></div>
-<!-- Value Proposition -->
+<!-- Services Section -->
 <div class="tab-panel active" data-tab="servicios">
+<section class="services" id="servicios">
+<div class="services-container">
+<div class="section-head">
+<span class="eyebrow">Servicios</span>
+<h2 class="section-title">Ocho frentes, una sola estrategia</h2>
+<p class="section-subtitle">Servicios integrales para un desarrollo territorial sostenible, responsable y legalmente seguro</p>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>🌍 Evaluación y Gestión de Impacto Ambiental <button class="info-icon" onclick="showInfoBubble(event, 0)" aria-label="Más información">ⓘ</button></h3>
+<p>Análisis integral para proyectos sostenibles</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Estudios de Impacto Ambiental (EIA)</li>
+<li>Planes de Manejo Ambiental (PMA)</li>
+<li>Auditorías Ambientales ISO 14001</li>
+<li>Monitoreo y seguimiento ambiental</li>
+<li>Gestión de permisos ante ANLA, CAR</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>🤝 Gestión Social y Comunitaria <button class="info-icon" onclick="showInfoBubble(event, 1)" aria-label="Más información">ⓘ</button></h3>
+<p>Construyendo puentes de confianza</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Relacionamiento comunitario estratégico</li>
+<li>Consulta previa y participación ciudadana</li>
+<li>Desarrollo local sostenible</li>
+<li>Mediación y resolución de conflictos</li>
+<li>Fortalecimiento de capacidades locales</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>💼 Sostenibilidad Corporativa ESG <button class="info-icon" onclick="showInfoBubble(event, 2)" aria-label="Más información">ⓘ</button></h3>
+<p>Estrategias de negocio responsable</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Estrategias de sostenibilidad ESG</li>
+<li>Reportes GRI, SASB, CSRD</li>
+<li>Análisis de materialidad</li>
+<li>Gestión de riesgos climáticos TCFD</li>
+<li>Economía circular y carbono neutralidad</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>⚖️ Derecho Ambiental y Sostenibilidad <button class="info-icon" onclick="showInfoBubble(event, 3)" aria-label="Más información">ⓘ</button></h3>
+<p>Gestión legal y estratégica integral</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Estrategias de mitigación de riesgos ambientales</li>
+<li>Trámite de licencias y permisos ambientales</li>
+<li>Representación en procesos sancionatorios</li>
+<li>Estudios de prefactibilidad ambiental</li>
+<li>Departamento de gestión ambiental externo</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>⛏️ Derecho Minero y Due Diligence <button class="info-icon" onclick="showInfoBubble(event, 4)" aria-label="Más información">ⓘ</button></h3>
+<p>Asesoría integral y análisis de riesgos</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Due Diligence para proyectos mineros</li>
+<li>Análisis técnico y jurídico de títulos mineros</li>
+<li>Administración de títulos mineros</li>
+<li>Defensa en riesgos del desarrollo minero</li>
+<li>Representación ante Autoridad Minera</li>
+<li>Gestión de permisos minero-ambientales</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>📚 Capacitación y Formación <button class="info-icon" onclick="showInfoBubble(event, 5)" aria-label="Más información">ⓘ</button></h3>
+<p>Transferencia de conocimiento</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Normatividad y riesgos ambientales</li>
+<li>Programas corporativos ESG</li>
+<li>Cambio climático y adaptación</li>
+<li>Formación de auditores internos ISO</li>
+<li>Certificaciones profesionales</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>🚨 Gestión del Riesgo <button class="info-icon" onclick="showInfoBubble(event, 6)" aria-label="Más información">ⓘ</button></h3>
+<p>Preparación y resiliencia empresarial</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Planes de gestión del riesgo de desastres</li>
+<li>Análisis de vulnerabilidad climática</li>
+<li>Planes de emergencia y contingencia</li>
+<li>Continuidad del negocio</li>
+<li>Adaptación al cambio climático</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-header" onclick="toggleService(this)">
+<h3>🏘️ Gestión Predial y Territorial <button class="info-icon" onclick="showInfoBubble(event, 7)" aria-label="Más información">ⓘ</button></h3>
+<p>Soluciones integrales para la tierra</p>
+</div>
+<div class="service-body">
+<ul>
+<li>Estudio de títulos para adquisiciones</li>
+<li>Acuerdos de servidumbre</li>
+<li>Negociación de arrendamientos</li>
+<li>Adquisición de predios para proyectos</li>
+<li>Avalúos y análisis prediales</li>
+<li>Gestión social con propietarios</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- About Section -->
+<div class="tab-panel" data-tab="nosotros">
+<section class="about" id="nosotros">
+<div class="about-content">
+<div class="about-image">
+<img src="Natalia_Montoya_Ambiental.jpg" alt="Natalia Montoya Vanegas">
+</div>
+<div class="about-text">
+<span class="eyebrow">Nosotros</span>
+<h2>Liderazgo con Experiencia</h2>
+<p class="subtitle">Natalia Montoya Vanegas - Directora General</p>
+<p>Bióloga, Especialista en Derecho Ambiental y Magíster en Gestión Integrada de Cuencas Hidrográficas, con más de 14 años de experiencia liderando proyectos de impacto ambiental, gestión comunitaria, sostenibilidad y ESG.</p>
+<p>Con experiencia en estándares IFC, gestión de recursos hídricos, cambio climático, reportes GRI y SASB, auditor líder ISO 14001:2015, due diligence ambiental y gestión de proyectos socioambientales para los sectores de infraestructura, minería y energía en América Latina.</p>
+<div class="credentials">
+<span class="credential">MSc. Gestión de Cuencas - CATIE</span>
+<span class="credential">Esp. Derecho Ambiental - U. Rosario</span>
+<span class="credential">Lead Auditor ISO 14001</span>
+<span class="credential">Certificación IHA</span>
+<span class="credential">CSRD & ESG</span>
+</div>
+</div>
+</div>
+<div class="presence-strip">
+<p class="presence-strip-label">Presencia en la industria</p>
+<div class="presence-cards">
+<div class="presence-card">
+<img src="evento-hydro-2025.jpg" alt="Bioterritorio en BIG Small Hydro 2025, Medellín">
+<div class="presence-card-caption">BIG Small Hydro 2025 · Medellín — Evento Académico del sector hidroenergético</div>
+</div>
+<div class="presence-card">
+<img src="congreso-mineria.jpg" alt="Bioterritorio en el Congreso Nacional de Minería">
+<div class="presence-card-caption">Congreso Nacional de Minería — Encuentro con el sector minero colombiano</div>
+</div>
+</div>
+</div>
+</section>
 <section class="value-prop">
 <div class="section-head">
 <span class="eyebrow">Por qué Bioterritorio</span>
@@ -2160,177 +2426,6 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 <h3>Impacto Medible</h3>
 <p>Desarrollamos indicadores claros y sistemas de monitoreo robustos para garantizar resultados tangibles y mejora continua en cada proyecto.</p>
-</div>
-</div>
-</section>
-<!-- Services Section -->
-<section class="services" id="servicios">
-<div class="services-container">
-<div class="section-head">
-<span class="eyebrow">Servicios</span>
-<h2 class="section-title">Ocho frentes, una sola estrategia</h2>
-<p class="section-subtitle">Servicios integrales para un desarrollo territorial sostenible, responsable y legalmente seguro</p>
-</div>
-<div class="services-grid">
-<div class="service-card">
-<div class="service-header" onclick="toggleService(this)">
-<h3>🌍 Evaluación y Gestión de Impacto Ambiental</h3>
-<p>Análisis integral para proyectos sostenibles</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Estudios de Impacto Ambiental (EIA)</li>
-<li>Planes de Manejo Ambiental (PMA)</li>
-<li>Auditorías Ambientales ISO 14001</li>
-<li>Monitoreo y seguimiento ambiental</li>
-<li>Gestión de permisos ante ANLA, CAR</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header" onclick="toggleService(this)">
-<h3>🤝 Gestión Social y Comunitaria</h3>
-<p>Construyendo puentes de confianza</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Relacionamiento comunitario estratégico</li>
-<li>Consulta previa y participación ciudadana</li>
-<li>Desarrollo local sostenible</li>
-<li>Mediación y resolución de conflictos</li>
-<li>Fortalecimiento de capacidades locales</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header" onclick="toggleService(this)">
-<h3>💼 Sostenibilidad Corporativa ESG</h3>
-<p>Estrategias de negocio responsable</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Estrategias de sostenibilidad ESG</li>
-<li>Reportes GRI, SASB, CSRD</li>
-<li>Análisis de materialidad</li>
-<li>Gestión de riesgos climáticos TCFD</li>
-<li>Economía circular y carbono neutralidad</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header" onclick="toggleService(this)">
-<h3>⚖️ Derecho Ambiental y Sostenibilidad</h3>
-<p>Gestión legal y estratégica integral</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Estrategias de mitigación de riesgos ambientales</li>
-<li>Trámite de licencias y permisos ambientales</li>
-<li>Representación en procesos sancionatorios</li>
-<li>Estudios de prefactibilidad ambiental</li>
-<li>Departamento de gestión ambiental externo</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header" onclick="toggleService(this)">
-<h3>⛏️ Derecho Minero y Due Diligence</h3>
-<p>Asesoría integral y análisis de riesgos</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Due Diligence para proyectos mineros</li>
-<li>Análisis técnico y jurídico de títulos mineros</li>
-<li>Administración de títulos mineros</li>
-<li>Defensa en riesgos del desarrollo minero</li>
-<li>Representación ante Autoridad Minera</li>
-<li>Gestión de permisos minero-ambientales</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header" onclick="toggleService(this)">
-<h3>📚 Capacitación y Formación</h3>
-<p>Transferencia de conocimiento</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Normatividad y riesgos ambientales</li>
-<li>Programas corporativos ESG</li>
-<li>Cambio climático y adaptación</li>
-<li>Formación de auditores internos ISO</li>
-<li>Certificaciones profesionales</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header" onclick="toggleService(this)">
-<h3>🚨 Gestión del Riesgo</h3>
-<p>Preparación y resiliencia empresarial</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Planes de gestión del riesgo de desastres</li>
-<li>Análisis de vulnerabilidad climática</li>
-<li>Planes de emergencia y contingencia</li>
-<li>Continuidad del negocio</li>
-<li>Adaptación al cambio climático</li>
-</ul>
-</div>
-</div>
-<div class="service-card">
-<div class="service-header" onclick="toggleService(this)">
-<h3>🏘️ Gestión Predial y Territorial</h3>
-<p>Soluciones integrales para la tierra</p>
-</div>
-<div class="service-body">
-<ul>
-<li>Estudio de títulos para adquisiciones</li>
-<li>Acuerdos de servidumbre</li>
-<li>Negociación de arrendamientos</li>
-<li>Adquisición de predios para proyectos</li>
-<li>Avalúos y análisis prediales</li>
-<li>Gestión social con propietarios</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- About Section -->
-<div class="tab-panel" data-tab="nosotros">
-<section class="about" id="nosotros">
-<div class="about-content">
-<div class="about-image">
-<img src="Natalia_Montoya_Ambiental.jpg" alt="Natalia Montoya Vanegas">
-</div>
-<div class="about-text">
-<span class="eyebrow">Nosotros</span>
-<h2>Liderazgo con Experiencia</h2>
-<p class="subtitle">Natalia Montoya Vanegas - Directora General</p>
-<p>Bióloga, Especialista en Derecho Ambiental y Magíster en Gestión Integrada de Cuencas Hidrográficas, con más de 14 años de experiencia liderando proyectos de impacto ambiental, gestión comunitaria, sostenibilidad y ESG.</p>
-<p>Con experiencia en estándares IFC, gestión de recursos hídricos, cambio climático, reportes GRI y SASB, auditor líder ISO 14001:2015, due diligence ambiental y gestión de proyectos socioambientales para los sectores de infraestructura, minería y energía en América Latina.</p>
-<div class="credentials">
-<span class="credential">MSc. Gestión de Cuencas - CATIE</span>
-<span class="credential">Esp. Derecho Ambiental - U. Rosario</span>
-<span class="credential">Lead Auditor ISO 14001</span>
-<span class="credential">Certificación IHA</span>
-<span class="credential">CSRD & ESG</span>
-</div>
-</div>
-</div>
-<div class="presence-strip">
-<p class="presence-strip-label">Presencia en la industria</p>
-<div class="presence-cards">
-<div class="presence-card">
-<img src="evento-hydro-2025.jpg" alt="Bioterritorio en BIG Small Hydro 2025, Medellín">
-<div class="presence-card-caption">BIG Small Hydro 2025 · Medellín — Evento Académico del sector hidroenergético</div>
-</div>
-<div class="presence-card">
-<img src="congreso-mineria.jpg" alt="Bioterritorio en el Congreso Nacional de Minería">
-<div class="presence-card-caption">Congreso Nacional de Minería — Encuentro con el sector minero colombiano</div>
-</div>
 </div>
 </div>
 </section>
@@ -2847,6 +2942,12 @@ Consulta cómo reducir tu huella
 <p class="repo-disclaimer">Enlaces a fuentes oficiales externas. Bioterritorio no administra estos sitios; verifica siempre la vigencia de la normativa directamente en la fuente.</p>
 </section>
 </div>
+<!-- Info Bubble -->
+<div class="info-bubble" id="infoBubble">
+<span class="info-bubble-arrow"></span>
+<button class="info-bubble-close" onclick="closeInfoBubble()" aria-label="Cerrar">&times;</button>
+<p id="infoBubbleText"></p>
+</div>
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
 <button class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1)" aria-label="Anterior">‹</button>
@@ -3120,10 +3221,47 @@ setTimeout(() => {
 document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }, 100);
 }
-// Toggle Service Accordion
+// Toggle Service Accordion (solo una tarjeta abierta a la vez)
 function toggleService(headerEl) {
-headerEl.closest('.service-card').classList.toggle('expanded');
+const card = headerEl.closest('.service-card');
+const wasExpanded = card.classList.contains('expanded');
+document.querySelectorAll('.service-card.expanded').forEach(c => c.classList.remove('expanded'));
+if (!wasExpanded) card.classList.add('expanded');
 }
+// Burbuja informativa de servicios
+const serviceExplanations = [
+'Antes de construir, perforar o intervenir un territorio, la ley exige demostrar qué impacto tendrá tu proyecto sobre el ambiente. Un EIA mal hecho retrasa licencias meses o años; uno bien hecho anticipa las objeciones de la autoridad antes de que aparezcan.',
+'Un proyecto puede tener todos los permisos en regla y aun así detenerse por oposición comunitaria. Construir relación con las comunidades desde el inicio, no solo cuando ya hay conflicto, reduce bloqueos, paros y procesos judiciales.',
+'Inversionistas, bancos y clientes corporativos piden cada vez más reportes ESG creíbles, no de relleno. Una estrategia bien estructurada convierte esa exigencia en una ventaja competitiva real, no en un trámite más.',
+'La normativa ambiental colombiana cambia con frecuencia y las sanciones por incumplimiento pueden significar el cierre de un proyecto. El acompañamiento legal especializado evita que un vacío normativo se convierta en una multa o un proceso sancionatorio.',
+'Comprar o desarrollar un título minero sin verificar su historial legal y técnico es uno de los riesgos más costosos del sector. El due diligence identifica pasivos, conflictos de linderos o irregularidades antes de que se conviertan en tu problema.',
+'La gestión ambiental no depende solo de contratar un consultor externo: los equipos internos que entienden la normativa y los riesgos toman mejores decisiones día a día, sin esperar a que algo salga mal.',
+'Un desastre natural, una sequía o una inundación pueden paralizar una operación que no se preparó para ellos. Los planes de gestión del riesgo convierten la incertidumbre climática en protocolos claros de respuesta.',
+'Adquirir tierra, negociar una servidumbre o levantar un estudio de títulos mal hecho puede dejar un proyecto con un predio en disputa años después de iniciado. La gestión predial rigurosa previene ese riesgo desde la negociación inicial.'
+];
+function showInfoBubble(e, idx) {
+e.stopPropagation();
+const bubble = document.getElementById('infoBubble');
+document.getElementById('infoBubbleText').textContent = serviceExplanations[idx];
+const rect = e.currentTarget.getBoundingClientRect();
+const bubbleWidth = 320;
+let left = rect.left;
+if (left + bubbleWidth > window.innerWidth - 20) {
+left = window.innerWidth - bubbleWidth - 20;
+}
+bubble.style.left = Math.max(20, left) + 'px';
+bubble.style.top = (rect.bottom + 12) + 'px';
+bubble.classList.add('show');
+}
+function closeInfoBubble() {
+document.getElementById('infoBubble').classList.remove('show');
+}
+document.addEventListener('click', (e) => {
+const bubble = document.getElementById('infoBubble');
+if (bubble.classList.contains('show') && !bubble.contains(e.target) && !e.target.classList.contains('info-icon')) {
+closeInfoBubble();
+}
+});
 // Toggle Experts Function
 function toggleExperts() {
 const expertsGrid = document.getElementById('expertsGrid');
@@ -3255,7 +3393,11 @@ const matchesQuery = !query || t.term.toLowerCase().includes(query) || t.def.toL
 return matchesCat && matchesQuery;
 });
 grid.innerHTML = filtered.map(t =>
-'<div class="dict-card"><span class="dict-card-cat">' + t.cat + '</span><h4>' + t.term + '</h4><p>' + t.def + '</p></div>'
+'<div class="dict-card" onclick="this.classList.toggle(\'expanded\')">' +
+'<span class="dict-card-cat">' + t.cat + '</span>' +
+'<h4>' + t.term + '<span class="dict-card-toggle">▾</span></h4>' +
+'<div class="dict-card-def"><p>' + t.def + '</p></div>' +
+'</div>'
 ).join('');
 empty.style.display = filtered.length ? 'none' : 'block';
 }
