@@ -563,7 +563,6 @@ background: var(--white);
 border-radius: 4px;
 overflow: hidden;
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-cursor: pointer;
 box-shadow: var(--shadow-md);
 position: relative;
 border: 2px solid var(--ink);
@@ -576,8 +575,10 @@ box-shadow: 8px 10px 0 var(--ink);
 background: var(--ink);
 color: var(--white);
 padding: 2.5rem;
+padding-right: 4rem;
 position: relative;
 border-bottom: 4px solid var(--orange-warm);
+cursor: pointer;
 }
 .service-header h3 {
 font-size: 1.5rem;
@@ -591,8 +592,26 @@ opacity: 0.95;
 position: relative;
 z-index: 1;
 }
+.service-header::after {
+content: '▾';
+position: absolute;
+top: 50%;
+right: 1.8rem;
+transform: translateY(-50%);
+font-size: 1.4rem;
+color: var(--orange-soft);
+transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.service-card.expanded .service-header::after {
+transform: translateY(-50%) rotate(180deg);
+}
 .service-body {
+display: none;
 padding: 2.5rem;
+}
+.service-card.expanded .service-body {
+display: block;
+animation: fadeIn 0.3s ease;
 }
 .service-body ul {
 list-style: none;
@@ -2154,7 +2173,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 <div class="services-grid">
 <div class="service-card">
-<div class="service-header">
+<div class="service-header" onclick="toggleService(this)">
 <h3>🌍 Evaluación y Gestión de Impacto Ambiental</h3>
 <p>Análisis integral para proyectos sostenibles</p>
 </div>
@@ -2169,7 +2188,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 <div class="service-card">
-<div class="service-header">
+<div class="service-header" onclick="toggleService(this)">
 <h3>🤝 Gestión Social y Comunitaria</h3>
 <p>Construyendo puentes de confianza</p>
 </div>
@@ -2184,7 +2203,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 <div class="service-card">
-<div class="service-header">
+<div class="service-header" onclick="toggleService(this)">
 <h3>💼 Sostenibilidad Corporativa ESG</h3>
 <p>Estrategias de negocio responsable</p>
 </div>
@@ -2199,7 +2218,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 <div class="service-card">
-<div class="service-header">
+<div class="service-header" onclick="toggleService(this)">
 <h3>⚖️ Derecho Ambiental y Sostenibilidad</h3>
 <p>Gestión legal y estratégica integral</p>
 </div>
@@ -2214,7 +2233,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 <div class="service-card">
-<div class="service-header">
+<div class="service-header" onclick="toggleService(this)">
 <h3>⛏️ Derecho Minero y Due Diligence</h3>
 <p>Asesoría integral y análisis de riesgos</p>
 </div>
@@ -2230,7 +2249,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 <div class="service-card">
-<div class="service-header">
+<div class="service-header" onclick="toggleService(this)">
 <h3>📚 Capacitación y Formación</h3>
 <p>Transferencia de conocimiento</p>
 </div>
@@ -2245,7 +2264,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 <div class="service-card">
-<div class="service-header">
+<div class="service-header" onclick="toggleService(this)">
 <h3>🚨 Gestión del Riesgo</h3>
 <p>Preparación y resiliencia empresarial</p>
 </div>
@@ -2260,7 +2279,7 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 <div class="service-card">
-<div class="service-header">
+<div class="service-header" onclick="toggleService(this)">
 <h3>🏘️ Gestión Predial y Territorial</h3>
 <p>Soluciones integrales para la tierra</p>
 </div>
@@ -3100,6 +3119,10 @@ document.getElementById('result').style.display = 'block';
 setTimeout(() => {
 document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }, 100);
+}
+// Toggle Service Accordion
+function toggleService(headerEl) {
+headerEl.closest('.service-card').classList.toggle('expanded');
 }
 // Toggle Experts Function
 function toggleExperts() {
