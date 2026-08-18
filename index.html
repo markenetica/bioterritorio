@@ -3221,12 +3221,9 @@ setTimeout(() => {
 document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }, 100);
 }
-// Toggle Service Accordion (solo una tarjeta abierta a la vez)
+// Toggle Service Accordion (cada tarjeta se despliega de forma independiente)
 function toggleService(headerEl) {
-const card = headerEl.closest('.service-card');
-const wasExpanded = card.classList.contains('expanded');
-document.querySelectorAll('.service-card.expanded').forEach(c => c.classList.remove('expanded'));
-if (!wasExpanded) card.classList.add('expanded');
+headerEl.closest('.service-card').classList.toggle('expanded');
 }
 // Burbuja informativa de servicios
 const serviceExplanations = [
