@@ -23,31 +23,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-/* Paleta de Naranja Completa */
---primary: #FF8B4A;
---primary-dark: #D2691E;
---primary-darker: #B8541B;
---primary-light: #FF7043;
---primary-lighter: #FFB380;
---primary-lightest: #FFE5D9;
---orange-warm: #FF6B35;
+/* Paleta Audaz — Naranja quemado + tinta profunda */
+--primary: #FF6A2B;
+--primary-dark: #C2410C;
+--primary-darker: #7C2D12;
+--primary-light: #FF8A50;
+--primary-lighter: #FFB27A;
+--primary-lightest: #FFE3CC;
+--orange-warm: #FF4718;
 --orange-soft: #FFA066;
---orange-pastel: #FFF3E0;
+--orange-pastel: #FFF1E6;
+/* Tinta profunda para bloques de contraste */
+--ink: #927C63;
+--ink-soft: #7A6753;
+--ink-line: rgba(255,255,255,0.12);
 /* Grises y neutros */
 --gray-light: #f8f9fa;
 --gray-medium: #e9ecef;
 --gray: #6c757d;
 --gray-dark: #495057;
---text-dark: #1a1a1a;
---text-light: #666;
+--text-dark: #927C63;
+--text-light: #5A544C;
 --bg-light: #fffbf8;
 --white: #ffffff;
-/* Sombras */
---shadow-sm: 0 2px 4px rgba(255,139,74,0.1);
---shadow-md: 0 4px 15px rgba(255,139,74,0.15);
---shadow-lg: 0 10px 30px rgba(255,139,74,0.2);
---shadow-xl: 0 20px 40px rgba(255,139,74,0.25);
---shadow-orange: 0 8px 25px rgba(255,139,74,0.4);
+/* Sombras — más definidas, menos difusas */
+--shadow-sm: 0 2px 6px rgba(22,19,15,0.08);
+--shadow-md: 0 6px 20px rgba(22,19,15,0.12);
+--shadow-lg: 0 16px 40px rgba(22,19,15,0.18);
+--shadow-xl: 0 26px 55px rgba(22,19,15,0.24);
+--shadow-orange: 0 12px 30px rgba(255,71,24,0.45);
 }
 * {
 margin: 0;
@@ -63,8 +67,31 @@ background: var(--white);
 }
 h1, h2, h3, h4, h5, h6 {
 font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+font-weight: 800;
+line-height: 1.1;
+letter-spacing: -0.02em;
+}
+.eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 0.6rem;
+font-family: 'Poppins', sans-serif;
 font-weight: 700;
-line-height: 1.2;
+font-size: 0.85rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--primary-dark);
+margin-bottom: 1rem;
+}
+.eyebrow::before {
+content: '';
+width: 28px;
+height: 3px;
+background: var(--orange-warm);
+border-radius: 2px;
+}
+.eyebrow.on-dark {
+color: var(--primary-lighter);
 }
 /* Scrollbar personalizada */
 ::-webkit-scrollbar {
@@ -160,161 +187,169 @@ transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 width: 100%;
 }
 .cta-button {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
+background: var(--orange-warm);
 color: var(--white);
-padding: 0.8rem 2rem;
-border-radius: 30px;
+padding: 1rem 2.2rem;
+border-radius: 10px;
 text-decoration: none;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-font-weight: 600;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+font-weight: 700;
+font-size: 0.95rem;
+letter-spacing: 0.01em;
 display: inline-block;
-border: none;
+border: 2px solid var(--orange-warm);
 cursor: pointer;
-box-shadow: var(--shadow-md);
+box-shadow: var(--shadow-orange);
 position: relative;
-overflow: hidden;
-}
-.cta-button::before {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-transition: left 0.5s ease;
-}
-.cta-button:hover::before {
-left: 100%;
 }
 .cta-button:hover {
-transform: translateY(-3px);
-box-shadow: var(--shadow-orange);
-background: linear-gradient(135deg, var(--orange-warm) 0%, var(--primary-dark) 100%);
+transform: translate(-2px, -4px);
+box-shadow: 6px 10px 0 rgba(146,124,99,0.9);
+background: var(--ink);
+border-color: var(--ink);
 }
 .cta-button.secondary {
 background: transparent;
-border: 2px solid var(--primary);
-color: var(--primary);
+border: 2px solid var(--ink);
+color: var(--ink);
 box-shadow: none;
 }
 .cta-button.secondary:hover {
-background: var(--primary);
+background: var(--ink);
 color: var(--white);
-box-shadow: var(--shadow-orange);
+border-color: var(--ink);
+box-shadow: 6px 10px 0 rgba(255,106,43,0.5);
 }
-/* Hero Section Mejorado */
+/* Hero Section — Audaz, con video de fondo */
 .hero {
 margin-top: 75px;
 min-height: calc(100vh - 75px);
-background: linear-gradient(135deg, rgba(255,139,74,0.03) 0%, rgba(255,107,53,0.05) 50%, var(--orange-pastel) 100%);
+background: var(--ink);
 display: flex;
 align-items: center;
 position: relative;
 overflow: hidden;
 }
-.hero::before {
-content: '';
+.hero-video {
 position: absolute;
-top: -50%;
-right: -20%;
-width: 60%;
-height: 120%;
-background: radial-gradient(ellipse, var(--primary-lightest) 0%, transparent 70%);
-opacity: 0.6;
-animation: float 25s ease-in-out infinite;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: 0;
 }
-.hero::after {
-content: '';
+.hero-overlay {
 position: absolute;
-bottom: -30%;
-left: -20%;
-width: 40%;
-height: 80%;
-background: radial-gradient(circle, var(--orange-pastel) 0%, transparent 60%);
-opacity: 0.4;
-animation: float 20s ease-in-out infinite reverse;
+inset: 0;
+z-index: 1;
+background:
+linear-gradient(100deg, rgba(22,19,15,0.93) 20%, rgba(22,19,15,0.75) 65%, rgba(22,19,15,0.55) 100%),
+linear-gradient(0deg, rgba(22,19,15,0.55) 0%, transparent 45%);
 }
 .hero-content {
 max-width: 1400px;
 margin: 0 auto;
-padding: 0 5%;
-display: grid;
-grid-template-columns: 1.5fr 1fr;
-gap: 4rem;
-align-items: center;
+padding: 6rem 5%;
 position: relative;
-z-index: 1;
+z-index: 2;
+}
+.hero-text {
+max-width: 680px;
 }
 .hero-text h1 {
-font-size: clamp(2.5rem, 5vw, 4rem);
-color: var(--text-dark);
+font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+color: var(--white);
 margin-bottom: 1.5rem;
 animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-text h1 span {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 50%, var(--primary-dark) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-animation: gradientShift 3s ease-in-out infinite;
-}
-@keyframes gradientShift {
-0%, 100% { filter: hue-rotate(0deg); }
-50% { filter: hue-rotate(10deg); }
+color: var(--orange-soft);
 }
 .hero-text p {
 font-size: 1.25rem;
-color: var(--text-light);
+color: rgba(255,255,255,0.72);
 margin-bottom: 2.5rem;
 animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
 line-height: 1.8;
+max-width: 620px;
 }
 .hero-buttons {
 display: flex;
 gap: 1.5rem;
 animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
 flex-wrap: wrap;
+margin-bottom: 3.5rem;
 }
-.hero-visual {
-position: relative;
-animation: floatAnimation 8s ease-in-out infinite;
+.hero .cta-button.secondary {
+border-color: rgba(255,255,255,0.4);
+color: var(--white);
 }
-.tree-human {
-width: 450px;
-height: 450px;
-background: linear-gradient(135deg, var(--white) 0%, var(--orange-pastel) 100%);
-border-radius: 50%;
-position: relative;
+.hero .cta-button.secondary:hover {
+background: var(--white);
+color: var(--ink);
+border-color: var(--white);
+box-shadow: 6px 10px 0 rgba(255,106,43,0.5);
+}
+.hero-stats {
 display: flex;
-align-items: center;
+gap: 3rem;
+flex-wrap: wrap;
+animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.55s backwards;
+border-top: 1px solid var(--ink-line);
+padding-top: 2rem;
+}
+.hero-stat strong {
+display: block;
+font-family: 'Poppins', sans-serif;
+font-size: 2.2rem;
+font-weight: 800;
+color: var(--white);
+line-height: 1;
+}
+.hero-stat span {
+display: block;
+margin-top: 0.5rem;
+font-size: 0.85rem;
+color: rgba(255,255,255,0.55);
+letter-spacing: 0.03em;
+}
+/* Tabs de navegación de contenido */
+.tabs-nav {
+display: flex;
+flex-wrap: wrap;
 justify-content: center;
-box-shadow: var(--shadow-xl);
-border: 4px solid var(--primary);
-padding: 40px;
-overflow: hidden;
+gap: 1rem;
+max-width: 1400px;
+margin: 0 auto;
+padding: 3rem 5% 0;
 }
-.tree-human::before {
-content: '';
-position: absolute;
-top: -50%;
-left: -50%;
-width: 200%;
-height: 200%;
-background: radial-gradient(circle, transparent 30%, var(--primary-lightest) 70%);
-opacity: 0.4;
-animation: rotate 20s linear infinite;
+.tab-btn {
+padding: 0.85rem 1.6rem;
+border: 2px solid var(--ink);
+border-radius: 8px;
+background: var(--white);
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: 0.95rem;
+color: var(--text-dark);
+cursor: pointer;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.tree-human img {
-width: 120%;
-height: 120%;
-object-fit: contain;
-position: relative;
-z-index: 1;
-transition: transform 0.5s ease;
+.tab-btn:hover {
+background: var(--orange-pastel);
+transform: translateY(-2px);
 }
-.tree-human:hover img {
-transform: scale(1.05);
+.tab-btn.active {
+background: var(--orange-warm);
+border-color: var(--orange-warm);
+color: var(--white);
+}
+.tab-panel {
+display: none;
+}
+.tab-panel.active {
+display: block;
+animation: fadeIn 0.4s ease;
 }
 /* Value Proposition Mejorado */
 .value-prop {
@@ -323,103 +358,48 @@ max-width: 1400px;
 margin: 0 auto;
 position: relative;
 }
-.value-prop::before {
-content: '';
-position: absolute;
-top: -100px;
-left: -100px;
-width: 200px;
-height: 200px;
-background: radial-gradient(circle, var(--primary-lightest) 0%, transparent 70%);
-opacity: 0.5;
-animation: float 12s ease-in-out infinite;
-}
-.value-prop::after {
-content: '';
-position: absolute;
-bottom: -100px;
-right: -100px;
-width: 250px;
-height: 250px;
-background: radial-gradient(circle, var(--orange-pastel) 0%, transparent 70%);
-opacity: 0.3;
-animation: float 15s ease-in-out infinite reverse;
-}
 .value-cards {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-gap: 2.5rem;
-margin-top: 4rem;
+gap: 2rem;
+margin-top: 3rem;
 }
 .value-card {
 background: var(--white);
 padding: 3rem 2.5rem;
-border-radius: 25px;
-box-shadow: var(--shadow-md);
-text-align: center;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+border-radius: 4px;
+text-align: left;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 position: relative;
-overflow: hidden;
-border: 1px solid var(--gray-light);
-}
-.value-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 5px;
-background: linear-gradient(90deg, var(--primary) 0%, var(--orange-warm) 50%, var(--primary-dark) 100%);
-transform: scaleX(0);
-transform-origin: left;
-transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+border: 2px solid var(--ink);
+border-left: 6px solid var(--orange-warm);
 }
 .value-card:hover {
-transform: translateY(-15px) scale(1.02);
-box-shadow: var(--shadow-xl);
-border-color: transparent;
-}
-.value-card:hover::before {
-transform: scaleX(1);
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
 }
 .value-card-icon {
-width: 80px;
-height: 80px;
-margin: 0 auto 1.5rem;
+width: 56px;
+height: 56px;
+margin-bottom: 1.5rem;
 position: relative;
 display: flex;
 align-items: center;
 justify-content: center;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .value-card-icon svg {
 width: 100%;
 height: 100%;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.value-card:hover .value-card-icon {
-transform: scale(1.2);
-filter: drop-shadow(0 8px 16px rgba(255, 139, 74, 0.4));
-}
-.value-card:hover .value-card-icon svg {
-transform: rotateY(360deg);
 }
 .value-card h3 {
 color: var(--text-dark);
 margin-bottom: 1rem;
-font-size: 1.6rem;
-transition: color 0.3s ease;
-}
-.value-card:hover h3 {
-color: var(--primary);
+font-size: 1.5rem;
 }
 .value-card p {
 color: var(--text-light);
 line-height: 1.8;
-transition: color 0.3s ease;
-}
-.value-card:hover p {
-color: var(--text-dark);
 }
 /* Services Section Mejorado */
 .services {
@@ -431,23 +411,19 @@ position: relative;
 max-width: 1400px;
 margin: 0 auto;
 }
+.section-head {
+text-align: center;
+margin-bottom: 1rem;
+}
+.section-head .eyebrow {
+justify-content: center;
+}
 .section-title {
 text-align: center;
-font-size: clamp(2rem, 4vw, 3rem);
+font-size: clamp(2.2rem, 4vw, 3.2rem);
 color: var(--text-dark);
 margin-bottom: 1rem;
 position: relative;
-}
-.section-title::after {
-content: '';
-position: absolute;
-bottom: -10px;
-left: 50%;
-transform: translateX(-50%);
-width: 60px;
-height: 4px;
-background: linear-gradient(90deg, var(--primary) 0%, var(--orange-warm) 100%);
-border-radius: 2px;
 }
 .section-subtitle {
 text-align: center;
@@ -465,57 +441,24 @@ gap: 2.5rem;
 }
 .service-card {
 background: var(--white);
-border-radius: 25px;
+border-radius: 4px;
 overflow: hidden;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 cursor: pointer;
 box-shadow: var(--shadow-md);
 position: relative;
-border: 2px solid transparent;
+border: 2px solid var(--ink);
 }
 .service-card:hover {
-transform: translateY(-8px) rotateX(5deg);
-box-shadow: var(--shadow-xl);
-border-color: var(--primary-lighter);
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
 }
 .service-header {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
+background: var(--ink);
 color: var(--white);
 padding: 2.5rem;
 position: relative;
-overflow: hidden;
-}
-.service-header::after {
-content: '';
-position: absolute;
-top: -50%;
-right: -50%;
-width: 200%;
-height: 200%;
-background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-animation: pulse 4s ease-in-out infinite;
-}
-/* Gradientes únicos para cada servicio */
-.service-card:nth-child(2) .service-header {
-background: linear-gradient(135deg, var(--orange-warm) 0%, var(--primary-dark) 100%);
-}
-.service-card:nth-child(3) .service-header {
-background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-darker) 100%);
-}
-.service-card:nth-child(4) .service-header {
-background: linear-gradient(135deg, var(--primary-dark) 0%, var(--orange-warm) 100%);
-}
-.service-card:nth-child(5) .service-header {
-background: linear-gradient(135deg, var(--orange-soft) 0%, var(--primary) 100%);
-}
-.service-card:nth-child(6) .service-header {
-background: linear-gradient(135deg, var(--primary-darker) 0%, var(--orange-warm) 100%);
-}
-.service-card:nth-child(7) .service-header {
-background: linear-gradient(135deg, var(--primary) 0%, var(--primary-darker) 100%);
-}
-.service-card:nth-child(8) .service-header {
-background: linear-gradient(135deg, var(--orange-warm) 0%, var(--primary-light) 100%);
+border-bottom: 4px solid var(--orange-warm);
 }
 .service-header h3 {
 font-size: 1.5rem;
@@ -563,6 +506,136 @@ transition: all 0.3s ease;
 transform: scale(1.3);
 color: var(--orange-warm);
 }
+/* Territory / En el campo */
+.territory {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.territory-banner {
+position: relative;
+border-radius: 4px;
+overflow: hidden;
+border: 2px solid var(--ink);
+min-height: 380px;
+display: flex;
+align-items: flex-end;
+margin-bottom: 2.5rem;
+}
+.territory-banner img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.territory-banner::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(0deg, rgba(22,19,15,0.88) 0%, rgba(22,19,15,0.35) 55%, rgba(22,19,15,0.15) 100%);
+}
+.territory-banner-content {
+position: relative;
+z-index: 1;
+padding: 3rem;
+}
+.territory-quote {
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: clamp(1.4rem, 2.6vw, 2rem);
+line-height: 1.35;
+color: var(--white);
+max-width: 780px;
+}
+.territory-gallery {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-auto-flow: dense;
+gap: 2rem;
+}
+.territory-card {
+border: 2px solid var(--ink);
+border-radius: 4px;
+overflow: hidden;
+background: var(--white);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+display: flex;
+flex-direction: column;
+}
+.territory-card.wide {
+grid-column: span 2;
+}
+.territory-card:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.territory-card img {
+width: 100%;
+height: 240px;
+object-fit: cover;
+display: block;
+flex: 1;
+}
+.territory-card-caption {
+padding: 1.2rem 1.5rem;
+font-weight: 600;
+font-size: 0.95rem;
+color: var(--text-dark);
+border-top: 4px solid var(--orange-warm);
+}
+/* Industry presence strip */
+.presence-strip {
+max-width: 1400px;
+margin: 3rem auto 0;
+padding-top: 3rem;
+border-top: 1px solid var(--gray-medium);
+}
+.presence-strip-label {
+font-weight: 700;
+font-size: 0.85rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--text-light);
+margin-bottom: 1.5rem;
+}
+.presence-cards {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+}
+.presence-card {
+position: relative;
+border: 2px solid var(--ink);
+border-radius: 4px;
+overflow: hidden;
+min-height: 220px;
+}
+.presence-card img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.presence-card::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(0deg, rgba(22,19,15,0.85) 0%, transparent 60%);
+}
+.presence-card-caption {
+position: relative;
+z-index: 1;
+margin-top: auto;
+padding: 1.2rem 1.5rem;
+color: var(--white);
+font-weight: 600;
+font-size: 0.9rem;
+display: flex;
+align-items: flex-end;
+height: 100%;
+}
 /* About Section Mejorado */
 .about {
 padding: 6rem 5%;
@@ -584,14 +657,14 @@ animation: fadeIn 1s ease;
 .about-image img {
 width: 100%;
 max-width: 350px;
-border-radius: 25px;
-box-shadow: var(--shadow-xl);
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: 3px solid var(--primary-lighter);
+border-radius: 4px;
+box-shadow: 12px 14px 0 var(--primary-lightest);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 3px solid var(--ink);
 }
 .about-image:hover img {
-transform: scale(1.05) rotate(2deg);
-box-shadow: 0 20px 40px rgba(255,139,74,0.3);
+transform: translate(-4px, -6px);
+box-shadow: 16px 18px 0 var(--primary-lightest);
 }
 .about-text h2 {
 font-size: clamp(2rem, 4vw, 3rem);
@@ -599,13 +672,10 @@ color: var(--text-dark);
 margin-bottom: 1rem;
 }
 .about-text .subtitle {
-font-size: 1.4rem;
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
+font-size: 1.3rem;
+color: var(--orange-warm);
 margin-bottom: 2rem;
-font-weight: 600;
+font-weight: 700;
 }
 .about-text p {
 color: var(--text-light);
@@ -620,21 +690,19 @@ gap: 1rem;
 margin-top: 2.5rem;
 }
 .credential {
-background: linear-gradient(135deg, var(--orange-pastel) 0%, var(--white) 100%);
+background: var(--white);
 padding: 0.7rem 1.2rem;
-border-radius: 25px;
+border-radius: 4px;
 font-size: 0.85rem;
-color: var(--gray-dark);
-border: 2px solid var(--primary-lighter);
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-font-weight: 500;
+color: var(--text-dark);
+border: 2px solid var(--ink);
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+font-weight: 600;
 }
 .credential:hover {
-transform: translateY(-3px) scale(1.05);
-box-shadow: var(--shadow-md);
-border-color: var(--primary);
-background: linear-gradient(135deg, var(--primary-lightest) 0%, var(--white) 100%);
-color: var(--primary-dark);
+transform: translate(-2px, -3px);
+box-shadow: 4px 5px 0 var(--orange-warm);
+background: var(--orange-pastel);
 }
 /* Experts Section Mejorada */
 .experts {
@@ -654,38 +722,20 @@ margin-top: 3rem;
 }
 .expert-card {
 background: var(--white);
-border-radius: 25px;
+border-radius: 4px;
 padding: 2.5rem;
-box-shadow: var(--shadow-md);
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: 2px solid var(--gray-light);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 2px solid var(--ink);
 position: relative;
-overflow: hidden;
-}
-.expert-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 4px;
-background: linear-gradient(90deg, var(--primary) 0%, var(--orange-warm) 100%);
-transform: scaleX(0);
-transform-origin: left;
-transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .expert-card:hover {
-transform: translateY(-10px);
-box-shadow: var(--shadow-xl);
-border-color: var(--primary-lighter);
-}
-.expert-card:hover::before {
-transform: scaleX(1);
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
 }
 .expert-icon {
-width: 60px;
-height: 60px;
-background: linear-gradient(135deg, var(--primary-lightest) 0%, var(--primary-lighter) 100%);
+width: 56px;
+height: 56px;
+background: var(--ink);
 border-radius: 50%;
 display: flex;
 align-items: center;
@@ -695,9 +745,8 @@ font-size: 1.5rem;
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .expert-card:hover .expert-icon {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
-color: var(--white);
-transform: scale(1.1) rotate(10deg);
+background: var(--orange-warm);
+transform: scale(1.08);
 }
 .expert-card h4 {
 color: var(--text-dark);
@@ -719,27 +768,99 @@ margin-top: 1rem;
 .expertise-tag {
 background: var(--gray-light);
 padding: 0.3rem 0.8rem;
-border-radius: 15px;
-font-size: 0.85rem;
+border-radius: 4px;
+font-size: 0.8rem;
+font-weight: 600;
 color: var(--gray-dark);
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .expert-card:hover .expertise-tag {
-background: var(--primary-lightest);
+background: var(--orange-pastel);
 color: var(--primary-dark);
-transform: translateY(-2px);
 }
 .experts-cta {
 text-align: center;
 margin-top: 3rem;
+}
+/* Allies Section */
+.allies {
+padding: 6rem 5%;
+background: var(--bg-light);
+}
+.allies-container {
+max-width: 1400px;
+margin: 0 auto;
+}
+.allies-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+margin-top: 3rem;
+}
+.ally-card {
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 4px;
+padding: 2.5rem;
+text-align: center;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.ally-card:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.ally-logo {
+height: 90px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 1.5rem;
+}
+.ally-logo img {
+max-height: 90px;
+max-width: 180px;
+object-fit: contain;
+}
+.ally-logo-text {
+font-family: 'Poppins', sans-serif;
+font-weight: 800;
+font-size: 1.4rem;
+color: var(--ink);
+border: 2px dashed var(--primary-lighter);
+border-radius: 4px;
+width: 100%;
+padding: 0 1rem;
+}
+.ally-card h4 {
+color: var(--text-dark);
+margin-bottom: 0.8rem;
+font-size: 1.3rem;
+}
+.ally-card p {
+color: var(--text-light);
+line-height: 1.7;
+font-size: 0.95rem;
+margin-bottom: 1rem;
+}
+.ally-link {
+color: var(--orange-warm);
+font-weight: 700;
+text-decoration: none;
+font-size: 0.9rem;
+margin-top: auto;
+}
+.ally-link:hover {
+text-decoration: underline;
 }
 /* Cases Section Mejorada - Similar a Experts */
 .cases {
 padding: 6rem 5%;
 max-width: 1400px;
 margin: 0 auto;
-background: linear-gradient(135deg, var(--orange-pastel) 0%, var(--white) 50%, var(--bg-light) 100%);
-border-radius: 25px;
+background: var(--bg-light);
 position: relative;
 }
 .cases-cta {
@@ -754,38 +875,23 @@ margin-top: 3rem;
 }
 .case-card {
 background: var(--white);
-border-radius: 25px;
-box-shadow: var(--shadow-md);
+border-radius: 4px;
 padding: 3rem;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: 2px solid var(--gray-light);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 2px solid var(--ink);
 position: relative;
-overflow: hidden;
-}
-.case-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(135deg, var(--primary-lightest) 0%, transparent 50%);
-opacity: 0;
-transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .case-card:hover {
-transform: translateY(-10px) scale(1.02);
-box-shadow: var(--shadow-xl);
-border-color: var(--primary-lighter);
-}
-.case-card:hover::before {
-opacity: 0.1;
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
 }
 .case-card h4 {
-color: var(--primary);
+color: var(--orange-warm);
 margin-bottom: 0.5rem;
-font-size: 1.2rem;
-font-weight: 600;
+font-size: 1.1rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.04em;
 }
 .case-card .client {
 font-weight: 700;
@@ -802,24 +908,378 @@ margin-bottom: 0.8rem;
 color: var(--text-dark);
 font-weight: 600;
 }
+/* Gallery Section */
+.gallery {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1.5rem;
+}
+.gallery-item {
+position: relative;
+border: 2px solid var(--ink);
+border-radius: 4px;
+overflow: hidden;
+cursor: pointer;
+aspect-ratio: 1;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-item:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+transition: transform 0.4s ease;
+}
+.gallery-item:hover img {
+transform: scale(1.08);
+}
+.gallery-item::after {
+content: '⤢';
+position: absolute;
+top: 0.6rem;
+right: 0.6rem;
+width: 32px;
+height: 32px;
+background: rgba(22,19,15,0.55);
+color: var(--white);
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1rem;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.gallery-item:hover::after {
+opacity: 1;
+}
+/* Lightbox */
+.lightbox {
+display: none;
+position: fixed;
+inset: 0;
+z-index: 3000;
+background: rgba(22,19,15,0.95);
+align-items: center;
+justify-content: center;
+}
+.lightbox.active {
+display: flex;
+}
+.lightbox-content {
+position: relative;
+max-width: 90vw;
+max-height: 85vh;
+}
+.lightbox-content img {
+max-width: 90vw;
+max-height: 85vh;
+display: block;
+border: 2px solid var(--white);
+}
+.lightbox-caption {
+color: var(--white);
+text-align: center;
+margin-top: 1rem;
+font-weight: 600;
+font-size: 0.95rem;
+}
+.lightbox-close {
+position: absolute;
+top: -3rem;
+right: 0;
+color: var(--white);
+font-size: 2.2rem;
+cursor: pointer;
+line-height: 1;
+}
+.lightbox-nav {
+position: fixed;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(255,255,255,0.1);
+color: var(--white);
+border: none;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+font-size: 1.5rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background 0.2s ease;
+}
+.lightbox-nav:hover {
+background: var(--orange-warm);
+}
+.lightbox-prev { left: 2rem; }
+.lightbox-next { right: 2rem; }
+/* Minicursos Section */
+.minicursos {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.minicursos-cta {
+text-align: center;
+margin: 0 auto 3rem;
+}
+.minicursos-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2rem;
+}
+.minicurso-card {
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 4px;
+overflow: hidden;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.minicurso-card:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.minicurso-thumb {
+background: var(--ink);
+height: 140px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2.5rem;
+position: relative;
+border-bottom: 4px solid var(--orange-warm);
+}
+.minicurso-badge {
+position: absolute;
+bottom: 0.8rem;
+right: 0.8rem;
+background: var(--orange-warm);
+color: var(--white);
+font-size: 0.7rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+padding: 0.35rem 0.7rem;
+border-radius: 4px;
+}
+.minicurso-card h4 {
+color: var(--text-dark);
+font-size: 1.15rem;
+margin: 1.5rem 1.5rem 0.6rem;
+}
+.minicurso-card p {
+color: var(--text-light);
+font-size: 0.92rem;
+line-height: 1.6;
+margin: 0 1.5rem 1.5rem;
+}
+/* Instagram Section */
+.instagram-section {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.instagram-embed-slot {
+max-width: 560px;
+margin: 0 auto;
+text-align: center;
+padding: 4rem 2rem;
+border: 2px dashed var(--primary-lighter);
+border-radius: 4px;
+background: var(--orange-pastel);
+}
+.instagram-embed-icon {
+font-size: 3rem;
+display: block;
+margin-bottom: 1rem;
+}
+.instagram-embed-slot p {
+color: var(--text-light);
+margin-bottom: 1.5rem;
+font-size: 1.05rem;
+}
+/* Dictionary Section */
+.dictionary {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.dictionary-controls {
+max-width: 700px;
+margin: 0 auto 3rem;
+}
+.dict-search {
+width: 100%;
+padding: 1rem 1.3rem;
+border: 2px solid var(--ink);
+border-radius: 8px;
+font-size: 1rem;
+font-family: inherit;
+background: var(--white);
+margin-bottom: 1.5rem;
+}
+.dict-search:focus {
+outline: none;
+border-color: var(--orange-warm);
+box-shadow: 0 0 0 3px rgba(255,71,24,0.12);
+}
+.dict-filters {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 0.7rem;
+}
+.dict-filter {
+padding: 0.5rem 1.1rem;
+border: 2px solid var(--ink);
+border-radius: 30px;
+background: var(--white);
+font-weight: 600;
+font-size: 0.85rem;
+color: var(--text-dark);
+cursor: pointer;
+transition: all 0.2s ease;
+}
+.dict-filter:hover {
+background: var(--orange-pastel);
+}
+.dict-filter.active {
+background: var(--ink);
+border-color: var(--ink);
+color: var(--white);
+}
+.dictionary-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 1.5rem;
+}
+.dict-card {
+background: var(--white);
+border: 2px solid var(--gray-medium);
+border-left: 5px solid var(--orange-warm);
+border-radius: 4px;
+padding: 1.5rem 1.7rem;
+}
+.dict-card-cat {
+display: inline-block;
+font-size: 0.7rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+color: var(--orange-warm);
+margin-bottom: 0.5rem;
+}
+.dict-card h4 {
+color: var(--text-dark);
+font-size: 1.1rem;
+margin-bottom: 0.6rem;
+}
+.dict-card p {
+color: var(--text-light);
+font-size: 0.92rem;
+line-height: 1.6;
+}
+.dict-empty {
+text-align: center;
+color: var(--text-light);
+padding: 3rem 0;
+}
+/* Permit Matcher Section */
+.permit-matcher {
+padding: 6rem 5%;
+max-width: 900px;
+margin: 0 auto;
+}
+.permit-form-wrapper label {
+display: block;
+font-weight: 600;
+color: var(--text-dark);
+margin-bottom: 0.6rem;
+}
+.permit-form-wrapper textarea {
+width: 100%;
+padding: 1.2rem;
+border: 2px solid var(--gray-medium);
+border-radius: 12px;
+font-family: inherit;
+font-size: 1rem;
+resize: vertical;
+background: var(--gray-light);
+transition: all 0.25s ease;
+}
+.permit-form-wrapper textarea:focus {
+outline: none;
+border-color: var(--orange-warm);
+background: var(--white);
+box-shadow: 0 0 0 3px rgba(255,71,24,0.1);
+}
+.permit-result {
+display: none;
+margin-top: 3rem;
+padding: 2.5rem;
+background: var(--orange-pastel);
+border: 2px solid var(--primary-lighter);
+border-radius: 12px;
+}
+.permit-result.show {
+display: block;
+animation: fadeInUp 0.5s ease;
+}
+.permit-result h3 {
+color: var(--orange-warm);
+font-size: 1.5rem;
+margin-bottom: 1rem;
+}
+#permitAuthority {
+color: var(--text-dark);
+line-height: 1.7;
+margin-bottom: 1.5rem;
+}
+.permit-risks {
+background: var(--white);
+border-radius: 8px;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+}
+.permit-risks h4 {
+color: var(--text-dark);
+margin-bottom: 0.8rem;
+font-size: 1rem;
+}
+.permit-risks ul {
+padding-left: 1.3rem;
+}
+.permit-risks li {
+color: var(--text-light);
+line-height: 1.7;
+margin-bottom: 0.5rem;
+}
+.permit-disclaimer {
+font-size: 0.85rem;
+color: var(--text-light);
+font-style: italic;
+margin-bottom: 1.5rem;
+line-height: 1.6;
+}
 /* Contact Section Mejorado */
 .contact {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 50%, var(--primary-dark) 100%);
+background: var(--orange-warm);
 color: var(--white);
 padding: 6rem 5%;
 text-align: center;
 position: relative;
 overflow: hidden;
-}
-.contact::before {
-content: '';
-position: absolute;
-top: -50%;
-left: -50%;
-width: 200%;
-height: 200%;
-background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-animation: rotate 25s linear infinite;
 }
 .contact-content {
 max-width: 900px;
@@ -848,38 +1308,39 @@ display: flex;
 align-items: center;
 gap: 0.8rem;
 font-size: 1.1rem;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+font-weight: 600;
 padding: 1rem 1.5rem;
-border-radius: 15px;
-background: rgba(255,255,255,0.1);
-backdrop-filter: blur(10px);
+border-radius: 4px;
+border: 2px solid rgba(255,255,255,0.4);
+color: inherit;
+text-decoration: none;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.contact-item:hover {
-transform: translateY(-5px);
-background: rgba(255,255,255,0.2);
+a.contact-item:hover {
+background: rgba(255,255,255,0.15);
+border-color: var(--white);
 }
 .contact-item span:first-child {
 font-size: 1.5rem;
 }
 .schedule-button {
-background: var(--white);
-color: var(--primary);
+background: var(--ink);
+color: var(--white);
+border-color: var(--ink);
 padding: 1.2rem 3rem;
-font-size: 1.2rem;
+font-size: 1.1rem;
 margin-top: 2rem;
 display: inline-block;
-box-shadow: var(--shadow-lg);
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .schedule-button:hover {
-background: var(--bg-light);
-color: var(--primary-dark);
-transform: translateY(-5px);
-box-shadow: var(--shadow-xl);
+background: var(--white);
+color: var(--ink);
+border-color: var(--white);
+box-shadow: 6px 8px 0 rgba(146,124,99,0.5);
 }
 /* Footer Mejorado */
 footer {
-background: linear-gradient(135deg, var(--text-dark) 0%, #2c2c2c 100%);
+background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
 color: var(--white);
 padding: 4rem 5%;
 text-align: center;
@@ -902,6 +1363,21 @@ footer p {
 opacity: 0.8;
 line-height: 1.8;
 margin-bottom: 0.5rem;
+}
+.footer-social {
+display: inline-block;
+margin-top: 1rem;
+color: var(--white);
+text-decoration: none;
+font-weight: 600;
+border: 2px solid rgba(255,255,255,0.3);
+border-radius: 4px;
+padding: 0.6rem 1.4rem;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.footer-social:hover {
+background: var(--orange-warm);
+border-color: var(--orange-warm);
 }
 /* WhatsApp Float Button Mejorado */
 .whatsapp-float {
@@ -974,7 +1450,7 @@ animation: fadeIn 0.3s ease;
 background-color: var(--white);
 margin: 2% auto;
 padding: 0;
-border-radius: 25px;
+border-radius: 8px;
 width: 90%;
 max-width: 950px;
 max-height: 90vh;
@@ -983,12 +1459,13 @@ box-shadow: var(--shadow-xl);
 animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal-header {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
+background: var(--ink);
 color: var(--white);
 padding: 3rem;
-border-radius: 25px 25px 0 0;
+border-radius: 8px 8px 0 0;
 position: relative;
 text-align: center;
+border-bottom: 4px solid var(--orange-warm);
 }
 .modal-header h2 {
 font-size: 2rem;
@@ -1026,8 +1503,8 @@ padding: 3rem;
 .carbon-calculator-section {
 margin-top: 4rem;
 padding: 3rem 0;
-background: linear-gradient(135deg, var(--orange-pastel) 0%, var(--white) 50%, var(--bg-light) 100%);
-border-radius: 25px;
+background: var(--ink);
+border-radius: 4px;
 position: relative;
 overflow: hidden;
 opacity: 0;
@@ -1046,50 +1523,35 @@ padding: 0 2rem;
 }
 .carbon-title {
 font-size: 2rem;
-color: var(--text-dark);
+color: var(--white);
 margin-bottom: 0.8rem;
-font-weight: 700;
+font-weight: 800;
 }
 .carbon-subtitle {
 font-size: 1.1rem;
-color: var(--text-light);
+color: rgba(255,255,255,0.65);
 margin-bottom: 2rem;
 }
 .carbon-button-enhanced {
-background: linear-gradient(135deg, var(--primary) 0%, var(--orange-warm) 100%);
+background: var(--orange-warm);
 color: white;
 padding: 0;
-border-radius: 60px;
+border-radius: 8px;
 text-decoration: none;
 display: inline-flex;
 align-items: center;
 gap: 1rem;
 cursor: pointer;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-border: none;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+border: 2px solid var(--orange-warm);
 font-size: 1rem;
-box-shadow: var(--shadow-lg);
 overflow: visible;
 position: relative;
 z-index: 1;
 }
-.carbon-button-enhanced::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
-transform: translateX(-100%);
-transition: transform 0.6s ease;
-}
-.carbon-button-enhanced:hover::before {
-transform: translateX(100%);
-}
 .carbon-button-enhanced:hover {
-transform: translateY(-5px);
-box-shadow: var(--shadow-orange);
+transform: translate(-3px, -5px);
+box-shadow: 6px 8px 0 rgba(255,255,255,0.25);
 }
 .button-icon {
 background: rgba(255,255,255,0.2);
@@ -1239,18 +1701,12 @@ to { transform: rotate(360deg); }
 }
 /* Responsive Mejorado */
 @media (max-width: 1024px) {
-.hero-content {
-grid-template-columns: 1fr;
-gap: 3rem;
+.hero-text {
 text-align: center;
-}
-.hero-visual {
-order: -1;
 margin: 0 auto;
 }
-.tree-human {
-width: 280px;
-height: 280px;
+.hero-stats {
+justify-content: center;
 }
 .about-content {
 grid-template-columns: 1fr;
@@ -1262,6 +1718,12 @@ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 .experts-grid,
 .cases-slider {
 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.territory-gallery {
+grid-template-columns: repeat(2, 1fr);
+}
+.gallery-grid {
+grid-template-columns: repeat(3, 1fr);
 }
 }
 @media (max-width: 768px) {
@@ -1304,9 +1766,29 @@ text-align: center;
 .services-grid,
 .value-cards,
 .cases-slider,
-.experts-grid {
+.experts-grid,
+.territory-gallery {
 grid-template-columns: 1fr;
 }
+.territory-card.wide {
+grid-column: span 1;
+}
+.territory-banner {
+min-height: 280px;
+}
+.presence-cards {
+grid-template-columns: 1fr;
+}
+.gallery-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+.lightbox-nav {
+width: 40px;
+height: 40px;
+font-size: 1.2rem;
+}
+.lightbox-prev { left: 0.5rem; }
+.lightbox-next { right: 0.5rem; }
 .contact-info {
 flex-direction: column;
 gap: 1.5rem;
@@ -1345,7 +1827,9 @@ Bioterritorio
 <li><a href="#servicios">Servicios</a></li>
 <li><a href="#nosotros">Nosotros</a></li>
 <li><a href="#expertos">Expertos</a></li>
+<li><a href="#aliados">Aliados</a></li>
 <li><a href="#clientes">Clientes</a></li>
+<li><a href="#galeria">Galería</a></li>
 <li><a href="#contacto" class="cta-button">Contáctanos</a></li>
 </ul>
 <button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
@@ -1353,24 +1837,70 @@ Bioterritorio
 </header>
 <!-- Hero Section -->
 <section class="hero" id="inicio">
+<video class="hero-video" autoplay muted loop playsinline>
+<source src="bosque-seco-tropical.mp4" type="video/mp4">
+</video>
+<div class="hero-overlay"></div>
 <div class="hero-content">
 <div class="hero-text">
-<h1>Lidera el futuro sostenible con <span>ventaja competitiva</span></h1>
-<p>Estrategias ESG (ambiental, social y gobernanza) que transforman tu impacto ambiental en oportunidades de crecimiento y liderazgo empresarial</p>
+<span class="eyebrow on-dark">Consultoría Ambiental &amp; ESG · Colombia</span>
+<h1>El riesgo ambiental, convertido en <span>ventaja competitiva</span></h1>
+<p>Asesoramos a empresas de minería, energía e infraestructura para operar en regla, ganar la licencia social y liderar sostenibilidad sin frenar el crecimiento.</p>
 <div class="hero-buttons">
 <a href="#servicios" class="cta-button">Conoce nuestros servicios</a>
 <a href="https://cal.com/natalia-natalia-montoya-montoya-zccc2b/30min" target="_blank" class="cta-button secondary">Agenda una consultoría</a>
 </div>
-</div>
-<div class="hero-visual">
-<div class="tree-human">
-<img src="fulllogo_transparent.png" alt="Bioterritorio">
+<div class="hero-stats">
+<div class="hero-stat"><strong>+14</strong><span>Años de experiencia</span></div>
+<div class="hero-stat"><strong>6</strong><span>Expertos aliados</span></div>
+<div class="hero-stat"><strong>3</strong><span>Sectores: minería, energía, infraestructura</span></div>
 </div>
 </div>
 </div>
 </section>
+<!-- Permit Matcher Section (siempre visible, junto al Inicio) -->
+<section class="permit-matcher">
+<div class="section-head">
+<span class="eyebrow">Evaluación rápida</span>
+<h2 class="section-title">¿Necesito un permiso o licencia ambiental?</h2>
+<p class="section-subtitle">Describe brevemente tu proyecto y te damos una orientación inicial sobre licencias, permisos y riesgos clave</p>
+</div>
+<div class="permit-form-wrapper">
+<label for="permitInput">Describe tu proyecto (sector, actividad, ubicación aproximada)</label>
+<textarea id="permitInput" rows="4" placeholder="Ej: Vamos a construir una pequeña central hidroeléctrica en un río de Antioquia, Colombia..."></textarea>
+<button class="cta-button" onclick="analyzeProject()" style="margin-top: 1.5rem;">Analizar mi proyecto</button>
+<div id="permitResult" class="permit-result">
+<h3 id="permitTitle"></h3>
+<p id="permitAuthority"></p>
+<div class="permit-risks">
+<h4>⚠️ Dos riesgos importantes a considerar</h4>
+<ul id="permitRisksList"></ul>
+</div>
+<p class="permit-disclaimer">Esta es una orientación general automatizada, no reemplaza una asesoría legal-ambiental formal. Los proyectos fuera de Colombia pueden regirse por estándares internacionales (IFC, Principios de Ecuador) además de la normativa local.</p>
+<a href="#contacto" class="cta-button">Agenda una consultoría gratuita</a>
+</div>
+</div>
+</section>
+<!-- Tabs de navegación -->
+<div class="tabs-nav" id="tabsNav">
+<button class="tab-btn active" data-tab="servicios" onclick="switchTab('servicios')">Servicios</button>
+<button class="tab-btn" data-tab="nosotros" onclick="switchTab('nosotros')">Nosotros</button>
+<button class="tab-btn" data-tab="expertos" onclick="switchTab('expertos')">Expertos</button>
+<button class="tab-btn" data-tab="aliados" onclick="switchTab('aliados')">Aliados</button>
+<button class="tab-btn" data-tab="clientes" onclick="switchTab('clientes')">Clientes</button>
+<button class="tab-btn" data-tab="territorio" onclick="switchTab('territorio')">En el Territorio</button>
+<button class="tab-btn" data-tab="galeria" onclick="switchTab('galeria')">Galería</button>
+<button class="tab-btn" data-tab="instagram" onclick="switchTab('instagram')">Instagram</button>
+<button class="tab-btn" data-tab="interactiva" onclick="switchTab('interactiva')">Zona Interactiva</button>
+</div>
 <!-- Value Proposition -->
+<div class="tab-panel active" data-tab="servicios">
 <section class="value-prop">
+<div class="section-head">
+<span class="eyebrow">Por qué Bioterritorio</span>
+<h2 class="section-title">No hacemos cumplimiento de papel</h2>
+<p class="section-subtitle">Convertimos la obligación ambiental en una estrategia que reduce riesgo y abre mercado</p>
+</div>
 <div class="value-cards">
 <div class="value-card">
 <div class="value-card-icon">
@@ -1439,8 +1969,11 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 <!-- Services Section -->
 <section class="services" id="servicios">
 <div class="services-container">
-<h2 class="section-title">Nuestras Soluciones</h2>
+<div class="section-head">
+<span class="eyebrow">Servicios</span>
+<h2 class="section-title">Ocho frentes, una sola estrategia</h2>
 <p class="section-subtitle">Servicios integrales para un desarrollo territorial sostenible, responsable y legalmente seguro</p>
+</div>
 <div class="services-grid">
 <div class="service-card">
 <div class="service-header">
@@ -1567,13 +2100,16 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 </section>
+</div>
 <!-- About Section -->
+<div class="tab-panel" data-tab="nosotros">
 <section class="about" id="nosotros">
 <div class="about-content">
 <div class="about-image">
 <img src="Natalia_Montoya_Ambiental.jpg" alt="Natalia Montoya Vanegas">
 </div>
 <div class="about-text">
+<span class="eyebrow">Nosotros</span>
 <h2>Liderazgo con Experiencia</h2>
 <p class="subtitle">Natalia Montoya Vanegas - Directora General</p>
 <p>Bióloga, Especialista en Derecho Ambiental y Magíster en Gestión Integrada de Cuencas Hidrográficas, con más de 14 años de experiencia liderando proyectos de impacto ambiental, gestión comunitaria, sostenibilidad y ESG.</p>
@@ -1587,12 +2123,84 @@ fill="url(#iconGradient1)" opacity="0.6"/>
 </div>
 </div>
 </div>
+<div class="presence-strip">
+<p class="presence-strip-label">Presencia en la industria</p>
+<div class="presence-cards">
+<div class="presence-card">
+<img src="evento-hydro-2025.jpg" alt="Bioterritorio en BIG Small Hydro 2025, Medellín">
+<div class="presence-card-caption">BIG Small Hydro 2025 · Medellín — Evento Académico del sector hidroenergético</div>
+</div>
+<div class="presence-card">
+<img src="congreso-mineria.jpg" alt="Bioterritorio en el Congreso Nacional de Minería">
+<div class="presence-card-caption">Congreso Nacional de Minería — Encuentro con el sector minero colombiano</div>
+</div>
+</div>
+</div>
 </section>
+</div>
+<!-- Territory Section -->
+<div class="tab-panel" data-tab="territorio">
+<section class="territory">
+<div class="section-head">
+<span class="eyebrow">En el territorio</span>
+<h2 class="section-title">El trabajo empieza en el campo</h2>
+<p class="section-subtitle">Cada estrategia nace de recorrer el terreno junto a nuestro equipo de consultores asociados</p>
+</div>
+<div class="territory-banner">
+<img src="colinas-territorio.jpg" alt="Paisaje de colinas y bosque en zona de proyecto">
+<div class="territory-banner-content">
+<p class="territory-quote">"El equilibrio entre desarrollo y conservación se construye recorriendo el territorio, comunidad por comunidad, ladera por ladera."</p>
+</div>
+</div>
+<div class="territory-gallery">
+<div class="territory-card wide">
+<img src="monitoreo-campo-selva.jpg" alt="Consultores realizando monitoreo ambiental en bosque">
+<div class="territory-card-caption">Monitoreo y verificación ambiental en campo</div>
+</div>
+<div class="territory-card">
+<img src="campo-valle-bioterritorio.jpg" alt="Consultor de Bioterritorio en visita de campo">
+<div class="territory-card-caption">Visitas técnicas en territorio</div>
+</div>
+<div class="territory-card">
+<img src="cartografia-social-comunidad.jpg" alt="Cartografía social con líderes comunitarios">
+<div class="territory-card-caption">Cartografía social con comunidades</div>
+</div>
+<div class="territory-card">
+<img src="reunion-comunitaria.jpg" alt="Encuentro comunitario en zona rural">
+<div class="territory-card-caption">Encuentros comunitarios en zona rural</div>
+</div>
+<div class="territory-card">
+<img src="tunel-mina.jpg" alt="Acompañamiento técnico en interior de mina">
+<div class="territory-card-caption">Acompañamiento técnico en operaciones mineras</div>
+</div>
+<div class="territory-card">
+<img src="bodega-mineral.jpg" alt="Bodega de mineral en instalación minera">
+<div class="territory-card-caption">Due diligence en instalaciones mineras</div>
+</div>
+<div class="territory-card wide">
+<img src="restauracion-ladera.jpg" alt="Ladera en proceso de restauración ecológica">
+<div class="territory-card-caption">Procesos de restauración y revegetalización</div>
+</div>
+<div class="territory-card">
+<img src="pueblo-territorio.jpg" alt="Municipio en el territorio de intervención">
+<div class="territory-card-caption">Presencia en los territorios que acompañamos</div>
+</div>
+<div class="territory-card">
+<img src="atardecer-cordillera.jpg" alt="Cordillera colombiana al atardecer">
+<div class="territory-card-caption">Zonas de intervención en la cordillera colombiana</div>
+</div>
+</div>
+</section>
+</div>
 <!-- Experts Section -->
+<div class="tab-panel" data-tab="expertos">
 <section class="experts" id="expertos">
 <div class="experts-container">
+<div class="section-head">
+<span class="eyebrow">Equipo</span>
 <h2 class="section-title">Expertos Aliados</h2>
 <p class="section-subtitle">Contamos con un equipo multidisciplinario de 6 profesionales especializados en diferentes áreas de la sostenibilidad y gestión ambiental</p>
+</div>
 <div class="experts-cta">
 <button onclick="toggleExperts()" class="cta-button" id="expertsButton">
 Conoce a nuestros expertos aliados
@@ -1600,7 +2208,7 @@ Conoce a nuestros expertos aliados
 </div>
 <div class="experts-grid" id="expertsGrid" style="display: none; margin-top: 3rem;">
 <div class="expert-card">
-<div class="expert-icon">�</div>
+<div class="expert-icon">👥</div>
 <h4>Socióloga</h4>
 <p>Experta en Gestión Social. Más de 10 años de experiencia liderando equipos multidisciplinarios. Especializada en criterios ESG/ASG, gerencia social y medición de impacto social.</p>
 <div class="expertise-tags">
@@ -1662,10 +2270,47 @@ Conoce a nuestros expertos aliados
 </div>
 </div>
 </section>
+</div>
+<!-- Allies Section -->
+<div class="tab-panel" data-tab="aliados">
+<section class="allies" id="aliados">
+<div class="allies-container">
+<div class="section-head">
+<span class="eyebrow">Empresas Aliadas</span>
+<h2 class="section-title">Un ecosistema para potenciar cada proyecto</h2>
+<p class="section-subtitle">Trabajamos junto a empresas especializadas que complementan nuestra gestión ambiental y social</p>
+</div>
+<div class="allies-grid">
+<div class="ally-card">
+<div class="ally-logo">
+<img src="aliado-vinks-logo.png" alt="Logo de Vinks">
+</div>
+<h4>Vinks</h4>
+<p>Inteligencia de datos y analítica social con IA para mapear el entorno, entender a los grupos de interés y medir el impacto en las comunidades.</p>
+<a href="https://datavinks.com/" target="_blank" class="ally-link">Visitar sitio →</a>
+</div>
+<div class="ally-card">
+<div class="ally-logo ally-logo-text">Ambiente y Desarrollo</div>
+<h4>Ambiente y Desarrollo</h4>
+<p>Aliado estratégico en gestión ambiental y desarrollo sostenible de proyectos.</p>
+</div>
+<div class="ally-card">
+<div class="ally-logo ally-logo-text">APMC</div>
+<h4>APMC</h4>
+<p>Asociación de Profesionales del Sector Minero Colombiano, gremio que impulsa el desarrollo sostenible del sector minero-energético del país.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
 <!-- Clients Section -->
+<div class="tab-panel" data-tab="clientes">
 <section class="cases" id="clientes">
+<div class="section-head">
+<span class="eyebrow">Resultados</span>
 <h2 class="section-title">Clientes y Casos de Éxito</h2>
 <p class="section-subtitle">Transformando territorios, creando valor sostenible</p>
+</div>
 <div class="cases-cta">
 <button onclick="toggleCases()" class="cta-button" id="casesButton">
 Ver nuestros casos de éxito
@@ -1693,6 +2338,13 @@ Ver nuestros casos de éxito
 <p><strong>Solución:</strong> Gestión comunitaria, análisis técnico-jurídico de títulos y gestión predial</p>
 <p><strong>Resultado:</strong> Proyecto en ejecución con acompañamiento continuo en gestión socioambiental</p>
 </div>
+<div class="case-card">
+<h4>Extracción de Materiales de Construcción</h4>
+<p class="client">AGREGADOS DE LA SIERRA</p>
+<p><strong>Desafío:</strong> Obtener la licencia ambiental para su proyecto de agregados pétreos en Suárez, Tolima</p>
+<p><strong>Solución:</strong> Elaboración del Estudio de Impacto Ambiental (EIA) y gestión ante la autoridad ambiental competente</p>
+<p><strong>Resultado:</strong> EIA en desarrollo, con acompañamiento técnico y social durante todo el proceso</p>
+</div>
 </div>
 <!-- Carbon Calculator Button -->
 <div class="carbon-calculator-section">
@@ -1712,6 +2364,7 @@ Ver nuestros casos de éxito
 </div>
 </div>
 </section>
+</div>
 <!-- Carbon Calculator Modal -->
 <div id="carbonModal" class="modal">
 <div class="modal-content">
@@ -1818,6 +2471,122 @@ Consulta cómo reducir tu huella
 </div>
 </div>
 </div>
+<!-- Gallery Section -->
+<div class="tab-panel" data-tab="galeria">
+<section class="gallery" id="galeria">
+<div class="section-head">
+<span class="eyebrow">Galería</span>
+<h2 class="section-title">Nuestro equipo en acción</h2>
+<p class="section-subtitle">Eventos del sector, visitas técnicas y trabajo con comunidades junto a nuestros consultores asociados</p>
+</div>
+<div class="gallery-grid" id="galleryGrid">
+<div class="gallery-item" data-caption="Panel de discusión — SDIMI & APMC, minería sostenible">
+<img src="gallery/panel-sdimi-apmc.jpg" alt="Panel de discusión sobre minería sostenible en SDIMI y APMC">
+</div>
+<div class="gallery-item" data-caption="12° SDIMI — Conferencia Internacional de Minerales Sostenibles">
+<img src="gallery/selfie-sdimi.jpg" alt="Consultora de Bioterritorio en la 12° SDIMI">
+</div>
+<div class="gallery-item" data-caption="Espacio de networking en conferencia del sector minero">
+<img src="gallery/cafe-conferencia.jpg" alt="Espacio de café y networking en conferencia">
+</div>
+<div class="gallery-item" data-caption="Sesión de capacitación y trabajo con comunidades">
+<img src="gallery/capacitacion-comunitaria.jpg" alt="Sesión de capacitación comunitaria">
+</div>
+<div class="gallery-item" data-caption="Visita técnica en zona de minería aluvial">
+<img src="gallery/draga-rio.jpg" alt="Draga de extracción en río durante visita técnica">
+</div>
+<div class="gallery-item" data-caption="Visita técnica en ribera de zona minera">
+<img src="gallery/visita-rio-mineria.jpg" alt="Consultores en visita técnica junto al río">
+</div>
+<div class="gallery-item" data-caption="Planta de prefabricados en proyecto de infraestructura">
+<img src="gallery/planta-prefabricados.jpg" alt="Planta de prefabricados en proyecto de infraestructura">
+</div>
+<div class="gallery-item" data-caption="Equipo de consultores asociados en evento del sector">
+<img src="gallery/equipo-conferencia.jpg" alt="Equipo de consultores asociados de Bioterritorio en conferencia">
+</div>
+</div>
+</section>
+</div>
+<!-- Instagram Section -->
+<div class="tab-panel" data-tab="instagram">
+<section class="instagram-section">
+<div class="section-head">
+<span class="eyebrow">Síguenos</span>
+<h2 class="section-title">Lo último en Instagram</h2>
+<p class="section-subtitle">Actualizado directamente desde @bioterritorio_org</p>
+</div>
+<!-- Reemplazar este div por el código de embed de SnapWidget cuando esté disponible -->
+<div class="instagram-embed-slot">
+<span class="instagram-embed-icon">📷</span>
+<p>Muy pronto verás aquí nuestras publicaciones más recientes de Instagram.</p>
+<a href="https://www.instagram.com/bioterritorio_org/" target="_blank" class="cta-button secondary">Síguenos en Instagram</a>
+</div>
+</section>
+</div>
+<!-- Zona Interactiva: Diccionario + Minicursos -->
+<div class="tab-panel" data-tab="interactiva">
+<section class="dictionary">
+<div class="section-head">
+<span class="eyebrow">Glosario</span>
+<h2 class="section-title">Diccionario Interactivo</h2>
+<p class="section-subtitle">Términos ambientales, mineros, eléctricos y sociales explicados en lenguaje claro</p>
+</div>
+<div class="dictionary-controls">
+<input type="text" id="dictSearch" class="dict-search" placeholder="Buscar un término... ej: licencia, vertimiento, servidumbre">
+<div class="dict-filters" id="dictFilters">
+<button class="dict-filter active" data-cat="todos">Todos</button>
+<button class="dict-filter" data-cat="Ambiental">Ambiental</button>
+<button class="dict-filter" data-cat="Minero">Minero</button>
+<button class="dict-filter" data-cat="Eléctrico">Eléctrico</button>
+<button class="dict-filter" data-cat="Social">Social</button>
+</div>
+</div>
+<div class="dictionary-grid" id="dictionaryGrid"></div>
+<p class="dict-empty" id="dictEmpty" style="display:none;">No encontramos términos que coincidan con tu búsqueda.</p>
+</section>
+<section class="minicursos">
+<div class="section-head">
+<span class="eyebrow">Aprende con nosotros</span>
+<h2 class="section-title">Minicursos Gratis</h2>
+<p class="section-subtitle">Videos cortos y gratuitos sobre gestión ambiental, ESG y sostenibilidad, próximamente en nuestro canal de YouTube</p>
+</div>
+<div class="minicursos-cta">
+<a href="https://www.youtube.com/@bioterritorio" target="_blank" class="cta-button" id="youtubeChannelLink">▶ Suscríbete a nuestro canal</a>
+</div>
+<div class="minicursos-grid">
+<div class="minicurso-card">
+<div class="minicurso-thumb">🎥<span class="minicurso-badge">Próximamente</span></div>
+<h4>Introducción a la Licencia Ambiental</h4>
+<p>Qué es, cuándo se necesita y los errores más comunes al tramitarla.</p>
+</div>
+<div class="minicurso-card">
+<div class="minicurso-thumb">🎥<span class="minicurso-badge">Próximamente</span></div>
+<h4>ESG para Pymes: primeros pasos</h4>
+<p>Cómo empezar una estrategia ambiental, social y de gobernanza sin un equipo grande.</p>
+</div>
+<div class="minicurso-card">
+<div class="minicurso-thumb">🎥<span class="minicurso-badge">Próximamente</span></div>
+<h4>Consulta Previa: lo que debes saber</h4>
+<p>Claves para relacionarte con comunidades étnicas en tu proyecto.</p>
+</div>
+<div class="minicurso-card">
+<div class="minicurso-thumb">🎥<span class="minicurso-badge">Próximamente</span></div>
+<h4>Huella de Carbono: cómo medirla</h4>
+<p>Una introducción práctica para calcular y reducir tu impacto.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<button class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1)" aria-label="Anterior">‹</button>
+<div class="lightbox-content">
+<span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+<img id="lightboxImg" src="" alt="">
+<p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+<button class="lightbox-nav lightbox-next" onclick="changeLightbox(1)" aria-label="Siguiente">›</button>
+</div>
 <!-- Contact Section -->
 <section class="contact" id="contacto">
 <div class="contact-content">
@@ -1832,6 +2601,10 @@ Consulta cómo reducir tu huella
 <span>📍</span>
 <span>Medellín, Colombia</span>
 </div>
+<a href="https://www.instagram.com/bioterritorio_org/" target="_blank" class="contact-item">
+<span>📷</span>
+<span>@bioterritorio_org</span>
+</a>
 </div>
 <a href="https://cal.com/natalia-natalia-montoya-montoya-zccc2b/30min" target="_blank" class="cta-button schedule-button">
 Solicita tu consultoría gratuita - 30 min
@@ -1844,6 +2617,7 @@ Solicita tu consultoría gratuita - 30 min
 <img src="fulllogo_transparent.png" alt="Bioterritorio" class="footer-logo">
 <p>© 2024 Bioterritorio. Transformando personas en guardianes del territorio.</p>
 <p>Liderado por Natalia Montoya Vanegas - +14 años de experiencia en consultoría ambiental</p>
+<a href="https://www.instagram.com/bioterritorio_org/" target="_blank" class="footer-social">📷 @bioterritorio_org</a>
 </div>
 </footer>
 <!-- WhatsApp Float Button -->
@@ -1854,11 +2628,37 @@ aria-label="Contactar por WhatsApp">
 <span>💬</span>
 </a>
 <script>
+// Tabs de navegación de contenido
+function switchTab(tabId, scroll) {
+if (scroll === undefined) scroll = true;
+document.querySelectorAll('.tab-panel').forEach(panel => {
+panel.classList.toggle('active', panel.dataset.tab === tabId);
+});
+document.querySelectorAll('.tab-btn').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.tab === tabId);
+});
+if (scroll) {
+const scrollTarget = document.getElementById('tabsNav');
+const headerOffset = 80;
+const elementPosition = scrollTarget.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+}
+}
 // Smooth scrolling mejorado
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 anchor.addEventListener('click', function (e) {
 e.preventDefault();
 const targetId = this.getAttribute('href');
+if (!targetId || targetId === '#') return;
+const tabId = targetId.slice(1);
+const panelExists = document.querySelector('.tab-panel[data-tab="' + tabId + '"]');
+if (panelExists) {
+switchTab(tabId);
+navLinks.classList.remove('active');
+mobileMenu.classList.remove('active');
+return;
+}
 const target = document.querySelector(targetId);
 if (target) {
 const headerOffset = 80;
@@ -2047,22 +2847,165 @@ casesGrid.style.display = 'none';
 casesButton.textContent = 'Ver nuestros casos de éxito';
 }
 }
-// Enhanced scroll animations
-let ticking = false;
-function updateScrollAnimations() {
-if (!ticking) {
-window.requestAnimationFrame(function() {
-const scrolled = window.pageYOffset;
-const hero = document.querySelector('.hero');
-if (hero && scrolled < window.innerHeight) {
-hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+// Lightbox de galería
+const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+let lightboxIndex = 0;
+function openLightbox(index) {
+lightboxIndex = index;
+updateLightbox();
+document.getElementById('lightbox').classList.add('active');
+document.body.style.overflow = 'hidden';
 }
-ticking = false;
+function updateLightbox() {
+const item = galleryItems[lightboxIndex];
+document.getElementById('lightboxImg').src = item.querySelector('img').src;
+document.getElementById('lightboxCaption').textContent = item.dataset.caption;
+}
+function changeLightbox(direction) {
+lightboxIndex = (lightboxIndex + direction + galleryItems.length) % galleryItems.length;
+updateLightbox();
+}
+function closeLightbox() {
+document.getElementById('lightbox').classList.remove('active');
+document.body.style.overflow = 'auto';
+}
+galleryItems.forEach((item, index) => {
+item.addEventListener('click', () => openLightbox(index));
 });
-ticking = true;
+document.getElementById('lightbox').addEventListener('click', (e) => {
+if (e.target.id === 'lightbox') closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+if (!document.getElementById('lightbox').classList.contains('active')) return;
+if (e.key === 'Escape') closeLightbox();
+if (e.key === 'ArrowLeft') changeLightbox(-1);
+if (e.key === 'ArrowRight') changeLightbox(1);
+});
+// Diccionario Interactivo
+const dictionaryTerms = [
+{ term: 'EIA (Estudio de Impacto Ambiental)', cat: 'Ambiental', def: 'Documento técnico que identifica, evalúa y describe los impactos ambientales de un proyecto antes de que reciba licencia.' },
+{ term: 'PMA (Plan de Manejo Ambiental)', cat: 'Ambiental', def: 'Conjunto de programas para prevenir, mitigar, corregir o compensar los impactos ambientales de un proyecto.' },
+{ term: 'Licencia Ambiental', cat: 'Ambiental', def: 'Autorización que otorga la autoridad ambiental para ejecutar un proyecto que pueda producir deterioro grave a los recursos naturales.' },
+{ term: 'DAA (Diagnóstico Ambiental de Alternativas)', cat: 'Ambiental', def: 'Estudio que compara distintas opciones de un proyecto para elegir la de menor impacto ambiental.' },
+{ term: 'ANLA', cat: 'Ambiental', def: 'Autoridad Nacional de Licencias Ambientales: entidad colombiana que otorga las licencias ambientales de proyectos de gran envergadura.' },
+{ term: 'CAR (Corporación Autónoma Regional)', cat: 'Ambiental', def: 'Entidad que administra los recursos naturales y otorga permisos ambientales a nivel regional en Colombia.' },
+{ term: 'Permiso de Vertimientos', cat: 'Ambiental', def: 'Autorización para descargar aguas residuales tratadas a una fuente hídrica o al suelo.' },
+{ term: 'Concesión de Aguas', cat: 'Ambiental', def: 'Permiso que otorga el derecho a usar o aprovechar agua de una fuente natural.' },
+{ term: 'Aprovechamiento Forestal', cat: 'Ambiental', def: 'Permiso para talar o remover árboles en un área determinada, con obligación de compensación.' },
+{ term: 'Compensación Ambiental', cat: 'Ambiental', def: 'Acciones para resarcir los impactos ambientales que no pudieron evitarse ni mitigarse.' },
+{ term: 'Plan de Gestión del Riesgo', cat: 'Ambiental', def: 'Documento que identifica riesgos de desastres asociados a un proyecto y sus medidas de respuesta.' },
+{ term: 'Huella de Carbono', cat: 'Ambiental', def: 'Medida de las emisiones de gases de efecto invernadero generadas directa o indirectamente por una persona u organización.' },
+{ term: 'Título Minero', cat: 'Minero', def: 'Documento que otorga el derecho a explorar y explotar minerales en un área determinada.' },
+{ term: 'Concesión Minera', cat: 'Minero', def: 'Contrato entre el Estado y un particular que autoriza la exploración y explotación de un yacimiento minero.' },
+{ term: 'RUCOM', cat: 'Minero', def: 'Registro Único de Comercializadores de Minerales, exigido para comercializar legalmente minerales en Colombia.' },
+{ term: 'PTO (Programa de Trabajos y Obras)', cat: 'Minero', def: 'Documento técnico que detalla cómo se ejecutará la explotación minera.' },
+{ term: 'Regalías', cat: 'Minero', def: 'Contraprestación económica que paga quien explota un recurso natural no renovable al Estado.' },
+{ term: 'Canon Superficiario', cat: 'Minero', def: 'Pago anual que el titular minero hace por cada hectárea del área otorgada, mientras no inicie explotación.' },
+{ term: 'ANM (Agencia Nacional de Minería)', cat: 'Minero', def: 'Autoridad minera encargada de administrar los recursos minerales del Estado colombiano.' },
+{ term: 'Zona Minera Étnica', cat: 'Minero', def: 'Área especial delimitada para comunidades indígenas o afro donde tienen prelación para solicitar títulos mineros.' },
+{ term: 'CREG', cat: 'Eléctrico', def: 'Comisión de Regulación de Energía y Gas: entidad que regula los mercados de energía eléctrica y gas en Colombia.' },
+{ term: 'UPME', cat: 'Eléctrico', def: 'Unidad de Planeación Minero Energética: entidad que planea el desarrollo del sector energético colombiano.' },
+{ term: 'Servidumbre Eléctrica', cat: 'Eléctrico', def: 'Derecho que permite instalar y mantener redes eléctricas sobre predios de terceros.' },
+{ term: 'Licencia de Conexión', cat: 'Eléctrico', def: 'Autorización para conectar un proyecto de generación a la red eléctrica nacional.' },
+{ term: 'Franja de Servidumbre', cat: 'Eléctrico', def: 'Área de terreno reservada bajo líneas de transmisión donde se restringen ciertos usos del suelo.' },
+{ term: 'STN (Sistema de Transmisión Nacional)', cat: 'Eléctrico', def: 'Red de líneas de alta tensión que transporta energía eléctrica en Colombia.' },
+{ term: 'Autogeneración', cat: 'Eléctrico', def: 'Producción de energía eléctrica para consumo propio, con o sin excedentes entregados a la red.' },
+{ term: 'Consulta Previa', cat: 'Social', def: 'Derecho fundamental de comunidades étnicas a ser consultadas sobre proyectos que afecten su territorio.' },
+{ term: 'Licencia Social', cat: 'Social', def: 'Aceptación y legitimidad que una comunidad otorga de forma informal a un proyecto para operar en su territorio.' },
+{ term: 'PQRS', cat: 'Social', def: 'Peticiones, Quejas, Reclamos y Sugerencias: mecanismo de atención a la comunidad durante un proyecto.' },
+{ term: 'Reasentamiento', cat: 'Social', def: 'Proceso de traslado planificado de personas afectadas por un proyecto hacia un nuevo lugar de vivienda.' },
+{ term: 'Grupos de Interés (Stakeholders)', cat: 'Social', def: 'Personas o comunidades que afectan o son afectadas por las decisiones de un proyecto.' },
+{ term: 'Debida Diligencia en DDHH', cat: 'Social', def: 'Proceso para identificar, prevenir y mitigar impactos negativos de un proyecto en los derechos humanos.' }
+];
+let dictActiveCat = 'todos';
+function renderDictionary() {
+const query = document.getElementById('dictSearch').value.trim().toLowerCase();
+const grid = document.getElementById('dictionaryGrid');
+const empty = document.getElementById('dictEmpty');
+const filtered = dictionaryTerms.filter(t => {
+const matchesCat = dictActiveCat === 'todos' || t.cat === dictActiveCat;
+const matchesQuery = !query || t.term.toLowerCase().includes(query) || t.def.toLowerCase().includes(query);
+return matchesCat && matchesQuery;
+});
+grid.innerHTML = filtered.map(t =>
+'<div class="dict-card"><span class="dict-card-cat">' + t.cat + '</span><h4>' + t.term + '</h4><p>' + t.def + '</p></div>'
+).join('');
+empty.style.display = filtered.length ? 'none' : 'block';
+}
+document.getElementById('dictSearch').addEventListener('input', renderDictionary);
+document.querySelectorAll('.dict-filter').forEach(btn => {
+btn.addEventListener('click', () => {
+dictActiveCat = btn.dataset.cat;
+document.querySelectorAll('.dict-filter').forEach(b => b.classList.toggle('active', b === btn));
+renderDictionary();
+});
+});
+renderDictionary();
+// Matcher: ¿Necesito permiso o licencia ambiental?
+const permitRules = [
+{ keywords: ['mina','minería','minero','explotación minera','yacimiento','material de arrastre','agregados pétreos','cantera','oro','carbón'],
+titulo: 'Sí, muy probablemente necesitas Licencia Ambiental y Título Minero.',
+autoridad: 'En Colombia: Título Minero ante la Agencia Nacional de Minería (ANM) y Licencia Ambiental ante la ANLA o la Corporación Autónoma Regional (CAR), según la magnitud del proyecto.',
+riesgos: ['Afectación a fuentes hídricas y suelos por la actividad extractiva.', 'Conflictos con comunidades locales o necesidad de Consulta Previa si hay comunidades étnicas en el área.'] },
+{ keywords: ['hidroeléctrica','represa','embalse','central hidroeléctrica','pch','pequeña central'],
+titulo: 'Sí, tu proyecto requiere Licencia Ambiental.',
+autoridad: 'En Colombia, ante la ANLA (proyectos de gran capacidad) o la Corporación Autónoma Regional -CAR- competente (pequeñas centrales), además de la Concesión de Aguas.',
+riesgos: ['Alteración del caudal ecológico y afectación a especies acuáticas.', 'Posible reasentamiento de población o afectación a predios aguas abajo.'] },
+{ keywords: ['línea de transmisión','subestación','torres eléctricas','red eléctrica','transmisión de energía'],
+titulo: 'Depende del voltaje: si supera 57.5 kV, sí necesitas Licencia Ambiental.',
+autoridad: 'Licencia Ambiental ante la ANLA para líneas de alta tensión (mayor a 57.5 kV); para menor voltaje, permisos regionales ante la CAR.',
+riesgos: ['Necesidad de constituir servidumbres eléctricas con múltiples propietarios.', 'Afectación a avifauna y al paisaje en zonas ambientalmente sensibles.'] },
+{ keywords: ['petróleo','hidrocarburos','gas natural','exploración sísmica','pozo petrolero','oleoducto'],
+titulo: 'Sí, tu proyecto requiere Licencia Ambiental.',
+autoridad: 'Ante la ANLA, dada la magnitud y sensibilidad de los proyectos de hidrocarburos.',
+riesgos: ['Alta sensibilidad social y frecuente necesidad de Consulta Previa.', 'Afectación a ecosistemas estratégicos y riesgo de derrames o contingencias.'] },
+{ keywords: ['acueducto','captación de agua','pozo profundo','concesión de agua','abastecimiento de agua'],
+titulo: 'Sí, necesitas una Concesión de Aguas (no siempre licencia ambiental completa).',
+autoridad: 'Ante la Corporación Autónoma Regional (CAR) de la zona donde se ubica la fuente hídrica.',
+riesgos: ['Disponibilidad real de la fuente hídrica frente a otros usuarios ya concesionados.', 'Posible necesidad de permiso de vertimientos si hay retorno de agua.'] },
+{ keywords: ['tala','aprovechamiento forestal','bosque','madera','deforestación'],
+titulo: 'Sí, necesitas un Permiso de Aprovechamiento Forestal.',
+autoridad: 'Ante la Corporación Autónoma Regional (CAR) competente.',
+riesgos: ['Pérdida de biodiversidad y servicios ecosistémicos.', 'Sanciones administrativas y penales por tala sin permiso.'] },
+{ keywords: ['residuos peligrosos','sustancias químicas','residuos industriales','manejo de químicos'],
+titulo: 'Sí, necesitas Registro de Generador de Residuos Peligrosos y un Plan de Manejo.',
+autoridad: 'Ante la autoridad ambiental regional (CAR) y registro ante el IDEAM.',
+riesgos: ['Contaminación de suelos y aguas por manejo inadecuado.', 'Sanciones económicas significativas por incumplimiento normativo.'] },
+{ keywords: ['comunidad indígena','resguardo','comunidad afro','comunidad étnica','territorio ancestral'],
+titulo: 'Sí, tu proyecto requiere proceso de Consulta Previa.',
+autoridad: 'Coordinado por el Ministerio del Interior en Colombia, previo a cualquier licencia o permiso.',
+riesgos: ['Judicialización del proyecto mediante tutelas si no se surte el proceso.', 'Retrasos significativos en el cronograma si la consulta no se planifica a tiempo.'] },
+{ keywords: ['planta industrial','fábrica','manufactura','industria'],
+titulo: 'Probablemente sí, dependiendo de tus emisiones y vertimientos.',
+autoridad: 'Permiso de emisiones atmosféricas y/o vertimientos ante la CAR; Licencia Ambiental si la actividad está listada en el Decreto 1076 de 2015.',
+riesgos: ['Superar los límites de emisiones o vertimientos permitidos.', 'Necesidad de monitoreo ambiental continuo y reportes periódicos.'] },
+{ keywords: ['construcción','edificio','vivienda','urbanización','obra civil','condominio'],
+titulo: 'Generalmente no necesitas Licencia Ambiental nacional, pero sí permisos locales.',
+autoridad: 'Licencia de construcción ante la Curaduría Urbana municipal; posibles permisos de vertimientos u ocupación de cauce ante la CAR.',
+riesgos: ['Manejo inadecuado de aguas residuales y residuos de construcción y demolición.', 'Afectación a cuerpos de agua si hay ocupación de rondas hídricas.'] }
+];
+const permitFallback = {
+titulo: 'No fue posible determinar automáticamente con la información dada.',
+autoridad: 'Cada proyecto es distinto: el tipo de licencia o permiso depende del sector, la ubicación, la escala y los recursos naturales involucrados. Te recomendamos una evaluación técnica personalizada.',
+riesgos: ['Operar sin los permisos requeridos puede derivar en sanciones, multas o el cierre del proyecto.', 'El marco normativo ambiental cambia con frecuencia y varía según el país o la región.']
+};
+function analyzeProject() {
+const text = document.getElementById('permitInput').value.trim().toLowerCase();
+if (!text) return;
+let match = permitFallback;
+for (const rule of permitRules) {
+if (rule.keywords.some(k => text.includes(k))) {
+match = rule;
+break;
 }
 }
-window.addEventListener('scroll', updateScrollAnimations);
+document.getElementById('permitTitle').textContent = match.titulo;
+document.getElementById('permitAuthority').textContent = match.autoridad;
+document.getElementById('permitRisksList').innerHTML = match.riesgos.map(r => '<li>' + r + '</li>').join('');
+const resultEl = document.getElementById('permitResult');
+resultEl.classList.add('show');
+setTimeout(() => resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
 </script>
 </body>
 </html>
