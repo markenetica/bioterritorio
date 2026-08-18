@@ -2179,7 +2179,7 @@ Bioterritorio
 </section>
 <!-- Tabs de navegación -->
 <div class="tabs-nav" id="tabsNav">
-<button class="tab-btn-main active" data-group="servicios" onclick="switchGroup('servicios')">Servicios</button>
+<button class="tab-btn-main" data-group="servicios" onclick="switchGroup('servicios')">Servicios</button>
 <button class="tab-btn-main" data-group="nosotros" onclick="switchGroup('nosotros')">Nosotros</button>
 <button class="tab-btn-main" data-group="red" onclick="switchGroup('red')">Aliados y Clientes</button>
 <button class="tab-btn-main" data-group="recursos" onclick="switchGroup('recursos')">Recursos</button>
@@ -2187,7 +2187,7 @@ Bioterritorio
 </div>
 <div class="tabs-subnav" id="subTabsNav"></div>
 <!-- Services Section -->
-<div class="tab-panel active" data-tab="servicios">
+<div class="tab-panel" data-tab="servicios">
 <section class="services" id="servicios">
 <div class="services-container">
 <div class="section-head">
@@ -3068,7 +3068,6 @@ window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
 function switchGroup(groupId) {
 switchTab(tabGroups[groupId].subs[0].id);
 }
-switchTab('servicios', false);
 // Smooth scrolling mejorado
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 anchor.addEventListener('click', function (e) {
