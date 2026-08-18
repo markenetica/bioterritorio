@@ -108,14 +108,93 @@ border-radius: 5px;
 background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
 }
 /* Header & Navigation Mejorado */
-header {
-background: rgba(255, 255, 255, 0.95);
-backdrop-filter: blur(15px);
-box-shadow: var(--shadow-sm);
+.site-topbar {
 position: fixed;
 width: 100%;
 top: 0;
 z-index: 1000;
+}
+.news-ticker {
+display: flex;
+align-items: center;
+background: var(--ink);
+color: var(--white);
+height: 36px;
+overflow: hidden;
+}
+.news-ticker-label {
+flex-shrink: 0;
+background: var(--orange-warm);
+color: var(--white);
+font-weight: 700;
+font-size: 0.78rem;
+letter-spacing: 0.03em;
+padding: 0 1rem;
+height: 100%;
+display: flex;
+align-items: center;
+white-space: nowrap;
+z-index: 1;
+}
+.news-ticker-viewport {
+flex: 1;
+overflow: hidden;
+height: 100%;
+position: relative;
+}
+.news-ticker-track {
+display: flex;
+align-items: center;
+height: 100%;
+white-space: nowrap;
+width: max-content;
+animation: tickerScroll 60s linear infinite;
+}
+.news-ticker-track:hover {
+animation-play-state: paused;
+}
+.news-ticker-item {
+padding: 0 2.5rem 0 1.2rem;
+font-size: 0.8rem;
+color: rgba(255,255,255,0.85);
+position: relative;
+}
+.news-ticker-item::after {
+content: '•';
+position: absolute;
+right: 1rem;
+color: var(--orange-soft);
+}
+a.news-ticker-item {
+text-decoration: none;
+cursor: pointer;
+transition: color 0.2s ease;
+}
+a.news-ticker-item:hover {
+color: var(--white);
+}
+.news-ticker-source {
+color: var(--orange-soft);
+font-weight: 600;
+margin-right: 0.4rem;
+}
+@keyframes tickerScroll {
+0% { transform: translateX(0); }
+100% { transform: translateX(-50%); }
+}
+@media (max-width: 768px) {
+.news-ticker-label {
+font-size: 0.7rem;
+padding: 0 0.7rem;
+}
+.news-ticker-item {
+font-size: 0.75rem;
+}
+}
+header {
+background: rgba(255, 255, 255, 0.95);
+backdrop-filter: blur(15px);
+box-shadow: var(--shadow-sm);
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 header.scrolled {
@@ -172,6 +251,10 @@ font-size: 0.95rem;
 color: var(--primary);
 transform: translateY(-1px);
 }
+.nav-links a.cta-button,
+.nav-links a.cta-button:hover {
+color: var(--white);
+}
 .nav-links a::after {
 content: '';
 position: absolute;
@@ -222,8 +305,8 @@ box-shadow: 6px 10px 0 rgba(255,106,43,0.5);
 }
 /* Hero Section — Audaz, con video de fondo */
 .hero {
-margin-top: 75px;
-min-height: calc(100vh - 75px);
+margin-top: var(--topbar-height, 111px);
+min-height: calc(100vh - var(--topbar-height, 111px));
 background: var(--ink);
 display: flex;
 align-items: center;
@@ -343,6 +426,42 @@ transform: translateY(-2px);
 background: var(--orange-warm);
 border-color: var(--orange-warm);
 color: var(--white);
+}
+.tab-btn-main {
+padding: 1rem 1.8rem;
+border: 2px solid var(--ink);
+border-radius: 30px;
+background: var(--white);
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: 1rem;
+color: var(--text-dark);
+cursor: pointer;
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tab-btn-main:hover {
+background: var(--orange-pastel);
+transform: translateY(-2px);
+}
+.tab-btn-main.active {
+background: var(--ink);
+border-color: var(--ink);
+color: var(--white);
+}
+.tabs-subnav {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 0.7rem;
+max-width: 1400px;
+margin: 1.5rem auto 0;
+padding: 0 5%;
+min-height: 20px;
+}
+.sub-tab-btn {
+font-size: 0.85rem;
+padding: 0.6rem 1.3rem;
+animation: fadeIn 0.3s ease;
 }
 .tab-panel {
 display: none;
@@ -1272,6 +1391,57 @@ font-style: italic;
 margin-bottom: 1.5rem;
 line-height: 1.6;
 }
+/* Repository Section */
+.repository {
+padding: 6rem 5%;
+max-width: 1400px;
+margin: 0 auto;
+}
+.repo-group {
+margin-bottom: 3rem;
+}
+.repo-group-title {
+font-size: 1.3rem;
+color: var(--text-dark);
+margin-bottom: 1.5rem;
+padding-bottom: 0.8rem;
+border-bottom: 2px solid var(--gray-medium);
+}
+.repo-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 1.5rem;
+}
+.repo-card {
+display: block;
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 4px;
+padding: 1.5rem;
+text-decoration: none;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.repo-card:hover {
+transform: translate(-4px, -6px);
+box-shadow: 8px 10px 0 var(--ink);
+}
+.repo-card h4 {
+color: var(--orange-warm);
+font-size: 1.05rem;
+margin-bottom: 0.5rem;
+}
+.repo-card p {
+color: var(--text-light);
+font-size: 0.9rem;
+line-height: 1.6;
+}
+.repo-disclaimer {
+font-size: 0.85rem;
+color: var(--text-light);
+font-style: italic;
+text-align: center;
+margin-top: 1rem;
+}
 /* Contact Section Mejorado */
 .contact {
 background: var(--orange-warm);
@@ -1747,7 +1917,7 @@ display: flex;
 display: block;
 }
 .hero {
-margin-top: 70px;
+margin-top: var(--topbar-height, 106px);
 min-height: auto;
 padding: 4rem 0;
 }
@@ -1815,6 +1985,16 @@ display: none;
 </style>
 </head>
 <body>
+<div class="site-topbar" id="siteTopbar">
+<!-- Franja de Noticias Ambientales -->
+<div class="news-ticker" id="newsTicker">
+<span class="news-ticker-label">🌍 Noticias Ambientales</span>
+<div class="news-ticker-viewport">
+<div class="news-ticker-track" id="newsTickerTrack">
+<span class="news-ticker-item">Cargando noticias ambientales…</span>
+</div>
+</div>
+</div>
 <!-- Header -->
 <header id="header">
 <nav>
@@ -1835,6 +2015,7 @@ Bioterritorio
 <button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
 </nav>
 </header>
+</div>
 <!-- Hero Section -->
 <section class="hero" id="inicio">
 <video class="hero-video" autoplay muted loop playsinline>
@@ -1883,16 +2064,13 @@ Bioterritorio
 </section>
 <!-- Tabs de navegación -->
 <div class="tabs-nav" id="tabsNav">
-<button class="tab-btn active" data-tab="servicios" onclick="switchTab('servicios')">Servicios</button>
-<button class="tab-btn" data-tab="nosotros" onclick="switchTab('nosotros')">Nosotros</button>
-<button class="tab-btn" data-tab="expertos" onclick="switchTab('expertos')">Expertos</button>
-<button class="tab-btn" data-tab="aliados" onclick="switchTab('aliados')">Aliados</button>
-<button class="tab-btn" data-tab="clientes" onclick="switchTab('clientes')">Clientes</button>
-<button class="tab-btn" data-tab="territorio" onclick="switchTab('territorio')">En el Territorio</button>
-<button class="tab-btn" data-tab="galeria" onclick="switchTab('galeria')">Galería</button>
-<button class="tab-btn" data-tab="instagram" onclick="switchTab('instagram')">Instagram</button>
-<button class="tab-btn" data-tab="interactiva" onclick="switchTab('interactiva')">Zona Interactiva</button>
+<button class="tab-btn-main active" data-group="servicios" onclick="switchGroup('servicios')">Servicios</button>
+<button class="tab-btn-main" data-group="nosotros" onclick="switchGroup('nosotros')">Nosotros</button>
+<button class="tab-btn-main" data-group="red" onclick="switchGroup('red')">Aliados y Clientes</button>
+<button class="tab-btn-main" data-group="recursos" onclick="switchGroup('recursos')">Recursos</button>
+<button class="tab-btn-main" data-group="comunidad" onclick="switchGroup('comunidad')">Comunidad</button>
 </div>
+<div class="tabs-subnav" id="subTabsNav"></div>
 <!-- Value Proposition -->
 <div class="tab-panel active" data-tab="servicios">
 <section class="value-prop">
@@ -2577,6 +2755,79 @@ Consulta cómo reducir tu huella
 </div>
 </section>
 </div>
+<!-- Repositorio de Gestión Ambiental -->
+<div class="tab-panel" data-tab="repositorio">
+<section class="repository">
+<div class="section-head">
+<span class="eyebrow">Repositorio</span>
+<h2 class="section-title">Repositorio de Gestión Ambiental</h2>
+<p class="section-subtitle">Enlaces oficiales para consultar decretos, leyes y estándares ambientales, mineros y sociales en Colombia y en el mundo</p>
+</div>
+<div class="repo-group">
+<h3 class="repo-group-title">🇨🇴 Colombia</h3>
+<div class="repo-grid">
+<a href="https://www.anla.gov.co" target="_blank" class="repo-card">
+<h4>ANLA</h4>
+<p>Autoridad Nacional de Licencias Ambientales — licencias de proyectos de gran envergadura.</p>
+</a>
+<a href="https://www.minambiente.gov.co" target="_blank" class="repo-card">
+<h4>Ministerio de Ambiente</h4>
+<p>Política ambiental nacional, normativa y noticias del sector.</p>
+</a>
+<a href="https://www.suin-juriscol.gov.co" target="_blank" class="repo-card">
+<h4>SUIN-Juriscol</h4>
+<p>Sistema Único de Información Normativa: leyes, decretos y jurisprudencia colombiana.</p>
+</a>
+<a href="https://www.ideam.gov.co" target="_blank" class="repo-card">
+<h4>IDEAM</h4>
+<p>Instituto de Hidrología, Meteorología y Estudios Ambientales.</p>
+</a>
+<a href="https://www.anm.gov.co" target="_blank" class="repo-card">
+<h4>ANM</h4>
+<p>Agencia Nacional de Minería — títulos y normativa minera.</p>
+</a>
+<a href="https://creg.gov.co" target="_blank" class="repo-card">
+<h4>CREG</h4>
+<p>Comisión de Regulación de Energía y Gas.</p>
+</a>
+<a href="https://www.upme.gov.co" target="_blank" class="repo-card">
+<h4>UPME</h4>
+<p>Unidad de Planeación Minero Energética.</p>
+</a>
+<a href="https://www.corteconstitucional.gov.co" target="_blank" class="repo-card">
+<h4>Corte Constitucional</h4>
+<p>Sentencias y jurisprudencia, incluida la relativa a Consulta Previa.</p>
+</a>
+</div>
+</div>
+<div class="repo-group">
+<h3 class="repo-group-title">🌎 Internacional</h3>
+<div class="repo-grid">
+<a href="https://www.unep.org" target="_blank" class="repo-card">
+<h4>UNEP</h4>
+<p>Programa de las Naciones Unidas para el Medio Ambiente.</p>
+</a>
+<a href="https://www.ifc.org" target="_blank" class="repo-card">
+<h4>IFC Performance Standards</h4>
+<p>Estándares de desempeño ambiental y social para proyectos con financiación internacional.</p>
+</a>
+<a href="https://equator-principles.com" target="_blank" class="repo-card">
+<h4>Principios de Ecuador</h4>
+<p>Marco de gestión de riesgo ambiental y social para financiación de proyectos.</p>
+</a>
+<a href="https://www.iucn.org" target="_blank" class="repo-card">
+<h4>IUCN</h4>
+<p>Unión Internacional para la Conservación de la Naturaleza.</p>
+</a>
+<a href="https://www.worldbank.org/en/topic/environment" target="_blank" class="repo-card">
+<h4>Banco Mundial — Ambiente</h4>
+<p>Marco Ambiental y Social (MAS) para proyectos con financiación del Banco Mundial.</p>
+</a>
+</div>
+</div>
+<p class="repo-disclaimer">Enlaces a fuentes oficiales externas. Bioterritorio no administra estos sitios; verifica siempre la vigencia de la normativa directamente en la fuente.</p>
+</section>
+</div>
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
 <button class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1)" aria-label="Anterior">‹</button>
@@ -2628,23 +2879,76 @@ aria-label="Contactar por WhatsApp">
 <span>💬</span>
 </a>
 <script>
-// Tabs de navegación de contenido
+// Altura dinámica de la barra superior (ticker + header)
+function getTopbarHeight() {
+const topbar = document.getElementById('siteTopbar');
+return topbar ? topbar.offsetHeight : 80;
+}
+function updateTopbarHeight() {
+document.documentElement.style.setProperty('--topbar-height', getTopbarHeight() + 'px');
+}
+updateTopbarHeight();
+window.addEventListener('resize', updateTopbarHeight);
+window.addEventListener('load', updateTopbarHeight);
+// Tabs de navegación de contenido (2 niveles: grupo -> subsección)
+const tabGroups = {
+servicios: { label: 'Servicios', subs: [
+{ id: 'servicios', label: 'Servicios' },
+{ id: 'territorio', label: 'En el Territorio' }
+] },
+nosotros: { label: 'Nosotros', subs: [
+{ id: 'nosotros', label: 'Nosotros' },
+{ id: 'expertos', label: 'Expertos' }
+] },
+red: { label: 'Aliados y Clientes', subs: [
+{ id: 'aliados', label: 'Aliados' },
+{ id: 'clientes', label: 'Clientes' }
+] },
+recursos: { label: 'Recursos', subs: [
+{ id: 'interactiva', label: 'Zona Interactiva' },
+{ id: 'repositorio', label: 'Repositorio Normativo' }
+] },
+comunidad: { label: 'Comunidad', subs: [
+{ id: 'galeria', label: 'Galería' },
+{ id: 'instagram', label: 'Instagram' }
+] }
+};
+function findGroupForTab(tabId) {
+for (const groupId in tabGroups) {
+if (tabGroups[groupId].subs.some(s => s.id === tabId)) return groupId;
+}
+return null;
+}
+function renderSubNav(groupId, activeTabId) {
+const group = tabGroups[groupId];
+const subNav = document.getElementById('subTabsNav');
+subNav.innerHTML = group.subs.map(s =>
+'<button class="tab-btn sub-tab-btn' + (s.id === activeTabId ? ' active' : '') + '" data-tab="' + s.id + '" onclick="switchTab(\'' + s.id + '\')">' + s.label + '</button>'
+).join('');
+}
 function switchTab(tabId, scroll) {
 if (scroll === undefined) scroll = true;
+const groupId = findGroupForTab(tabId);
+if (!groupId) return;
+document.querySelectorAll('.tab-btn-main').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.group === groupId);
+});
+renderSubNav(groupId, tabId);
 document.querySelectorAll('.tab-panel').forEach(panel => {
 panel.classList.toggle('active', panel.dataset.tab === tabId);
 });
-document.querySelectorAll('.tab-btn').forEach(btn => {
-btn.classList.toggle('active', btn.dataset.tab === tabId);
-});
 if (scroll) {
 const scrollTarget = document.getElementById('tabsNav');
-const headerOffset = 80;
+const headerOffset = getTopbarHeight();
 const elementPosition = scrollTarget.getBoundingClientRect().top;
 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
 }
 }
+function switchGroup(groupId) {
+switchTab(tabGroups[groupId].subs[0].id);
+}
+switchTab('servicios', false);
 // Smooth scrolling mejorado
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 anchor.addEventListener('click', function (e) {
@@ -2661,7 +2965,7 @@ return;
 }
 const target = document.querySelector(targetId);
 if (target) {
-const headerOffset = 80;
+const headerOffset = getTopbarHeight();
 const elementPosition = target.getBoundingClientRect().top;
 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 window.scrollTo({
@@ -3006,6 +3310,38 @@ const resultEl = document.getElementById('permitResult');
 resultEl.classList.add('show');
 setTimeout(() => resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
+// Franja de noticias ambientales
+const newsFallback = [
+{ title: 'MinAmbiente hace llamado para evitar las llamadas quemas controladas del sector agrícola', link: 'https://www.minambiente.gov.co/minambiente-hace-llamado-para-evitar-las-llamadas-quemas-controladas-del-sector-agricola/', source: 'MinAmbiente Colombia' },
+{ title: 'Gobierno salda deuda histórica para la protección del Páramo de Santurbán', link: 'https://www.minambiente.gov.co/gobierno-salda-deuda-historica-para-la-proteccion-del-paramo-de-santurban/', source: 'MinAmbiente Colombia' },
+{ title: 'Gobierno Petro blinda la Amazonía con histórica declaratoria de Reserva de Recursos Naturales Renovables', link: 'https://www.minambiente.gov.co/gobierno-petro-blinda-la-amazonia-con-historica-declaratoria-de-reserva-de-recursos-naturales-renovables/', source: 'MinAmbiente Colombia' },
+{ title: 'El calor de los océanos alcanzó un máximo histórico en julio en medio de múltiples extremos climáticos', link: 'https://news.un.org/feed/view/es/story/2026/08/1541797', source: 'ONU · Ambiente' },
+{ title: 'Casi ningún país avanza al ritmo necesario para transformar sus sistemas alimentarios', link: 'https://news.un.org/feed/view/es/story/2026/08/1541788', source: 'ONU · Ambiente' },
+{ title: 'Negar la realidad no la hace desaparecer: olas de calor, incendios y sequías en Europa irán en aumento', link: 'https://news.un.org/feed/view/es/story/2026/08/1541784', source: 'ONU · Ambiente' }
+];
+function renderTicker(items) {
+const track = document.getElementById('newsTickerTrack');
+const buildSet = () => items.map(it =>
+'<a class="news-ticker-item" href="' + it.link + '" target="_blank" rel="noopener"><span class="news-ticker-source">' + it.source + '</span>' + it.title + '</a>'
+).join('');
+// Se duplica el contenido para lograr un scroll continuo sin salto
+track.innerHTML = buildSet() + buildSet();
+}
+async function loadNewsTicker() {
+try {
+const res = await fetch('/api/news');
+if (!res.ok) throw new Error('news api error');
+const data = await res.json();
+if (data.items && data.items.length) {
+renderTicker(data.items);
+return;
+}
+throw new Error('sin noticias');
+} catch (e) {
+renderTicker(newsFallback);
+}
+}
+loadNewsTicker();
 </script>
 </body>
 </html>
