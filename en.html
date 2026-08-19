@@ -1157,6 +1157,58 @@ transition: opacity 0.3s ease;
 .gallery-item:hover::after {
 opacity: 1;
 }
+/* Welcome Popup */
+.welcome-popup-overlay {
+display: none;
+position: fixed;
+inset: 0;
+z-index: 3000;
+background: rgba(22,19,15,0.75);
+align-items: center;
+justify-content: center;
+padding: 5%;
+}
+.welcome-popup-overlay.show {
+display: flex;
+animation: fadeIn 0.3s ease;
+}
+.welcome-popup {
+position: relative;
+max-width: 480px;
+width: 100%;
+background: var(--white);
+border: 2px solid var(--ink);
+border-radius: 8px;
+padding: 3rem 2.5rem 2.5rem;
+text-align: center;
+box-shadow: 10px 12px 0 var(--ink);
+animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.welcome-popup .eyebrow {
+justify-content: center;
+}
+.welcome-popup-text {
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: 1.4rem;
+line-height: 1.4;
+color: var(--text-dark);
+margin: 1rem 0 2rem;
+}
+.welcome-popup-close {
+position: absolute;
+top: 0.8rem;
+right: 1rem;
+background: none;
+border: none;
+font-size: 1.8rem;
+line-height: 1;
+color: var(--text-light);
+cursor: pointer;
+}
+.welcome-popup-close:hover {
+color: var(--orange-warm);
+}
 /* Info Icon + Bubble */
 .info-icon {
 display: inline-flex;
@@ -3002,6 +3054,15 @@ Find out how to reduce your footprint
 <p class="repo-disclaimer">Links to official external sources. Bioterritorio does not manage these sites; always verify current regulations directly at the source.</p>
 </section>
 </div>
+<!-- Welcome Popup -->
+<div class="welcome-popup-overlay" id="welcomePopupOverlay">
+<div class="welcome-popup">
+<button class="welcome-popup-close" onclick="closeWelcomePopup()" aria-label="Close">&times;</button>
+<span class="eyebrow">Our approach</span>
+<p class="welcome-popup-text">We turn environmental, regulatory and community challenges into the engine of your competitive advantage.</p>
+<a href="#servicios" onclick="closeWelcomePopup()" class="cta-button">Explore our services</a>
+</div>
+</div>
 <!-- Info Bubble -->
 <div class="info-bubble" id="infoBubble">
 <span class="info-bubble-arrow"></span>
@@ -3563,6 +3624,22 @@ renderTicker(newsFallback);
 }
 }
 loadNewsTicker();
+// Welcome Popup
+function closeWelcomePopup() {
+document.getElementById('welcomePopupOverlay').classList.remove('show');
+sessionStorage.setItem('welcomePopupShown', '1');
+}
+if (!sessionStorage.getItem('welcomePopupShown')) {
+setTimeout(() => {
+document.getElementById('welcomePopupOverlay').classList.add('show');
+}, 1200);
+}
+document.getElementById('welcomePopupOverlay').addEventListener('click', (e) => {
+if (e.target.id === 'welcomePopupOverlay') closeWelcomePopup();
+});
+document.addEventListener('keydown', (e) => {
+if (e.key === 'Escape') closeWelcomePopup();
+});
 </script>
 </body>
 </html>
