@@ -1,0 +1,8 @@
+# Archivos internos que Cloudflare NO debe publicar
+.git
+.wrangler
+.claude
+.gitignore
+.DS_Store
+wrangler.jsonc
+functions
